@@ -8,6 +8,7 @@ import Join from '../pages/non-auth/Join';
 import Layout from '../components/layout/Layout';
 import NonAuthLayout from '../components/layout/NonAuthLayout';
 import AuthLayout from '../components/layout/AuthLayout';
+import TestMyPage from '../pages/TestMyPage';
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
       {/* 로그인 여부 상관없는 라우터 */}
       <Route element={<Layout />}>
         <Route path="/" element={<Main />} />
+        <Route path="/testmy" element={<TestMyPage />} />
       </Route>
       {/* 로그인 상태가 반드시 아니어야 하는 라우터 */}
       <Route element={<NonAuthLayout />}>

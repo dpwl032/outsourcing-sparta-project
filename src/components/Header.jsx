@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -14,7 +15,9 @@ const Header = () => {
             <CategoryItem>Beauty</CategoryItem>
             <CategoryItem>Career</CategoryItem>
           </Category>
-          <SignUp>로그인/회원가입</SignUp>
+          <Link to="/testmy">
+            <SignUp>로그인/회원가입</SignUp>
+          </Link>
         </HeaderItem>
       </HeaderWrap>
     </>

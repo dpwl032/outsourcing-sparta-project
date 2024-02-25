@@ -50,11 +50,12 @@ const FooterItem = styled.div`
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: cente;
+  justify-content: center;
 `;
 
 const FooterList = styled.ul`
   display: flex;
+  text-align: center;
   width: 1000px;
   justify-content: space-around;
 `;
