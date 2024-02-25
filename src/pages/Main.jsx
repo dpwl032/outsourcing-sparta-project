@@ -1,11 +1,122 @@
 import React from 'react';
+import styled from 'styled-components';
+import user from '../assets/img/user.jpg';
+import host from '../assets/img/host.jpg';
+import { Link } from 'react-router-dom';
 
 const Main = () => {
   return (
     <>
-      <div>메인임다</div>
+      <MainWrap>
+        {/* 컨텐츠1*/}
+        <ContentsWrap>
+          <ContentsItem>
+            <ContentsItemNav>JOIN</ContentsItemNav>
+            <ContentsFigure>
+              <ContentsImg src={user} />
+            </ContentsFigure>
+            <ContentsDetail>
+              <FigcaptionP>봄의 새로운 시작을 응원해요!</FigcaptionP>
+              <span>
+                어떻게 시작해야 할지 모르겠다면 모든 길을 [로고]로 통합니다. 베이킹, 커리어, 등산 어떤 취미든 [로고]와
+                함께잖아요.
+              </span>
+              <Link to="/">
+                <UnderLineP>클래스 신청</UnderLineP>
+              </Link>
+            </ContentsDetail>
+          </ContentsItem>
+        </ContentsWrap>
+
+        {/* 컨텐츠2*/}
+        <AnotherContentsWrap>
+          <ContentsItem>
+            <ContentsItemNav>HOST</ContentsItemNav>
+            <ContentsFigure>
+              <ContentsImg src={host} />
+            </ContentsFigure>
+            <ContentsDetail>
+              <FigcaptionP>작가님의 재능을 나누고싶다면!</FigcaptionP>
+              <span>
+                작가님의 재능을 나누고 함께하는 것, 이 두가지에만 집중하세요. 수강생 모집, 스케쥴 관리, 홍보는
+                걱정마세요. [로고]와 함께잖아요.
+              </span>
+              <Link to="/">
+                <UnderLineP> 클래스 오픈</UnderLineP>
+              </Link>
+            </ContentsDetail>
+          </ContentsItem>
+        </AnotherContentsWrap>
+      </MainWrap>
     </>
   );
 };
 
 export default Main;
+
+const MainWrap = styled.div`
+  border: 1px solid black;
+  display: flex;
+`;
+
+const ContentsWrap = styled.div`
+  width: 50%;
+  height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const AnotherContentsWrap = styled.div`
+  width: 50%;
+  height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f6f4f2;
+`;
+
+const ContentsItem = styled.div`
+  width: 80%;
+  height: 90%;
+`;
+
+const ContentsItemNav = styled.div`
+  height: 10%;
+  font-weight: bolder;
+  font-size: 30px;
+`;
+
+const ContentsFigure = styled.div`
+  height: 70%;
+  width: 530px;
+  overflow: hidden;
+  /* align-items: center;
+  justify-content: center; */
+`;
+
+const ContentsImg = styled.img`
+  width: 530px;
+  height: 100%;
+  transition: all 0.2s linear;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const ContentsDetail = styled.div`
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+const FigcaptionP = styled.p`
+  font-weight: bolder;
+  font-size: 25px;
+`;
+
+const UnderLineP = styled.p`
+  text-decoration: underline;
+`;

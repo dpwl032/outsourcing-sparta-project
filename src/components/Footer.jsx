@@ -27,7 +27,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterWrap = styled.div`
-  background-color: #f5f4f4d7;
+  background-color: #fbfbfb;
 `;
 
 const FooterInsideLogo = styled.div`
