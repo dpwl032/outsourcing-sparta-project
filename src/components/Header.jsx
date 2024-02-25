@@ -7,14 +7,14 @@ const Header = () => {
     <>
       <HeaderWrap>
         <HeaderItem>
-          <Logo>로고</Logo>
-          <Category>
-            <CategoryItem>climbing</CategoryItem>
-            <CategoryItem>Traveling</CategoryItem>
-            <CategoryItem>Baking</CategoryItem>
-            <CategoryItem>Beauty</CategoryItem>
-            <CategoryItem>Career</CategoryItem>
-          </Category>
+          <HeaderLogo>로고</HeaderLogo>
+          <HeaderCategory>
+            <HeaderCategoryItem>climbing</HeaderCategoryItem>
+            <HeaderCategoryItem>Traveling</HeaderCategoryItem>
+            <HeaderCategoryItem>Baking</HeaderCategoryItem>
+            <HeaderCategoryItem>Beauty</HeaderCategoryItem>
+            <HeaderCategoryItem>Career</HeaderCategoryItem>
+          </HeaderCategory>
           <Link to="/testmy">
             <SignUp>로그인/회원가입</SignUp>
           </Link>
@@ -43,13 +43,13 @@ const HeaderItem = styled.div`
   width: 1200px;
 `;
 
-const Logo = styled.div`
+const HeaderLogo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const Category = styled.ul`
+const HeaderCategory = styled.ul`
   display: flex;
   width: 600px;
   justify-content: center;
@@ -59,7 +59,7 @@ const Category = styled.ul`
   font-size: 17px;
 `;
 
-const CategoryItem = styled.li`
+const HeaderCategoryItem = styled.li`
   text-transform: uppercase;
 
   &:after {
