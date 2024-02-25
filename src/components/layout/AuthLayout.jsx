@@ -11,14 +11,16 @@ const AuthLayout = () => {
   }
 
   return (
-    <div>
-      <h1>Auth Layout</h1>
-      <p>반드시 로그인이 되어있어야 하는 페이지입니다.</p>
-      <Main />
-      <main>
-        <Outlet />
-      </main>
-    </div>
+    <>
+      <div>
+        <h1>Auth Layout</h1>
+        <p>반드시 로그인이 되어있어야 하는 페이지입니다.</p>
+        <Main />
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </>
   );
 };
 
