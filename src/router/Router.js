@@ -21,8 +21,8 @@ const Router = () => {
       </Route>
       {/* 로그인 상태가 반드시 아니어야 하는 라우터 */}
       <Route element={<NonAuthLayout />}>
-        <Route path="/signIn" element={<SignInPage />} />
         <Route path="/signUpMode" element={<SignUpMode />} />
+        <Route path="/signIn" element={<SignInPage />} />
         <Route path="/personalSignUp" element={<PersonalSignUpPage />} />
         <Route path="/BusinessSignUp" element={<BusinessSignUpPage />} />
       </Route>

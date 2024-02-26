@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 const Header = () => {
-  const isLogin = useSelector((state) => state.auth.isLogin);
+  const isAuthenticated = localStorage.getItem('accessToken') ? true : false;
+
   return (
     <>
       <HeaderWrap>
@@ -18,7 +19,7 @@ const Header = () => {
             <HeaderCategoryItem>Beauty</HeaderCategoryItem>
             <HeaderCategoryItem>Career</HeaderCategoryItem>
           </HeaderCategory>
-          {!isLogin ? (
+          {!isAuthenticated ? (
             <Link to="/signIn">
               <SignUp>로그인/회원가입</SignUp>
             </Link>

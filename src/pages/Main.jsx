@@ -21,7 +21,7 @@ const Main = () => {
                 어떻게 시작해야 할지 모르겠다면 모든 길을 [로고]로 통합니다. 베이킹, 커리어, 등산 어떤 취미든 [로고]와
                 함께잖아요.
               </span>
-              <Link to="/">
+              <Link to="/home">
                 <MainUnderLineP>클래스 신청</MainUnderLineP>
               </Link>
             </MainContentsDetail>

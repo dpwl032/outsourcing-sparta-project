@@ -1,23 +1,28 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { login } from '../../redux/modules/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { authApi } from '../../api/user';
-import { jsonDb } from '../../api/user';
+import { useQuery } from 'react-query';
+import { getProfile } from '../../api/queryFns';
 
 export const SignInPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [isDisabled, setIsDisabled] = useState(true);
   const [personalSignInMode, setPersonalSignInMode] = useState(true);
   const [formState, setFormState] = useState({
     id: '',
-    password: '',
-    name: '',
-    nickname: '',
-    role: ''
+    password: ''
   });
+
+  const { data: dbData, isLoading, isError } = useQuery('userRoles', getProfile);
+
+  if (isLoading) {
+    return <p>...로딩중</p>;
+  }
+
+  if (isError) {
+    return <p>오류가 발생했습니다. 다시 새로고침 해주세요!</p>;
+  }
 
   const { id, password } = formState;
   const onChangeHandler = (e) => {
@@ -36,14 +41,23 @@ export const SignInPage = () => {
           password
         });
 
-        console.log('회원', data);
+        const { accessToken, avatar, nickname, userId } = data;
+        const result = dbData.data.find((item) => item.userId === userId);
 
-        const { jsonData } = await jsonDb.get('/userRoles');
-        console.log('그외', jsonData);
+        if (result.role === 'host') {
+          alert('게스트 계정으로만 로그인이 가능합니다.');
+          return;
+        }
 
-        const { accessToken, userId, nickname } = data;
         if (data.success) {
-          dispatch(login({ accessToken, userId, nickname, jsonData }));
+          // dispatch(login({ accessToken, userId, userPw, userName, userEmail, userNickname, userAvatar }));
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('avatar', avatar);
+          localStorage.setItem('nickname', nickname);
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('name', result.name);
+          localStorage.setItem('guest', result.role);
+
           alert('로그인 성공');
           navigate('/home');
         }
@@ -57,15 +71,24 @@ export const SignInPage = () => {
           id,
           password
         });
-        console.log('업체', data);
-        const { accessToken, userId, nickname } = data;
+        const { accessToken, nickname, userId } = data;
+        const result = dbData.data.find((item) => item.userId === userId);
+
+        if (result.role === 'guest') {
+          alert('호스트 계정으로만 로그인이 가능합니다.');
+          return;
+        }
+
         if (data.success) {
-          dispatch(login({ accessToken, userId, nickname }));
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('nickname', nickname);
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('name', result.name);
+          localStorage.setItem('host', result.role);
           alert('업체 로그인 성공');
           navigate('/home');
         }
       } catch (err) {
-        console.log('에러', err);
         alert(err.response.data.message);
       }
     }
@@ -77,8 +100,7 @@ export const SignInPage = () => {
         <Title>{personalSignInMode ? '로그인' : '업체 로그인'}</Title>
         <Input onChange={onChangeHandler} name="id" value={id} placeholder="아이디(이메일)를 입력해 주세요" />
         <Input onChange={onChangeHandler} name="password" value={password} placeholder="비밀번호를 입력해 주세요" />
-        {/* <Button disabled={isDisabled}>로그인</Button> */}
-        <Button>로그인</Button>
+        <Button disabled={isDisabled}>로그인</Button>
         <Toggle>
           <ToggleText>
             <span onClick={() => setPersonalSignInMode((prev) => !prev)}>

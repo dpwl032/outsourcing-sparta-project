@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { authApi } from '../../api/user';
-import { jsonDb } from '../../api/user';
+import { useMutation, useQueryClient } from 'react-query';
+import { addProfile } from '../../api/mutationFns';
 
 export const BusinessSignUpPage = () => {
   const navigate = useNavigate();
@@ -10,20 +11,29 @@ export const BusinessSignUpPage = () => {
   const [formState, setFormState] = useState({
     id: '',
     password: '',
-    businessname: '',
-    businessnumber: ''
+    businessnumber: '',
+    businessname: ''
   });
   const [profile, setProfile] = useState({
     name: '',
     role: 'host'
   });
-
   const { id, password, businessname, businessnumber } = formState;
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation(addProfile, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries('userRoles');
+    }
+  });
+
+  console.log('host', mutation);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
     setIsDisabled(value === '' || password === '');
+    setProfile((prev) => ({ ...prev, [name]: value }));
   };
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -34,14 +44,11 @@ export const BusinessSignUpPage = () => {
         password,
         nickname: businessnumber
       });
-      const { jsonData } = await jsonDb.post('/userRoles', {
-        userId: id,
-        role: 'host',
-        name: businessname
-      });
+
+      mutation.mutate({ userId: id, role: 'host', name: businessname });
+
       if (data.success) {
         alert('회원가입이 완료되었습니다');
-        console.log('회원용', data);
         navigate('/signIn');
       }
     } catch (err) {

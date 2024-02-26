@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { authApi } from '../../api/user';
-import { jsonDb } from '../../api/user';
+import { useMutation, useQueryClient } from 'react-query';
+import { addProfile } from '../../api/mutationFns';
 
 export const PersonalSignUpPage = () => {
   const navigate = useNavigate();
@@ -10,7 +11,8 @@ export const PersonalSignUpPage = () => {
   const [formState, setFormState] = useState({
     id: '',
     password: '',
-    nickname: ''
+    nickname: '',
+    name: ''
   });
 
   const [profile, setProfile] = useState({
@@ -19,6 +21,15 @@ export const PersonalSignUpPage = () => {
   });
 
   const { id, password, name, nickname } = formState;
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation(addProfile, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries('userRoles');
+    }
+  });
+
+  console.log('guest', mutation);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -33,14 +44,11 @@ export const PersonalSignUpPage = () => {
       const { data } = await authApi.post('/register', {
         id,
         password,
-        nickname
-      });
-
-      const { jsonData } = await jsonDb.post('/userRoles', {
-        userId: id,
-        role: 'guest',
+        nickname,
         name
       });
+
+      mutation.mutate({ userId: id, role: 'guest', name });
 
       if (data.success) {
         alert('회원가입이 완료되었습니다');

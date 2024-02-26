@@ -4,8 +4,23 @@ import { FcLock } from 'react-icons/fc';
 import { FcPlanner } from 'react-icons/fc';
 import { FcNext } from 'react-icons/fc';
 import { FcLike } from 'react-icons/fc';
+import { Navigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const TestMyPage = () => {
+  const [click, setClick] = useState(false);
+  const hostAuth = localStorage.getItem('host') ? true : false;
+
+  if (hostAuth) {
+    alert('개인 회원 계정만 이용할 수 있습니다!');
+    return <Navigate to="/home" replace />;
+  }
+
+  const nickname = localStorage.getItem('nickname');
+  const userId = localStorage.getItem('userId');
+  const name = localStorage.getItem('name');
+  const avatar = localStorage.getItem('avatar');
+
   return (
     <>
       <section>
@@ -37,13 +52,9 @@ const TestMyPage = () => {
                     gap: '20px'
                   }}
                 >
-                  <span> 아이디 : asdf@asdf.com </span>
-                  <span>
-                    닉네임 : <input />
-                  </span>
-                  <span>
-                    비밀번호 : <input />
-                  </span>
+                  <span> 아이디 : {userId} </span>
+                  <span>이름 : {name}</span>
+                  <span>닉네임 : {click ? { nickname } : <input defaultValue={nickname} />}</span>
 
                   <button>수정하기</button>
                 </div>
@@ -51,7 +62,7 @@ const TestMyPage = () => {
             </MyPageUserInfo>
             {/*구분선*/}
             <MyPageReservationNav>
-              OOO님의 예약 현황 <FcPlanner />
+              {nickname}님의 예약 현황 <FcPlanner />
             </MyPageReservationNav>
             {/*구분선*/}
             <MyPageReservationInfo>
