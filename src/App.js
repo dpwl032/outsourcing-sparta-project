@@ -11,7 +11,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Header />
         <Router />
-        {/* <Footer /> */}
+        <Footer />
       </QueryClientProvider>
     </>
   );
