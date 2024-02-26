@@ -9,9 +9,11 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      const accessToken = action.payload;
+      console.log('로그인', action.payload);
+      const accessToken = action.payload.accessToken;
       localStorage.setItem('accessToken', accessToken);
       state.isLogin = true;
+      return state;
     },
     logout: (state, action) => {
       state.isLogin = false;

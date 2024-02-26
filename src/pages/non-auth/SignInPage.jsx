@@ -2,17 +2,23 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { login } from '../../redux/modules/authSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authApi } from '../../api/user';
+import { jsonDb } from '../../api/user';
 
 export const SignInPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isDisabled, setIsDisabled] = useState(true);
   const [personalSignInMode, setPersonalSignInMode] = useState(true);
   const [formState, setFormState] = useState({
     id: '',
-    password: ''
+    password: '',
+    name: '',
+    nickname: '',
+    role: ''
   });
+
   const { id, password } = formState;
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -29,10 +35,17 @@ export const SignInPage = () => {
           id,
           password
         });
-        const { accessToken, userId, userPw, userName, userEmail, userNickname, userAvatar } = data;
+
+        console.log('회원', data);
+
+        const { jsonData } = await jsonDb.get('/userRoles');
+        console.log('그외', jsonData);
+
+        const { accessToken, userId, nickname } = data;
         if (data.success) {
-          dispatch(login({ accessToken, userId, userPw, userName, userEmail, userNickname, userAvatar }));
+          dispatch(login({ accessToken, userId, nickname, jsonData }));
           alert('로그인 성공');
+          navigate('/home');
         }
       } catch (err) {
         alert(err.response.data.message);
@@ -44,11 +57,15 @@ export const SignInPage = () => {
           id,
           password
         });
+        console.log('업체', data);
+        const { accessToken, userId, nickname } = data;
         if (data.success) {
-          dispatch(login());
+          dispatch(login({ accessToken, userId, nickname }));
           alert('업체 로그인 성공');
+          navigate('/home');
         }
       } catch (err) {
+        console.log('에러', err);
         alert(err.response.data.message);
       }
     }
@@ -60,7 +77,8 @@ export const SignInPage = () => {
         <Title>{personalSignInMode ? '로그인' : '업체 로그인'}</Title>
         <Input onChange={onChangeHandler} name="id" value={id} placeholder="아이디(이메일)를 입력해 주세요" />
         <Input onChange={onChangeHandler} name="password" value={password} placeholder="비밀번호를 입력해 주세요" />
-        <Button disabled={isDisabled}>로그인</Button>
+        {/* <Button disabled={isDisabled}>로그인</Button> */}
+        <Button>로그인</Button>
         <Toggle>
           <ToggleText>
             <span onClick={() => setPersonalSignInMode((prev) => !prev)}>

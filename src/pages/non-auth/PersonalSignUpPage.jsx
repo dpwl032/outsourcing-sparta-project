@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { authApi } from '../../api/user';
+import { jsonDb } from '../../api/user';
 
 export const PersonalSignUpPage = () => {
   const navigate = useNavigate();
@@ -9,8 +10,12 @@ export const PersonalSignUpPage = () => {
   const [formState, setFormState] = useState({
     id: '',
     password: '',
-    name: '',
     nickname: ''
+  });
+
+  const [profile, setProfile] = useState({
+    name: '',
+    role: 'guest'
   });
 
   const { id, password, name, nickname } = formState;
@@ -19,6 +24,7 @@ export const PersonalSignUpPage = () => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
     setIsDisabled(value === '' || password === '');
+    setProfile((prev) => ({ ...prev, [name]: value }));
   };
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -27,9 +33,15 @@ export const PersonalSignUpPage = () => {
       const { data } = await authApi.post('/register', {
         id,
         password,
-        name,
         nickname
       });
+
+      const { jsonData } = await jsonDb.post('/userRoles', {
+        userId: id,
+        role: 'guest',
+        name
+      });
+
       if (data.success) {
         alert('회원가입이 완료되었습니다');
         navigate('/signIn');

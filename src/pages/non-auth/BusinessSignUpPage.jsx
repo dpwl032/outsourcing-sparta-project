@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { authApi } from '../../api/user';
+import { jsonDb } from '../../api/user';
 
 export const BusinessSignUpPage = () => {
   const navigate = useNavigate();
@@ -11,6 +12,10 @@ export const BusinessSignUpPage = () => {
     password: '',
     businessname: '',
     businessnumber: ''
+  });
+  const [profile, setProfile] = useState({
+    name: '',
+    role: 'host'
   });
 
   const { id, password, businessname, businessnumber } = formState;
@@ -27,11 +32,16 @@ export const BusinessSignUpPage = () => {
       const { data } = await authApi.post('/register', {
         id,
         password,
-        businessname,
-        businessnumber
+        nickname: businessnumber
+      });
+      const { jsonData } = await jsonDb.post('/userRoles', {
+        userId: id,
+        role: 'host',
+        name: businessname
       });
       if (data.success) {
         alert('회원가입이 완료되었습니다');
+        console.log('회원용', data);
         navigate('/signIn');
       }
     } catch (err) {

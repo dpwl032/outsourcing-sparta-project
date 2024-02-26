@@ -28,3 +28,10 @@ authApi.interceptors.response.use(
     return Promise.reject(err);
   }
 );
+
+export const jsonDb = axios.create({
+  baseURL: 'http://localhost:5000',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});

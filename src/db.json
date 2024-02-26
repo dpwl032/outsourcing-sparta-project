@@ -1,4 +1,19 @@
 {
+  "userRoles": [
+    {
+      "id": "1",
+      "userId": "userId",
+      "role": "host",
+      "name": "userName"
+    },
+    {
+      "id": "2",
+      "userId": "userId",
+      "role": "guest",
+      "name": "userName"
+    }
+  ],
+
   "class": [
     {
       "classId": "클래스_NO",

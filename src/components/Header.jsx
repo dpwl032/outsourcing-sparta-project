@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 const Header = () => {
+  const isLogin = useSelector((state) => state.auth.isLogin);
   return (
     <>
       <HeaderWrap>
         <HeaderItem>
-          <HeaderLogo>로고</HeaderLogo>
+          <Link to="/">
+            <HeaderLogo>로고</HeaderLogo>
+          </Link>
           <HeaderCategory>
             <HeaderCategoryItem>climbing</HeaderCategoryItem>
             <HeaderCategoryItem>Traveling</HeaderCategoryItem>
@@ -15,9 +18,15 @@ const Header = () => {
             <HeaderCategoryItem>Beauty</HeaderCategoryItem>
             <HeaderCategoryItem>Career</HeaderCategoryItem>
           </HeaderCategory>
-          <Link to="/testmy">
-            <SignUp>로그인/회원가입</SignUp>
-          </Link>
+          {!isLogin ? (
+            <Link to="/signIn">
+              <SignUp>로그인/회원가입</SignUp>
+            </Link>
+          ) : (
+            <Link to="/testmy">
+              <SignUp>마이페이지</SignUp>
+            </Link>
+          )}
         </HeaderItem>
       </HeaderWrap>
     </>
