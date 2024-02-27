@@ -12,6 +12,15 @@ function DetailInfoPage() {
   const [userRole, setUserRole] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/reviews?createdOn=${id}`);
+      setReviews(response.data);
+    } catch (error) {
+      console.error("리뷰 정보를 가져오는 중 오류 발생:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchBusinessInfo = async () => {
       try {
@@ -22,20 +31,14 @@ function DetailInfoPage() {
       }
     };
 
-    const fetchReviews = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/reviews/${id}`);
-        setReviews(response.data);
-      } catch (error) {
-        console.error("리뷰 정보를 가져오는 중 오류 발생:", error);
-      }
+    const fetchUserRole = () => {
+      const loggedUserRole = localStorage.getItem('host');
+      setUserRole(loggedUserRole);
     };
 
     fetchBusinessInfo();
     fetchReviews();
-
-    const loggedUserRole = localStorage.getItem('host');
-    setUserRole(loggedUserRole);
+    fetchUserRole();
   }, [id]);
 
   const handleEdit = () => {
@@ -46,7 +49,7 @@ function DetailInfoPage() {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       try {
         await axios.delete(`http://localhost:5000/businessInfo/${id}`);
-        navigate('/'); // Redirect to home or another appropriate page
+        navigate('/');
       } catch (error) {
         console.error("업체 정보 삭제 중 오류 발생:", error);
         alert('삭제 실패. 다시 시도해주세요.');
@@ -57,6 +60,7 @@ function DetailInfoPage() {
   const handleSaved = (updatedInfo) => {
     setBusinessInfo(updatedInfo);
     setIsEditing(false);
+    fetchReviews();
   };
 
   return (
@@ -73,7 +77,7 @@ function DetailInfoPage() {
               <button type="button" onClick={handleDelete}>삭제</button>
             </>
           )}
-          {userRole !== 'host' && <WriteReview />}
+          {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
           {reviews && reviews.map((review, index) => (
             <p key={index}>{review.content}</p>
           ))}

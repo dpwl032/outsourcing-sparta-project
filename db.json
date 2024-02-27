@@ -37,9 +37,16 @@
   ],
   "reviews": [
     {
-      "id": "bb0f",
+      "id": "1347",
       "content": "가나다라마바사",
-      "userId": "jsonDb999"
+      "createdOn": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
+      "createdBy": "jsonDb999"
+    },
+    {
+      "id": "3052",
+      "content": "가나다라",
+      "createdOn": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
+      "createdBy": "jsonDb999"
     }
   ]
 }
