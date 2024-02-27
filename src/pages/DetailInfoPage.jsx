@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
+import axios from 'axios';
 
 function DetailInfoPage() {
   const { id } = useParams();
@@ -10,12 +9,8 @@ function DetailInfoPage() {
   useEffect(() => {
     const fetchBusinessInfo = async () => {
       try {
-        const qry = query(collection(db, "BusinessInfo"), where("id", "==", id));
-        const querySnapshot = await getDocs(qry);
-        
-        querySnapshot.forEach((doc) => {
-          setBusinessInfo(doc.data());
-        });
+        const response = await axios.get(`http://localhost:5000/businessInfo/${id}`);
+        setBusinessInfo(response.data);
       } catch (error) {
         console.error("업체 정보를 가져오는 중 오류 발생:", error);
       }
@@ -28,11 +23,10 @@ function DetailInfoPage() {
     <div>
       {businessInfo ? (
         <>
-            <h1>{businessInfo.title}</h1>
-            <p>{businessInfo.time}</p>
-            <p>{businessInfo.time_}</p>
-            <p>{businessInfo.price}</p>
-            <p>{businessInfo.address}</p>
+          <h1>{businessInfo.title}</h1>
+          <p>진행시간: {businessInfo.time}</p>
+          <p>가격: {businessInfo.price}</p>
+          <p>주소지: {businessInfo.address}</p>
         </>
       ) : (
         <p>Loading...</p>

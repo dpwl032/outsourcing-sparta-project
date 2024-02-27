@@ -2,30 +2,42 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBusinessInfo } from '../redux/modules/businessInfoSlice';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 
 function AddBusinessInfo() {
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState('');
     const [time, setTime] = useState('');
-    const [timeStamp, setTimeStamp] = useState('');
     const [price, setPrice] = useState('');
     const [address, setAddress] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (title && time && timeStamp && price && address) {
+        if (title && time && price && address) {
             const id = uuidv4();
 
-            dispatch(addBusinessInfo({ id, title, time, timeStamp, price, address }));
+            try {
+                await axios.post('http://localhost:5000/businessInfo', {
+                    id,
+                    title,
+                    time,
+                    price,
+                    address
+                });
 
-            setTitle('');
-            setTime('');
-            setTimeStamp(Date.now());
-            setPrice('');
-            setAddress('');
+                dispatch(addBusinessInfo({ id, title, time, price, address }));
 
-            alert('등록이 완료되었습니다!');
+                setTitle('');
+                setTime(Date.now());
+                setPrice('');
+                setAddress('');
+
+                alert('등록이 완료되었습니다!');
+            } catch (error) {
+                console.error('데이터 전송 오류:', error.message);
+                alert('등록 중 오류가 발생했습니다.');
+            }
         }
     };
 
@@ -36,20 +48,13 @@ function AddBusinessInfo() {
                 name="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="프로그램 제목을 입력해주세요."
-            />
-            <input
-                type="text"
-                name="time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                placeholder="프로그램 시간을 입력해주세요."
+                placeholder="클래스 제목을 입력해주세요."
             />
             <input
                 type="date"
-                name="timeStamp"
-                value={timeStamp}
-                onChange={(e) => setTimeStamp(e.target.value)}
+                name="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
             />
             <input
                 type="text"
@@ -63,7 +68,7 @@ function AddBusinessInfo() {
                 name="address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="업체주소지를 입력해주세요."
+                placeholder="업체 주소지를 입력해주세요."
             />
             <button type="submit">등록</button>
         </form>

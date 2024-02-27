@@ -1,20 +1,27 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import axios from 'axios';
+
+const sendDataToServer = async ({ id, title, time, price, address }) => {
+  try {
+    const response = await axios.post('http://localhost:5000/businessInfo', {
+      id,
+      title,
+      time,
+      price,
+      address,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const addBusinessInfo = createAsyncThunk(
   'businessInfo/add',
-  async ({ id, title, time, timeStamp, price, address }, { rejectWithValue }) => {
+  async ({ id, title, time, price, address }, { rejectWithValue }) => {
     try {
-      const docRef = await addDoc(collection(db, 'BusinessInfo'), {
-        id,
-        title,
-        time,
-        time_: timeStamp,
-        price,
-        address,
-      });
-      return { id, title, time, timeStamp, price, address };
+      await sendDataToServer({ id, title, time, price, address });
+      return { id, title, time, price, address };
     } catch (error) {
       return rejectWithValue(error.message);
     }
