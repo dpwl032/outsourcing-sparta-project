@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBusinessInfo } from '../api/businessInfoSlice';
+import { addBusinessInfo } from '../redux/modules/businessInfoSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 function AddBusinessInfo() {

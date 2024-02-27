@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import auth from '../modules/authSlice';
-import businessInfoReducer from '../../api/businessInfoSlice.js';
+import businessInfoReducer from '../../redux/modules/businessInfoSlice.js';
 
 const rootReducer = combineReducers({ auth });
 
