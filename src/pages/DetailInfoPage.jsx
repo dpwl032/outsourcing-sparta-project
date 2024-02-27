@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import WriteReview from "../components/WriteReview";
 import EditBusinessInfo from "../components/EditBusinessInfo";
+import EditReview from '../components/EditReview';
 
 function DetailInfoPage() {
   const { id } = useParams();
@@ -11,6 +12,7 @@ function DetailInfoPage() {
   const [reviews, setReviews] = useState([]);
   const [userRole, setUserRole] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [isEditingReview, setIsEditingReview] = useState(null);
 
   const fetchReviews = async () => {
     try {
@@ -45,6 +47,11 @@ function DetailInfoPage() {
     setIsEditing(true);
   };
 
+  const handleSaved = (updatedInfo) => {
+    setBusinessInfo(updatedInfo);
+    setIsEditing(false);
+  };
+
   const handleDelete = async () => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       try {
@@ -57,9 +64,13 @@ function DetailInfoPage() {
     }
   };
 
-  const handleSaved = (updatedInfo) => {
-    setBusinessInfo(updatedInfo);
-    setIsEditing(false);
+  const handleReviewEdit = (reviewId) => {
+    setIsEditingReview(reviewId);
+  };
+
+  const handleReviewUpdated = async (updatedReview) => {
+    await axios.put(`http://localhost:5000/reviews/${updatedReview.id}`, updatedReview);
+    setIsEditingReview(null);
     fetchReviews();
   };
 
@@ -79,7 +90,21 @@ function DetailInfoPage() {
           )}
           {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
           {reviews && reviews.map((review, index) => (
-            <p key={index}>{review.content}</p>
+            <div key={index}>
+              {isEditingReview === review.id ? (
+                <EditReview
+                  review={review}
+                  onSave={handleReviewUpdated}
+                  onCancel={() => setIsEditingReview(null)}
+                />
+              ) : (
+                <>
+                  <p>{review.content}</p>
+                  <button type="button" onClick={() => handleReviewEdit(review.id)}>수정</button>
+                  <button type="button">삭제</button>
+                </>
+              )}
+            </div>
           ))}
         </>
       )}
