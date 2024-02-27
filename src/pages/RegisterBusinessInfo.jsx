@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addBusinessInfo } from '../redux/modules/businessInfoSlice';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 function AddBusinessInfo() {
-    const dispatch = useDispatch();
-
     const [title, setTitle] = useState('');
     const [time, setTime] = useState('');
     const [price, setPrice] = useState('');
@@ -25,8 +21,6 @@ function AddBusinessInfo() {
                     price,
                     address
                 });
-
-                dispatch(addBusinessInfo({ id, title, time, price, address }));
 
                 setTitle('');
                 setTime(Date.now());
