@@ -6,20 +6,63 @@ import { FcNext } from 'react-icons/fc';
 import { FcLike } from 'react-icons/fc';
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
+import { editProfile } from '../api/mutationFns';
 
 const TestMyPage = () => {
+  const mutation = useMutation(editProfile, {
+    onSuccess: async () => {
+      // await queryClient.invalidateQueries('profile');
+      console.log('test', mutation);
+    }
+  });
+
+  const { data: dbData, isLoading, isError } = useQuery('userRoles', getProfile);
+
+  //dbdata t/f
+
+  // const hostAuth = localStorage.getItem('host') ? true : false;
+  const nickname = localStorage.getItem('nickname');
+  const userId = localStorage.getItem('userId');
+  // const name = localStorage.getItem('name');
+  const avatar = localStorage.getItem('avatar');
+
   const [click, setClick] = useState(false);
-  const hostAuth = localStorage.getItem('host') ? true : false;
+  const [editingText, setEditingText] = useState('');
+  const [selectedImg, setSelectedImg] = useState(avatar);
+  const [file, setFile] = useState(null);
+
+  const queryClient = useQueryClient();
 
   if (hostAuth) {
     alert('개인 회원 계정만 이용할 수 있습니다!');
     return <Navigate to="/home" replace />;
   }
 
-  const nickname = localStorage.getItem('nickname');
-  const userId = localStorage.getItem('userId');
-  const name = localStorage.getItem('name');
-  const avatar = localStorage.getItem('avatar');
+  // const ImgMB = 1024;
+  const previewImg = (e) => {
+    const imgFile = e.target.files[0];
+    if (imgFile.size > 1024 * 1024) {
+      alert('최대 1MB까지 업로드 가능합니다.');
+      return;
+    }
+    setFile(imgFile);
+    const imgUrl = URL.createObjectURL(imgFile);
+    setSelectedImg(imgUrl);
+  };
+
+  const onEditDone = () => {
+    // TODO: 프로필 변경 요청
+    const formData = new FormData();
+    if (editingText) {
+      formData.append('nickname', editingText);
+    }
+    if (selectedImg !== avatar) {
+      formData.append('avatar', file);
+    }
+    mutation.mutate(formData);
+    setClick(false);
+  };
 
   return (
     <>
@@ -34,11 +77,16 @@ const TestMyPage = () => {
               <MyPageUserInfoWrap>
                 {/*구분선*/}
                 <MyPageInfoImgWrap>
-                  <MyPageInfoImg>
-                    <label>
-                      <input type="file" />
-                    </label>
-                  </MyPageInfoImg>
+                  <label>
+                    <MyPageInfoImg>
+                      <img
+                        size="large"
+                        src={selectedImg}
+                        style={{ borderRadius: '100%', height: '100%', width: '170px' }}
+                      />
+                      <input type="file" onChange={previewImg} accept="image/jpg, image/png" />
+                    </MyPageInfoImg>
+                  </label>
                 </MyPageInfoImgWrap>
                 {/*구분선*/}
                 <div
@@ -54,9 +102,35 @@ const TestMyPage = () => {
                 >
                   <span> 아이디 : {userId} </span>
                   <span>이름 : {name}</span>
-                  <span>닉네임 : {click ? { nickname } : <input defaultValue={nickname} />}</span>
+                  <span>
+                    닉네임 :{' '}
+                    {!click ? (
+                      <p>{nickname}</p>
+                    ) : (
+                      <input defaultValue={nickname} onChange={(event) => setEditingText(event.target.value)} />
+                    )}
+                  </span>
 
-                  <button>수정하기</button>
+                  {!click ? (
+                    <button
+                      onClick={() => {
+                        setClick(true);
+                      }}
+                    >
+                      수정하기
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => {
+                          setClick(false);
+                        }}
+                      >
+                        취소
+                      </button>{' '}
+                      <button onClick={onEditDone}>수정완료</button>
+                    </>
+                  )}
                 </div>
               </MyPageUserInfoWrap>
             </MyPageUserInfo>
@@ -111,7 +185,7 @@ const MyPageWrap = styled.div`
 const MyPageContents = styled.div`
   border: 1px solid black;
   width: 50%;
-  height: 760px;
+  height: 1000px;
   margin: 1rem;
   flex-direction: column;
   display: flex;
@@ -122,7 +196,7 @@ const MyPageContents = styled.div`
 
 const MyPageUserInfo = styled.div`
   width: 80%;
-  height: 200px;
+  height: 250px;
 `;
 
 const MyPageUserInfoWrap = styled.div`
@@ -134,8 +208,19 @@ const MyPageUserInfoWrap = styled.div`
 const MyPageInfoImgWrap = styled.div`
   border: 1px solid black;
   width: 40%;
+
   display: flex;
   justify-content: center;
+
+  & > label > input {
+    display: none;
+  }
+
+  & input {
+    height: 24px;
+    outline: none;
+    padding: 6px 12px;
+  }
 `;
 
 const MyPageInfoImg = styled.div`

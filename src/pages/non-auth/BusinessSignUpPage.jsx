@@ -20,14 +20,13 @@ export const BusinessSignUpPage = () => {
   });
   const { id, password, businessname, businessnumber } = formState;
 
+  //머니풀 url에 들어가지 않는 값  최신화하기
   const queryClient = useQueryClient();
   const mutation = useMutation(addProfile, {
     onSuccess: async () => {
       await queryClient.invalidateQueries('userRoles');
     }
   });
-
-  console.log('host', mutation);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -45,6 +44,7 @@ export const BusinessSignUpPage = () => {
         nickname: businessnumber
       });
 
+      //머니풀 url에 들어가지 않는 값 추가하기
       mutation.mutate({ userId: id, role: 'host', name: businessname });
 
       if (data.success) {
