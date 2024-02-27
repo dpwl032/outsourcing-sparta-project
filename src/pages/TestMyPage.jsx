@@ -6,8 +6,9 @@ import { FcNext } from 'react-icons/fc';
 import { FcLike } from 'react-icons/fc';
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient , useQuery } from 'react-query';
 import { editProfile } from '../api/mutationFns';
+import { getProfile } from '../api/queryFns';
 
 const TestMyPage = () => {
   const mutation = useMutation(editProfile, {
@@ -21,10 +22,10 @@ const TestMyPage = () => {
 
   //dbdata t/f
 
-  // const hostAuth = localStorage.getItem('host') ? true : false;
+  const hostAuth = localStorage.getItem('host') ? true : false;
   const nickname = localStorage.getItem('nickname');
   const userId = localStorage.getItem('userId');
-  // const name = localStorage.getItem('name');
+  const name = localStorage.getItem('name');
   const avatar = localStorage.getItem('avatar');
 
   const [click, setClick] = useState(false);
