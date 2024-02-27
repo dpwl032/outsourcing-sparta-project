@@ -19,11 +19,11 @@ import { BusinessSignUpPage } from '../pages/non-auth/BusinessSignUpPage';
 const Router = () => {
   return (
     <Routes>
-      <Route path='/List' element={<BusinessList />} />
-      <Route path='/Details/:id' element={<DetailInfoPage/>} />
       {/* 로그인 여부 상관없는 라우터 */}
       <Route element={<Layout />}>
         <Route path="/" element={<Main />} />
+        <Route path='/List' element={<BusinessList />} />
+        <Route path='/Details/:id' element={<DetailInfoPage/>} />
       </Route>
       {/* 로그인 상태가 반드시 아니어야 하는 라우터 */}
       <Route element={<NonAuthLayout />}>
