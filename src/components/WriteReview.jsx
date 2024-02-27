@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function WriteReview() {
+function WriteReview({ onReviewSubmitted }) {
+  const { id } = useParams();
   const [content, setContent] = useState('');
 
   const handleSubmit = async (e) => {
@@ -9,6 +11,7 @@ function WriteReview() {
     if (content !== '') {
       try {
         const userId = localStorage.getItem('userId');
+        const pageId = id;
 
         if (!userId) {
           alert('로그인 정보를 찾을 수 없습니다.');
@@ -17,11 +20,16 @@ function WriteReview() {
 
         await axios.post('http://localhost:5000/reviews', {
           content: content,
-          createdBy : userId,
+          createdOn: pageId,
+          createdBy: userId,
         });
 
         setContent('');
         alert('작성이 완료됐습니다!');
+
+        if (onReviewSubmitted) {
+          onReviewSubmitted();
+        }
       } catch (error) {
         console.error('리뷰 작성 중 오류가 발생했습니다', error);
         alert('작성 중 오류가 발생했습니다.');
