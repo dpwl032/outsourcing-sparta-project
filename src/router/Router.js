@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute.js';
 import AddBusinessInfo from '../pages/RegisterBusinessInfo.jsx'
 import WriteReview from '../components/WriteReview.jsx'
 import DetailInfoPage from '../pages/DetailInfoPage.jsx';
@@ -37,7 +38,7 @@ const Router = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="/my" element={<MyPage />} />
-        <Route path='/RegisteringInfo' element={<AddBusinessInfo />} />
+        <Route path="/RegisteringInfo" element={<ProtectedRoute element={<AddBusinessInfo />} />} />
         <Route path='/WritingReview' element={<WriteReview />} />
         {/*테스트 페이지 */}
         <Route path="/testmy" element={<TestMyPage />} />
