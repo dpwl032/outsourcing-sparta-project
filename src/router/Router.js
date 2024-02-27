@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import AddBusinessInfo from '../pages/RegisterBusinessInfo.jsx'
-import WriteReview from '../pages/WriteReview.jsx'
+import WriteReview from '../components/WriteReview.jsx'
 import DetailInfoPage from '../pages/DetailInfoPage.jsx';
 import BusinessList from '../pages/BusinessList.jsx';
 import Home from '../pages/auth/Home';
