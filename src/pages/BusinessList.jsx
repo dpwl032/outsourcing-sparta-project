@@ -1,26 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import axios from 'axios';
 
+const fetchBusinessInfos = async () => {
+  const { data } = await axios.get('http://localhost:5000/businessInfo');
+  return data;
+};
+
 function BusinessList() {
-  const [businessInfos, setBusinessInfos] = useState([]);
+  const { data: businessInfos, error, isError, isLoading } = useQuery('businessInfos', fetchBusinessInfos);
 
-  useEffect(() => {
-    const fetchBusinessInfos = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/businessInfo');
-        setBusinessInfos(response.data.reverse());
-      } catch (error) {
-        console.error('비즈니스 정보를 가져오는 중 오류 발생:', error);
-      }
-    };
+  if (isLoading) return <div>Loading...</div>;
 
-    fetchBusinessInfos();
-  }, []);
+  if (isError) return console.log('Error: {error.message}');
 
   return (
     <ul>
-      {businessInfos.map((businessInfo) => (
+      {businessInfos?.reverse().map((businessInfo) => (
         <li key={businessInfo.id}>
           <Link to={`/Details/${businessInfo.id}`}>{businessInfo.title}</Link>
         </li>
