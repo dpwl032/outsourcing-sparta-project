@@ -28,7 +28,7 @@ export const SignInPage = () => {
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
-    setIsDisabled(value === '' || password === '');
+    setIsDisabled((formState.id === '' || value === '') && (formState.password === '' || value === ''));
   };
 
   const onSubmitHandler = async (e) => {
