@@ -74,6 +74,18 @@ function DetailInfoPage() {
     fetchReviews();
   };
 
+  const handleReviewDelete = async (reviewId) => {
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
+      try {
+        await axios.delete(`http://localhost:5000/reviews/${reviewId}`);
+        fetchReviews();
+      } catch (error) {
+        console.error("리뷰 삭제 중 오류 발생:", error);
+        alert('리뷰 삭제 실패. 다시 시도해주세요.');
+      }
+    }
+  };
+
   return (
     <div>
       {businessInfo && !isEditing && (
@@ -101,7 +113,7 @@ function DetailInfoPage() {
                 <>
                   <p>{review.content}</p>
                   <button type="button" onClick={() => handleReviewEdit(review.id)}>수정</button>
-                  <button type="button">삭제</button>
+                  <button type="button" onClick={() => handleReviewDelete(review.id)}>삭제</button>
                 </>
               )}
             </div>
