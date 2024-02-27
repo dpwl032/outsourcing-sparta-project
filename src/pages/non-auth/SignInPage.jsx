@@ -7,12 +7,12 @@ import { getProfile } from '../../api/queryFns';
 
 export const SignInPage = () => {
   const navigate = useNavigate();
-  const [isDisabled, setIsDisabled] = useState(true);
   const [personalSignInMode, setPersonalSignInMode] = useState(true);
   const [formState, setFormState] = useState({
     id: '',
     password: ''
   });
+  const isDisabled = formState.id === '' || formState.password === '';
 
   const { data: dbData, isLoading, isError } = useQuery('userRoles', getProfile);
 
@@ -28,7 +28,6 @@ export const SignInPage = () => {
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
-    setIsDisabled((formState.id === '' || value === '') && (formState.password === '' || value === ''));
   };
 
   const onSubmitHandler = async (e) => {
@@ -103,6 +102,7 @@ export const SignInPage = () => {
           type="email"
           name="id"
           value={id}
+          maxLength={30}
           placeholder="아이디(이메일)를 입력해 주세요"
         />
         <Input
@@ -110,7 +110,9 @@ export const SignInPage = () => {
           type="password"
           name="password"
           value={password}
-          placeholder="비밀번호를 입력해 주세요"
+          min={4}
+          maxLength={15}
+          placeholder="비밀번호를 입력해 주세요(4~15글자)"
         />
         <Button disabled={isDisabled}>로그인</Button>
         <Toggle>

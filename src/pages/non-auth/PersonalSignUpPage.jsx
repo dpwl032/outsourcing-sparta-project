@@ -7,13 +7,14 @@ import { addProfile } from '../../api/mutationFns';
 
 export const PersonalSignUpPage = () => {
   const navigate = useNavigate();
-  const [isDisabled, setIsDisabled] = useState(true);
   const [formState, setFormState] = useState({
     id: '',
     password: '',
     nickname: '',
     name: ''
   });
+  const isDisabled =
+    formState.id === '' || formState.password === '' || formState.nickname === '' || formState.name === '';
 
   const [profile, setProfile] = useState({
     name: '',
@@ -34,7 +35,6 @@ export const PersonalSignUpPage = () => {
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
-    setIsDisabled(value === '' || password === '');
     setProfile((prev) => ({ ...prev, [name]: value }));
   };
   const onSubmitHandler = async (e) => {
@@ -68,6 +68,7 @@ export const PersonalSignUpPage = () => {
           name="id"
           onChange={onChangeHandler}
           value={id}
+          maxLength={30}
           placeholder="아이디(이메일)를 입력해 주세요"
         />
         <Input
@@ -75,7 +76,9 @@ export const PersonalSignUpPage = () => {
           name="password"
           onChange={onChangeHandler}
           value={password}
-          placeholder="비밀번호를 입력해 주세요"
+          min={4}
+          maxLength={15}
+          placeholder="비밀번호를 입력해 주세요(4~15글자)"
         />
         <Input type="text" name="name" onChange={onChangeHandler} value={name} placeholder="이름을 입력해 주세요" />
         <Input
@@ -83,7 +86,9 @@ export const PersonalSignUpPage = () => {
           name="nickname"
           onChange={onChangeHandler}
           value={nickname}
-          placeholder="닉네임을 입력해 주세요"
+          min={1}
+          maxLength={10}
+          placeholder="닉네임을 입력해 주세요(1~10글자)"
         />
         <Button disabled={isDisabled}>회원가입</Button>
       </Form>
