@@ -1,0 +1,28 @@
+{
+  "userRoles": [
+    {
+      "id": "test",
+      "userId": "test-userId",
+      "role": "guest or host",
+      "name": "test-Name"
+    },
+    {
+      "id": "3bc8",
+      "userId": "jsonDb999",
+      "role": "guest",
+      "name": "홍길동"
+    },
+    {
+      "id": "4a7e",
+      "userId": "signUpMode0808",
+      "role": "host",
+      "name": "스파르타"
+    },
+    {
+      "id": "e175",
+      "userId": "supapa05",
+      "role": "guest",
+      "name": "홍길순"
+    }
+  ]
+}
