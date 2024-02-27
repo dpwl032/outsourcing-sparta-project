@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import WriteReview from "../components/WriteReview";
 import EditBusinessInfo from "../components/EditBusinessInfo";
-import EditReview from '../components/EditReview';
+import ReviewList from '../components/ReviewList';
 
 function DetailInfoPage() {
   const { id } = useParams();
@@ -101,23 +101,13 @@ function DetailInfoPage() {
             </>
           )}
           {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
-          {reviews && reviews.map((review, index) => (
-            <div key={index}>
-              {isEditingReview === review.id ? (
-                <EditReview
-                  review={review}
-                  onSave={handleReviewUpdated}
-                  onCancel={() => setIsEditingReview(null)}
-                />
-              ) : (
-                <>
-                  <p>{review.content}</p>
-                  <button type="button" onClick={() => handleReviewEdit(review.id)}>수정</button>
-                  <button type="button" onClick={() => handleReviewDelete(review.id)}>삭제</button>
-                </>
-              )}
-            </div>
-          ))}
+          <ReviewList
+            reviews={reviews}
+            isEditingReview={isEditingReview}
+            onReviewEdit={handleReviewEdit}
+            onReviewDelete={handleReviewDelete}
+            onReviewUpdated={handleReviewUpdated}
+          />
         </>
       )}
 
