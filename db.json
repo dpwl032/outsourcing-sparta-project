@@ -35,28 +35,27 @@
       "classDate": "클래스 날짜",
       "classYoutube": "유튜브 API",
       "classMap": "주소 API",
-      "likes": [],
-      "reviews": []
+      "likes": []
     },
     {
-      "id": "193b",
-      "classTitle": "아이템1",
-      "classContent": "아이템1",
-      "classImg": "아이템1",
-      "classPrice": "아이템1",
-      "classDate": "2024-02-27",
-      "classYoutube": "아이템1",
-      "classMap": "아이템1"
-    },
-    {
-      "id": "f2f3",
-      "classTitle": "아이템2",
-      "classContent": "아이템2",
-      "classImg": "아이템2",
-      "classPrice": "아이템2",
+      "id": "8123",
+      "classTitle": "제목테스트",
+      "classContent": "내용테스트",
+      "classImg": "사진없음",
+      "classPrice": "60,000원",
       "classDate": "2024-02-16",
-      "classYoutube": "아이템2",
-      "classMap": "아이템2"
+      "classYoutube": "주소없음",
+      "classMap": "주소없음"
+    },
+    {
+      "id": "571d",
+      "classTitle": "제목 테스트2",
+      "classContent": "내용이지롱",
+      "classImg": "사진이지롱",
+      "classPrice": "50,000원",
+      "classDate": "2024-02-09",
+      "classYoutube": "주소없음",
+      "classMap": "서울/부천"
     }
   ],
   "review": [

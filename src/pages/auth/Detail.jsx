@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useParams } from 'react-router-dom';
-import { getClass, getInfo } from '../../api/queryFns';
+import { getClass, getInfo, getReview, getProfile } from '../../api/queryFns';
 import { addReview, deleteClass, editClass, reviewClass } from '../../api/mutationFns';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -11,14 +11,11 @@ const Detail = () => {
   //처음 지도 그리기
   const queryClient = useQueryClient();
   const { isLoading, isError, data: classData } = useQuery('class', getClass);
-  console.log(classData);
-  const {
-    data: userData,
-    isLoading: isUserLoading,
-    isError: isUserError
-  } = useQuery('user', getInfo, {
-    onSuccess: (data) => {}
-  });
+  const { data: reviewList } = useQuery('review', getReview);
+
+  const { data: userData, isLoading: isUserLoading, isError: isUserError } = useQuery('user', getInfo);
+  const { data: dbData, isLoading: isDbDataLoading, isError: isDbDataError } = useQuery('userRoles', getProfile);
+
   const params = useParams();
   const navigate = useNavigate();
 
@@ -57,6 +54,10 @@ const Detail = () => {
     return <div>오류발생! 새로고침!</div>;
   }
 
+  const userRole = dbData?.data.find((role) => role.userId === userData?.data?.id);
+  const writer = userRole?.role === 'guest' ? true : false;
+  console.log('w', writer);
+
   const onClickClassDelete = (id) => {
     deleteMutation.mutate(id);
     alert('삭제완료');
@@ -81,77 +82,10 @@ const Detail = () => {
   };
   return (
     <>
-      {/* 유튜브 API테스트 */}
-      <div></div>
-
-      <div>
-        <div style={{ border: '1px soild black', width: '200px', height: '200px' }}>
-          <div>{findData.classTitle}</div>
-          <div>{findData.classContent}</div>
-          <div>{findData.classImg}</div>
-          <div>{findData.classPrice}</div>
-          <div>{findData.classDate}</div>
-          <button onClick={() => onClickClassDelete(findData.id)}>삭제</button>
-          <button onClick={() => onClickClassEdit(findData.id)}>수정</button>
+      <div style={{}}>
+        <div style={{}}>
+          <div></div>
         </div>
-      </div>
-
-      {/* 주소 API테스트 */}
-      <div style={{ border: '1px solid gray', width: '768px', height: '350px', borderRadius: '5px' }}>
-        <div style={{ borderRadius: '10px' }}>
-          <Map
-            center={{ lat: 37.50910779362899, lng: 127.04071296745333 }}
-            style={{ width: '768px', height: '250px', borderRadius: '5px' }}
-          >
-            <MapMarker position={{ lat: 37.50910779362899, lng: 127.04071296745333 }}>
-              <div
-                style={{
-                  color: '#9971ff',
-                  fontSize: '19px',
-                  fontWeight: '700',
-                  border: '4px solid #9971ff',
-                  borderRadius: '10px',
-                  padding: '2.5px'
-                }}
-              >
-                티하우스 절기
-              </div>
-            </MapMarker>
-          </Map>
-        </div>
-        <div
-          style={{
-            height: '100px',
-            borderRadius: '5px',
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column'
-          }}
-        >
-          <div style={{ width: '50%', margin: '1rem' }}>위치</div>
-          <div style={{ margin: '1rem' }}>주소</div>
-        </div>
-      </div>
-
-      {/* 찜 */}
-      <button>찜하기...</button>
-      <br />
-      {/* 리뷰 */}
-      <div>
-        <div> 작성자 : {userData?.data?.nickname} </div>
-        <form onSubmit={reviewSubmitHandler}>
-          제목 : <input type="text" value={reviewContents} onChange={(e) => setReviewContents(e.target.value)} /> <br />
-          내용 : <input type="text" value={reviewTitle} onChange={(e) => setReviewTitle(e.target.value)} /> <br />
-          별점 :{' '}
-          <select value={grade} onChange={selectGrade}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <button>리뷰 작성</button>
-        </form>
       </div>
     </>
   );
