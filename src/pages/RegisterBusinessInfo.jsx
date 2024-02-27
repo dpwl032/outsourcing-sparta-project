@@ -12,10 +12,17 @@ function AddBusinessInfo() {
         e.preventDefault();
         if (title && time && price && address) {
             const id = uuidv4();
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                alert('로그인 정보를 찾을 수 없습니다.');
+                return;
+              }
 
             try {
                 await axios.post('http://localhost:5000/businessInfo', {
                     id,
+                    createdBy : userId,
                     title,
                     time,
                     price,
