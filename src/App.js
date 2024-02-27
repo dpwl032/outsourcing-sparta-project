@@ -1,15 +1,14 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
 import './App.css';
 import Router from './router/Router';
-
-const queryClient = new QueryClient();
+import Header from '../src/components/Header';
+import Footer from '../src/components/Footer';
 
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <Router />
-      </QueryClientProvider>
+      <Header />
+      <Router />
+      <Footer />
     </>
   );
 }
