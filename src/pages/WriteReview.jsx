@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { db } from '.././firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import axios from 'axios';
 
 function WriteReview() {
   const [content, setContent] = useState('');
@@ -8,13 +7,18 @@ function WriteReview() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (content !== '') {
-      await addDoc(collection(db, 'Review'), {
-        content: content,
-      });
-      setContent('');
-      alert('작성이 완료됐습니다!');
+      try {
+        await axios.post('http://localhost:5000/reviews', {
+          content: content,
+        });
+        setContent('');
+        alert('작성이 완료됐습니다!');
+      } catch (error) {
+        console.error('리뷰 작성 중 오류가 발생했습니다', error);
+        alert('작성 중 오류가 발생했습니다.');
+      }
     } else {
-        alert('내용을 입력해주세요!')
+      alert('내용을 입력해주세요!');
     }
   };
 
