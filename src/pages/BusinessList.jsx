@@ -23,7 +23,7 @@ function BusinessList() {
     <ul>
       {businessInfos.map((businessInfo) => (
         <li key={businessInfo.id}>
-          <Link to={`/${businessInfo.id}`}>{businessInfo.title}</Link>
+          <Link to={`/Details/${businessInfo.id}`}>{businessInfo.title}</Link>
         </li>
       ))}
     </ul>
