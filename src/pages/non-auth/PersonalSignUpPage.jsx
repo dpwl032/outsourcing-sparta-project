@@ -63,10 +63,28 @@ export const PersonalSignUpPage = () => {
     <Container>
       <Form onSubmit={onSubmitHandler}>
         <Title>회원가입</Title>
-        <Input name="id" onChange={onChangeHandler} value={id} placeholder="아이디(이메일)를 입력해 주세요" />
-        <Input name="password" onChange={onChangeHandler} value={password} placeholder="비밀번호를 입력해 주세요" />
-        <Input name="name" onChange={onChangeHandler} value={name} placeholder="이름을 입력해 주세요" />
-        <Input name="nickname" onChange={onChangeHandler} value={nickname} placeholder="닉네임을 입력해 주세요" />
+        <Input
+          type="email"
+          name="id"
+          onChange={onChangeHandler}
+          value={id}
+          placeholder="아이디(이메일)를 입력해 주세요"
+        />
+        <Input
+          type="password"
+          name="password"
+          onChange={onChangeHandler}
+          value={password}
+          placeholder="비밀번호를 입력해 주세요"
+        />
+        <Input type="text" name="name" onChange={onChangeHandler} value={name} placeholder="이름을 입력해 주세요" />
+        <Input
+          type="text"
+          name="nickname"
+          onChange={onChangeHandler}
+          value={nickname}
+          placeholder="닉네임을 입력해 주세요"
+        />
         <Button disabled={isDisabled}>회원가입</Button>
       </Form>
     </Container>

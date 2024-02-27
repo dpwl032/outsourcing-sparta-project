@@ -98,8 +98,20 @@ export const SignInPage = () => {
     <Container>
       <Form onSubmit={onSubmitHandler}>
         <Title>{personalSignInMode ? '로그인' : '업체 로그인'}</Title>
-        <Input onChange={onChangeHandler} name="id" value={id} placeholder="아이디(이메일)를 입력해 주세요" />
-        <Input onChange={onChangeHandler} name="password" value={password} placeholder="비밀번호를 입력해 주세요" />
+        <Input
+          onChange={onChangeHandler}
+          type="email"
+          name="id"
+          value={id}
+          placeholder="아이디(이메일)를 입력해 주세요"
+        />
+        <Input
+          onChange={onChangeHandler}
+          type="password"
+          name="password"
+          value={password}
+          placeholder="비밀번호를 입력해 주세요"
+        />
         <Button disabled={isDisabled}>로그인</Button>
         <Toggle>
           <ToggleText>

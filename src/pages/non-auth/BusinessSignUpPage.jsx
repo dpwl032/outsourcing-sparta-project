@@ -60,15 +60,29 @@ export const BusinessSignUpPage = () => {
     <Container>
       <Form onSubmit={onSubmitHandler}>
         <Title>업체 회원가입</Title>
-        <Input name="id" onChange={onChangeHandler} value={id} placeholder="아이디(이메일)를 입력해 주세요" />
-        <Input name="password" onChange={onChangeHandler} value={password} placeholder="비밀번호를 입력해 주세요" />
         <Input
+          type="email"
+          name="id"
+          onChange={onChangeHandler}
+          value={id}
+          placeholder="아이디(이메일)를 입력해 주세요"
+        />
+        <Input
+          type="password"
+          name="password"
+          onChange={onChangeHandler}
+          value={password}
+          placeholder="비밀번호를 입력해 주세요"
+        />
+        <Input
+          type="text"
           name="businessname"
           onChange={onChangeHandler}
           value={businessname}
           placeholder="업체 이름을 입력해 주세요"
         />
         <Input
+          type="tel"
           name="businessnumber"
           onChange={onChangeHandler}
           value={businessnumber}
