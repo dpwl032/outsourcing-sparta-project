@@ -6,35 +6,42 @@ import { FcNext } from 'react-icons/fc';
 import { FcLike } from 'react-icons/fc';
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { editProfile } from '../api/mutationFns';
+import { getProfile, getInfo } from '../api/queryFns';
 
 const TestMyPage = () => {
-  const mutation = useMutation(editProfile, {
-    onSuccess: async () => {
-      // await queryClient.invalidateQueries('profile');
-      console.log('test', mutation);
+  const { data, isLoading, isError } = useQuery('user', getInfo, {
+    onSuccess: (data) => {
+      console.log('data1', data);
+      setSelectedImg(data?.data?.avatar);
     }
   });
-
-  const { data: dbData, isLoading, isError } = useQuery('userRoles', getProfile);
-
-  //dbdata t/f
-
-  // const hostAuth = localStorage.getItem('host') ? true : false;
-  const nickname = localStorage.getItem('nickname');
-  const userId = localStorage.getItem('userId');
-  // const name = localStorage.getItem('name');
-  const avatar = localStorage.getItem('avatar');
+  const { data: dbData } = useQuery('userRoles', getProfile);
+  const userRole = dbData?.data.find((role) => role.userId === data?.data?.id);
 
   const [click, setClick] = useState(false);
   const [editingText, setEditingText] = useState('');
-  const [selectedImg, setSelectedImg] = useState(avatar);
+  const [selectedImg, setSelectedImg] = useState(data?.data?.avatar ?? '');
   const [file, setFile] = useState(null);
 
   const queryClient = useQueryClient();
 
-  if (hostAuth) {
+  const mutation = useMutation(editProfile, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries('user');
+    }
+  });
+
+  if (isLoading) {
+    return <p>...로딩중</p>;
+  }
+
+  if (isError) {
+    return <p>오류가 발생했습니다. 다시 새로고침 해주세요!</p>;
+  }
+
+  if (userRole.role === 'host') {
     alert('개인 회원 계정만 이용할 수 있습니다!');
     return <Navigate to="/home" replace />;
   }
@@ -57,9 +64,9 @@ const TestMyPage = () => {
     if (editingText) {
       formData.append('nickname', editingText);
     }
-    if (selectedImg !== avatar) {
-      formData.append('avatar', file);
-    }
+
+    formData.append('avatar', file);
+
     mutation.mutate(formData);
     setClick(false);
   };
@@ -100,14 +107,17 @@ const TestMyPage = () => {
                     gap: '20px'
                   }}
                 >
-                  <span> 아이디 : {userId} </span>
-                  <span>이름 : {name}</span>
+                  <span> 아이디 : {userRole.userId} </span>
+                  <span>이름 : {userRole.name}</span>
                   <span>
                     닉네임 :{' '}
                     {!click ? (
-                      <p>{nickname}</p>
+                      <p>{data.data.nickname}</p>
                     ) : (
-                      <input defaultValue={nickname} onChange={(event) => setEditingText(event.target.value)} />
+                      <input
+                        defaultValue={data.data.nickname}
+                        onChange={(event) => setEditingText(event.target.value)}
+                      />
                     )}
                   </span>
 
@@ -136,7 +146,7 @@ const TestMyPage = () => {
             </MyPageUserInfo>
             {/*구분선*/}
             <MyPageReservationNav>
-              {nickname}님의 예약 현황 <FcPlanner />
+              {data.data.nickname}님의 예약 현황 <FcPlanner />
             </MyPageReservationNav>
             {/*구분선*/}
             <MyPageReservationInfo>

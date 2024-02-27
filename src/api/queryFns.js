@@ -1,4 +1,4 @@
-import { jsonApi } from './user';
+import { authApi, jsonApi } from './user';
 
 //query(C)
 // 모든 user의 하위정보를 가져오는 api
@@ -7,4 +7,9 @@ const getProfile = async () => {
   return response;
 };
 
-export { getProfile };
+const getInfo = async () => {
+  const response = await authApi.get('/user');
+  return response;
+};
+
+export { getProfile, getInfo };
