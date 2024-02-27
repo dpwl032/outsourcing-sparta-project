@@ -8,9 +8,18 @@ function WriteReview() {
     e.preventDefault();
     if (content !== '') {
       try {
+        const userId = localStorage.getItem('userId');
+
+        if (!userId) {
+          alert('로그인 정보를 찾을 수 없습니다.');
+          return;
+        }
+
         await axios.post('http://localhost:5000/reviews', {
           content: content,
+          createdBy : userId,
         });
+
         setContent('');
         alert('작성이 완료됐습니다!');
       } catch (error) {
