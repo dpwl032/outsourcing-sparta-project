@@ -4,7 +4,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 
 function DetailInfoPage() {
-  const { id } = useParams(); // URL에서 id 값 추출
+  const { id } = useParams();
   const [businessInfo, setBusinessInfo] = useState(null);
 
   useEffect(() => {
