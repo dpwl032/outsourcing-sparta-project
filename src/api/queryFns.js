@@ -12,4 +12,16 @@ const getInfo = async () => {
   return response;
 };
 
-export { getProfile, getInfo };
+//class
+const getClass = async () => {
+  const response = await jsonApi.get('/class');
+  return response;
+};
+
+//review
+const getReview = async () => {
+  const response = await jsonApi.get('/review');
+  return response;
+};
+
+export { getProfile, getInfo, getClass, getReview };

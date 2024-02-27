@@ -11,6 +11,7 @@ import { SignInPage } from '../pages/non-auth/SignInPage';
 import { SignUpMode } from '../pages/non-auth/SignUpMode';
 import { PersonalSignUpPage } from '../pages/non-auth/PersonalSignUpPage';
 import { BusinessSignUpPage } from '../pages/non-auth/BusinessSignUpPage';
+import ClassOpen from '../pages/auth/ClassOpen';
 
 const Router = () => {
   return (
@@ -29,7 +30,8 @@ const Router = () => {
       {/* 로그인이 필요한 라우터 */}
       <Route element={<AuthLayout />}>
         <Route path="/home" element={<Home />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/class" element={<ClassOpen />} />
         <Route path="/my" element={<MyPage />} />
         {/*테스트 페이지 */}
         <Route path="/testmy" element={<TestMyPage />} />

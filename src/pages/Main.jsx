@@ -41,7 +41,7 @@ const Main = () => {
                 작가님의 재능을 나누고 함께하는 것, 이 두가지에만 집중하세요. 수강생 모집, 스케쥴 관리, 홍보는
                 걱정마세요. [로고]와 함께잖아요.
               </span>
-              <Link to="/">
+              <Link to="/class">
                 <MainUnderLineP> 클래스 오픈</MainUnderLineP>
               </Link>
             </MainContentsDetail>

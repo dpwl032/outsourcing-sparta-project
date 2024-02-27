@@ -18,4 +18,30 @@ const editProfile = async (formData) => {
   return response;
 };
 
-export { addProfile, editProfile };
+//class
+//클래스 오픈
+const addClass = async (newClass) => {
+  const response = await jsonApi.post('/class', newClass);
+  return response;
+};
+
+//클래스 삭제
+const deleteClass = async (id) => {
+  const response = await jsonApi.delete(`/class/${id}`);
+  return response;
+};
+
+//
+
+const editClass = async (id) => {
+  const response = await jsonApi.patch(`/class/${id}`);
+  return response;
+};
+
+//review
+const addReview = async (newReview) => {
+  const response = await jsonApi.post('/review', newReview);
+  return response;
+};
+
+export { addProfile, editProfile, addClass, deleteClass, addReview, editClass };

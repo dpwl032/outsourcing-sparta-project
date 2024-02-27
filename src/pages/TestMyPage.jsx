@@ -11,35 +11,46 @@ import { editProfile } from '../api/mutationFns';
 import { getProfile, getInfo } from '../api/queryFns';
 
 const TestMyPage = () => {
-  const { data, isLoading, isError } = useQuery('user', getInfo, {
+  const queryClient = useQueryClient();
+
+  /** Queries */
+  const {
+    data: userData,
+    isLoading: isUserLoading,
+    isError: isUserError
+  } = useQuery('user', getInfo, {
     onSuccess: (data) => {
       console.log('data1', data);
       setSelectedImg(data?.data?.avatar);
     }
   });
-  const { data: dbData } = useQuery('userRoles', getProfile);
-  const userRole = dbData?.data.find((role) => role.userId === data?.data?.id);
+  const { data: dbData, isLoading: isDbDataLoading, isError: isDbDataError } = useQuery('userRoles', getProfile);
 
-  const [click, setClick] = useState(false);
-  const [editingText, setEditingText] = useState('');
-  const [selectedImg, setSelectedImg] = useState(data?.data?.avatar ?? '');
-  const [file, setFile] = useState(null);
-
-  const queryClient = useQueryClient();
-
+  /** Mutations */
   const mutation = useMutation(editProfile, {
     onSuccess: async () => {
       await queryClient.invalidateQueries('user');
+    },
+    onError: () => {
+      alert('처리 중 오류가 발생했습니다.');
     }
   });
 
-  if (isLoading) {
+  /** states */
+  const [click, setClick] = useState(false);
+  const [editingText, setEditingText] = useState('');
+  const [selectedImg, setSelectedImg] = useState(userData?.data?.avatar ?? '');
+  const [file, setFile] = useState(null);
+
+  if (isUserLoading || isDbDataLoading) {
     return <p>...로딩중</p>;
   }
 
-  if (isError) {
+  if (isUserError || isDbDataError) {
     return <p>오류가 발생했습니다. 다시 새로고침 해주세요!</p>;
   }
+
+  const userRole = dbData?.data.find((role) => role.userId === userData?.data?.id);
 
   if (userRole.role === 'host') {
     alert('개인 회원 계정만 이용할 수 있습니다!');
@@ -78,8 +89,9 @@ const TestMyPage = () => {
           <MyPageContents>
             {/*구분선*/}
             <MyPageUserInfo>
-              <p>
-                사용자 정보 <FcLock />
+              <p style={{ fontSize: '25px', display: 'flex', justifyContent: 'center' }}>
+                MY
+                <FcLock />
               </p>
               <MyPageUserInfoWrap>
                 {/*구분선*/}
@@ -89,7 +101,7 @@ const TestMyPage = () => {
                       <img
                         size="large"
                         src={selectedImg}
-                        style={{ borderRadius: '100%', height: '100%', width: '170px' }}
+                        style={{ borderRadius: '100%', height: '100%', width: '200px' }}
                       />
                       <input type="file" onChange={previewImg} accept="image/jpg, image/png" />
                     </MyPageInfoImg>
@@ -107,19 +119,19 @@ const TestMyPage = () => {
                     gap: '20px'
                   }}
                 >
-                  <span> 아이디 : {userRole.userId} </span>
-                  <span>이름 : {userRole.name}</span>
-                  <span>
-                    닉네임 :{' '}
+                  <span> ID {userRole.userId} </span>
+                  <span> {userRole.name}</span>
+                  <p>
+                    닉네임
                     {!click ? (
-                      <p>{data.data.nickname}</p>
+                      <p>{userData.data.nickname}</p>
                     ) : (
                       <input
-                        defaultValue={data.data.nickname}
+                        defaultValue={userData.data.nickname}
                         onChange={(event) => setEditingText(event.target.value)}
                       />
                     )}
-                  </span>
+                  </p>
 
                   {!click ? (
                     <button
@@ -146,7 +158,7 @@ const TestMyPage = () => {
             </MyPageUserInfo>
             {/*구분선*/}
             <MyPageReservationNav>
-              {data.data.nickname}님의 예약 현황 <FcPlanner />
+              {userRole.name}님의 예약 현황 <FcPlanner />
             </MyPageReservationNav>
             {/*구분선*/}
             <MyPageReservationInfo>
@@ -162,7 +174,6 @@ const TestMyPage = () => {
               </p>
               <ul
                 style={{
-                  border: '1px solid black',
                   display: 'grid',
                   gridTemplateColumns: 'repeat(3, 1fr)',
                   gap: '10px',
@@ -193,15 +204,17 @@ const MyPageWrap = styled.div`
 `;
 
 const MyPageContents = styled.div`
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 15px;
   width: 50%;
-  height: 1000px;
+  height: 850px;
   margin: 1rem;
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  background-color: #f6f6f6;
 `;
 
 const MyPageUserInfo = styled.div`
@@ -216,13 +229,18 @@ const MyPageUserInfoWrap = styled.div`
 `;
 
 const MyPageInfoImgWrap = styled.div`
-  border: 1px solid black;
   width: 40%;
 
   display: flex;
   justify-content: center;
+`;
 
-  & > label > input {
+const MyPageInfoImg = styled.div`
+  border: 2px solid gray;
+  border-radius: 100%;
+  height: 100%;
+  width: 200px;
+  & > input {
     display: none;
   }
 
@@ -233,19 +251,12 @@ const MyPageInfoImgWrap = styled.div`
   }
 `;
 
-const MyPageInfoImg = styled.div`
-  border: 1px solid black;
-  border-radius: 100%;
-  height: 100%;
-  width: 170px;
-`;
-
 const MyPageReservationNav = styled.div`
-  border: 1px solid black;
   width: 80%;
   height: 30px;
   display: flex;
   align-items: center;
+  font-weight: bolder;
 `;
 
 const MyPageReservationInfo = styled.div`
@@ -255,6 +266,7 @@ const MyPageReservationInfo = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
+  background-color: white;
 `;
 
 const ScheduledClassName = styled.div`
@@ -265,7 +277,7 @@ const ScheduledClassName = styled.div`
 `;
 
 const MyPageLikedClass = styled.div`
-  border: 1px solid black;
+  font-weight: bolder;
   width: 80%;
   height: 380px;
 `;

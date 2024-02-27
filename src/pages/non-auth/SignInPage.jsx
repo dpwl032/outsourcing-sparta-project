@@ -59,7 +59,7 @@ export const SignInPage = () => {
           localStorage.setItem('guest', result.role);
 
           alert('로그인 성공');
-          navigate('/home');
+          navigate('/');
         }
       } catch (err) {
         alert(err.response.data.message);
@@ -86,7 +86,7 @@ export const SignInPage = () => {
           localStorage.setItem('name', result.name);
           localStorage.setItem('host', result.role);
           alert('업체 로그인 성공');
-          navigate('/home');
+          navigate('/');
         }
       } catch (err) {
         alert(err.response.data.message);
