@@ -9,11 +9,7 @@ const EditReview = ({ review, onSave, onCancel }) => {
 
   return (
     <div>
-      <input
-        type="text"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
+      <input type="text" value={content} onChange={(e) => setContent(e.target.value)} />
       <button onClick={handleSave}>저장</button>
       <button onClick={onCancel}>취소</button>
     </div>

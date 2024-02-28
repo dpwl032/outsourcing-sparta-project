@@ -17,67 +17,18 @@
       "userId": "signUpMode0808@signUpMode0809",
       "role": "host",
       "name": "스파르타"
-    }
-  ],
-  "class": [
-    {
-      "classId": "클래스_NO",
-      "classTitle": "클래스 제목",
-      "classContent": "클래스 내용",
-      "classImg": "클래스 사진",
-      "classPrice": "클래스 가격",
-      "classDate": "클래스 날짜",
-      "classYoutube": "유튜브 API",
-      "classMap": "주소 API",
-      "likes": [],
-      "id": "58fb"
     },
     {
-      "id": "8123",
-      "classTitle": "제목테스트",
-      "classContent": "내용테스트",
-      "classImg": "사진없음",
-      "classPrice": "60,000원",
-      "classDate": "2024-02-16",
-      "classYoutube": "주소없음",
-      "classMap": "주소없음"
+      "id": "51fa",
+      "userId": "eeeee@eeee",
+      "role": "guest",
+      "name": "테스터"
     },
     {
-      "id": "d47b",
-      "classTitle": "d",
-      "classContent": "d",
-      "classImg": "d",
-      "classPrice": "d",
-      "classDate": "2024-02-01",
-      "classMap": "s"
-    }
-  ],
-  "review": [
-    {
-      "reviewId": "리뷰_NO",
-      "reviewTitle": "리뷰 제목",
-      "reviewContent": "리뷰 내용",
-      "reviewDate": "리뷰 날짜",
-      "reviewScore": "리뷰 평점",
-      "classId": "클래스_NO",
-      "userId": "회원_NO",
-      "id": "9032"
-    },
-    {
-      "id": "d097",
-      "reviewTitle": "상세페이지2",
-      "reviewContents": "상세페이지2",
-      "grade": "3",
-      "classId": "193b",
-      "userId": "signUpMode0808"
-    },
-    {
-      "id": "75c9",
-      "reviewTitle": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
-      "reviewContents": "ㅋㅋㅋㅋㅋ",
-      "grade": "5",
-      "classId": "cd88",
-      "userId": "jsonDb999"
+      "id": "3d99",
+      "userId": "zzzzzzz@zzzzzzzz",
+      "role": "guest",
+      "name": "zzzzzzz@zzzzzzzz"
     }
   ],
   "likes": [
@@ -102,30 +53,6 @@
       "time": "2024-12-31",
       "price": "1223",
       "address": "123456"
-    },
-    {
-      "id": "9ba747a5-8441-43f2-ac1c-615bf51de256",
-      "createdBy": "jsonDb999@jsonDb999",
-      "title": "d",
-      "time": "2024-02-14",
-      "price": "d",
-      "address": "d"
-    },
-    {
-      "createdBy": "jsonDb999@jsonDb999",
-      "title": "z",
-      "time": "2024-02-17",
-      "price": "z",
-      "address": "z",
-      "id": "b7fe65f3-2f52-4033-9cbc-b2062259c6e9"
-    },
-    {
-      "id": "fc3af6cf-a104-4d81-8915-9e9585914516",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "테스트",
-      "time": "2024-02-17",
-      "price": "테스트",
-      "address": "테스트"
     },
     {
       "id": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
@@ -155,56 +82,164 @@
       "addressLat": "35.1795543",
       "addressLng": "129.0756416",
       "youtube": "WQaswRC0m3Y"
+    },
+    {
+      "id": "7a35b566-c419-4781-a01d-a25bbe7e2034",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "867ce324-1962-40b6-bb8b-29d1eda48e4e",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "fd764a9b-383a-4a65-aea8-aebf01faba2a",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "3a607868-7c87-40f9-916b-ef264e561c37",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "7ed75670-c6f8-4217-ac4e-9efa8e51c199",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "657cc914-1f3f-47c2-a690-01fa5ff91e31",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "10c9e7ff-f6b6-402e-8aa5-43feb4693be5",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "16c45499-3f57-460a-ad7e-a5d83edae47e",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "7aba68af-4371-4568-bfcd-763126ba8ce1",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "id": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "2024-02-17",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
     }
   ],
   "reviews": [
     {
-      "id": "1347",
-      "content": "가나다라마바사",
-      "createdOn": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
-      "createdBy": "jsonDb999"
-    },
-    {
-      "id": "d714",
-      "content": "ddd",
-      "createdOn": "fc3af6cf-a104-4d81-8915-9e9585914516",
+      "id": "e340",
+      "content": "ggggg",
+      "createdOn": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
       "createdBy": "jsonDb999@jsonDb999"
     },
     {
-      "id": "78e6",
-      "content": "ffff",
-      "createdOn": "fc3af6cf-a104-4d81-8915-9e9585914516",
+      "id": "f649",
+      "content": "zzz",
+      "createdOn": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
       "createdBy": "jsonDb999@jsonDb999"
     },
     {
-      "id": "46e1",
-      "content": "aaa",
-      "createdOn": "fc3af6cf-a104-4d81-8915-9e9585914516",
+      "id": "2126",
+      "content": "zzzz",
+      "createdOn": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
       "createdBy": "jsonDb999@jsonDb999"
     },
     {
-      "id": "944e",
-      "content": "dddd",
-      "createdOn": "fc3af6cf-a104-4d81-8915-9e9585914516",
-      "createdBy": "jsonDb999@jsonDb999"
-    },
-    {
-      "id": "60bd",
-      "content": "ㅋㅋㅋㅋ",
-      "createdOn": "b7fe65f3-2f52-4033-9cbc-b2062259c6e9",
-      "createdBy": "jsonDb999@jsonDb999"
-    },
-    {
-      "id": "5034",
-      "content": "ㄹㄹㄹㄹ",
-      "createdOn": "b7fe65f3-2f52-4033-9cbc-b2062259c6e9",
-      "createdBy": "jsonDb999@jsonDb999"
-    },
-    {
-      "id": "c739",
-      "content": "ggg",
-      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
-      "createdBy": "jsonDb999@jsonDb999"
+      "id": "fbd7",
+      "content": "gggggggggg",
+      "createdOn": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
+      "createdBy": "eeeee@eeee"
     }
   ]
 }

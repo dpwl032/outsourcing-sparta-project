@@ -29,7 +29,11 @@ function DetailInfoPage() {
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/reviews?createdOn=${id}`);
+      // const response = await axios.get(`http://localhost:5000/reviews?createdOn=${id}`);
+
+      // 전체 리뷰 리스트
+      const response = await axios.get(`http://localhost:5000/reviews`);
+
       setReviews(response.data);
     } catch (error) {
       console.error('리뷰 정보를 가져오는 중 오류 발생:', error);
@@ -54,9 +58,9 @@ function DetailInfoPage() {
       setUserRole(loggedUserRole);
     };
 
-    fetchBusinessInfo();
-    fetchReviews();
-    fetchUserRole();
+    fetchBusinessInfo(); // 사업자정보 get
+    fetchReviews(); // 리뷰정보 get
+    fetchUserRole(); // 유저정보 get
   }, [id]);
 
   const handleEdit = () => {
