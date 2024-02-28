@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const CustomButton = ({ text }) => {
+export const CustomButton = ({ text, onClick }) => {
   return (
-    <StyledButtonWrap>
+    <StyledButtonWrap onClick={onClick}>
       <button>{text}</button>
     </StyledButtonWrap>
   );
