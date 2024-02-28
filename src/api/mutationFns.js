@@ -9,12 +9,35 @@ const addProfile = async (profile) => {
 };
 
 const editProfile = async (formData) => {
-  const response = await authApi.patch('/profile', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
+  try {
+    const response = await authApi.patch('/profile', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+
+    const editingObj = {};
+    const { nickname, avatar } = response.data;
+    if (nickname) editingObj.nickname = nickname;
+    if (avatar) editingObj.avatar = avatar;
+
+    // JSON 서버에 내 리뷰들의 닉네임과 아바타 변경
+    const userId = localStorage.getItem('userId');
+    console.log('1', userId);
+    const { data: myReviews } = await jsonApi.get(`/reviews?createdBy=${userId}`);
+
+    console.log('2', myReviews);
+    for (const myReview of myReviews) {
+      await jsonApi.patch(`/reviews/${myReview.id}`, editingObj);
+      console.log('3', myReview.id);
+      console.log('test', editingObj);
     }
-  });
-  return response;
+    console.log('4', response);
+    return response;
+  } catch (err) {
+    console.error('An error occurred while editing profile:', err);
+    throw err;
+  }
 };
 
 // const addYoutube = async (newUrl) => {

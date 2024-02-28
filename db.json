@@ -122,34 +122,11 @@
   ],
   "reviews": [
     {
-      "id": "2126",
-      "content": "sss",
-      "createdOn": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
-      "createdBy": "jsonDb999@jsonDb999"
-    },
-    {
-      "id": "fbd7",
-      "content": "gggggggggg",
-      "createdOn": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
-      "createdBy": "eeeee@eeee"
-    },
-    {
-      "id": "ddae",
-      "content": "eeeeeeeee",
-      "createdOn": "3a607868-7c87-40f9-916b-ef264e561c37",
-      "createdBy": "eeeee@eeee"
-    },
-    {
-      "id": "faca",
-      "content": "fff",
+      "id": "6f65",
+      "content": "ㅋㅋㅋㅋ",
       "createdOn": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
-      "createdBy": "zzzzzzz@zzzzzzzz"
-    },
-    {
-      "id": "5889",
-      "content": "테스트",
-      "createdOn": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
-      "createdBy": "zzzzzzz@zzzzzzzz"
+      "createdBy": "eeeee@eeee",
+      "nickname": "닉넴변경아싸뵤"
     }
   ]
 }

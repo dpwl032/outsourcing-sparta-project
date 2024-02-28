@@ -23,7 +23,7 @@ const ReviewList = ({ reviews, isEditingReview, onReviewEdit, onReviewDelete, on
                 ''
               )}
               <p>
-                {review.content} - {review.createdBy}
+                {review.content} - {review.nickname}
               </p>
             </>
           )}

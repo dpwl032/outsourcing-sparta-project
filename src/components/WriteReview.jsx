@@ -37,7 +37,8 @@ function WriteReview({ onReviewSubmitted }) {
     reviewMutation.mutate({
       content,
       createdOn: pageId,
-      createdBy: userId
+      createdBy: userId,
+      nickname: localStorage.getItem('nickname')
     });
   };
 

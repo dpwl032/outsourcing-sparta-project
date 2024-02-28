@@ -80,6 +80,7 @@ const MyPage = () => {
 
     mutation.mutate(formData);
     setClick(false);
+    localStorage.setItem('nickname', editingText);
 
     alert('변경완료!');
   };

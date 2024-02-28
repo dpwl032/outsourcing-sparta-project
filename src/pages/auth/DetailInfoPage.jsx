@@ -11,9 +11,7 @@ import { searchVideos } from '../../api/youtube';
 
 function DetailInfoPage() {
   const queryClient = useQueryClient();
-  const { data: YoutubeData } = useQuery('search', searchVideos);
-
-  console.log(YoutubeData);
+  // const { data: YoutubeData } = useQuery('search', searchVideos);
 
   const { id } = useParams();
   const navigate = useNavigate();
