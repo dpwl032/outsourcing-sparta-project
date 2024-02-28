@@ -49,11 +49,25 @@ function DetailInfoPage() {
         //추가-예지
         setLat(response.data.addressLat);
         setLng(response.data.addressLng);
-        setShowMovie(response.data.youtubeId);
         setLikeUser(response.data.createdBy);
 
-        console.log(addressLat);
-        console.log(addressLng);
+        let words = response.data.youtubeId.split('=');
+        let getYoutubeId = words[1];
+
+        setShowMovie(getYoutubeId);
+
+        // console.log('주소', getYoutubeId);
+
+        // // const regularExpression =
+        // //   /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        // // const match = showMovie.match(regularExpression);
+
+        // if (match) {
+        //   const videoId = match[1];
+        //   console.log('YouTube Video ID:', videoId);
+        // } else {
+        //   console.log('URL is not a valid YouTube video URL.');
+        // }
       } catch (error) {
         console.error('업체 정보를 가져오는 중 오류 발생:', error);
       }
