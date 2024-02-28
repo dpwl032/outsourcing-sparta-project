@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { addBusinessInfo } from '../api/crudServiece';
+import styled from 'styled-components';
+import { Form } from 'react-router-dom';
 
 function AddBusinessInfo() {
     const [title, setTitle] = useState('');
@@ -46,29 +48,43 @@ function AddBusinessInfo() {
         });
     };
 
+    const Form = styled.form`
+        display: block;
+        align-items: center;
+        justify-content: center;
+    `
+
+    const Input = styled.input`
+        border: 1px solid gray;
+        width: 100%;
+        margin-bottom: 16px;
+        padding: 12px 0;
+        outline: none;
+    `
+
     return (
-        <form onSubmit={handleSubmit}>
-            <input
+        <Form onSubmit={handleSubmit}>
+            <Input
                 type="text"
                 name="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="클래스 제목을 입력해주세요."
             />
-            <input
+            <Input
                 type="date"
                 name="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
             />
-            <input
+            <Input
                 type="text"
                 name="price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="가격 정보를 입력해주세요."
             />
-            <input
+            <Input
                 type="text"
                 name="address"
                 value={address}
@@ -76,7 +92,7 @@ function AddBusinessInfo() {
                 placeholder="업체 주소지를 입력해주세요."
             />
             <button type="submit">등록</button>
-        </form>
+        </Form>
     );
 }
 
