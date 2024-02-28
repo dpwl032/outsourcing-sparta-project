@@ -10,7 +10,7 @@ import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { editProfile } from '../api/mutationFns';
 import { getProfile, getInfo } from '../api/queryFns';
 
-const TestMyPage = () => {
+const MyPage = () => {
   const queryClient = useQueryClient();
 
   /** Queries */
@@ -195,7 +195,7 @@ const TestMyPage = () => {
   );
 };
 
-export default TestMyPage;
+export default MyPage;
 
 const MyPageWrap = styled.div`
   display: flex;

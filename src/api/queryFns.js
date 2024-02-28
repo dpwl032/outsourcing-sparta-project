@@ -13,18 +13,6 @@ const getInfo = async () => {
   return response;
 };
 
-//class
-const getClass = async () => {
-  const response = await jsonApi.get('/class');
-  return response;
-};
-
-//review
-const getReview = async () => {
-  const response = await jsonApi.get('/review');
-  return response;
-};
-
 //youtube
 
 const getYoutube = async () => {
@@ -32,4 +20,4 @@ const getYoutube = async () => {
   return response;
 };
 
-export { getProfile, getInfo, getClass, getReview };
+export { getProfile, getInfo };

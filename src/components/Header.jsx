@@ -26,7 +26,7 @@ const Header = () => {
             </Link>
           ) : (
             <>
-              <Link to="/testmy">
+              <Link to="/my">
                 <SignUp>마이페이지</SignUp>
               </Link>
               <LogoutButton></LogoutButton>
