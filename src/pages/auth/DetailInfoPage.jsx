@@ -149,7 +149,7 @@ function DetailInfoPage() {
                 </MapInfo>
               </KakaoMapWrap>
               {userRole !== 'host' && (
-                <div>
+                <div style={{ marginBottom: '5rem' }}>
                   <button onClick={() => handleLike(businessInfo?.id)}>찜하기</button> <br />
                 </div>
               )}
@@ -165,14 +165,16 @@ function DetailInfoPage() {
                   </button>
                 </>
               )}
-              {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
-              <ReviewList
-                reviews={reviews}
-                isEditingReview={isEditingReview}
-                onReviewEdit={handleReviewEdit}
-                onReviewDelete={handleReviewDelete}
-                onReviewUpdated={handleReviewUpdated}
-              />
+              <ReviewContainer>
+                {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
+                <ReviewList
+                  reviews={reviews}
+                  isEditingReview={isEditingReview}
+                  onReviewEdit={handleReviewEdit}
+                  onReviewDelete={handleReviewDelete}
+                  onReviewUpdated={handleReviewUpdated}
+                />
+              </ReviewContainer>
             </>
           )}
           {!businessInfo && <p>Loading...</p>}
@@ -209,4 +211,10 @@ const MapInfo = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+`;
+
+const ReviewContainer = styled.div`
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
 `;
