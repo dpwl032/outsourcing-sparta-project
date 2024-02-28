@@ -12,9 +12,9 @@ const Header = () => {
     <>
       <HeaderWrap>
         <HeaderItem>
-          <Link to="/">
+          <LinkStyle to="/">
             <HeaderLogo>로고</HeaderLogo>
-          </Link>
+          </LinkStyle>
           <HeaderCategory>
             <HeaderCategoryItem>climbing</HeaderCategoryItem>
             <HeaderCategoryItem>Traveling</HeaderCategoryItem>
@@ -29,7 +29,7 @@ const Header = () => {
           ) : (
             <>
               <SignUp>
-                <Link to="/testmy">
+                <Link to="/my">
                   <MyUserIng src={myUser} alt="마이페이지" />
                 </Link>
                 <LogoutButton></LogoutButton>
@@ -65,6 +65,7 @@ const HeaderLogo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 `;
 
 const HeaderCategory = styled.ul`
@@ -100,6 +101,7 @@ const SignUp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
   margin-left: -3.8rem;
   gap: 15px;
 `;
@@ -107,4 +109,9 @@ const SignUp = styled.div`
 const MyUserIng = styled.img`
   width: 2rem;
   height: 2rem;
+`;
+const LinkStyle = styled(Link)`
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 `;

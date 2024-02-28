@@ -9,8 +9,6 @@ import item4 from '../../assets/img/item4.png';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getClass } from '../../api/queryFns';
-import BusinessList from '../BusinessList';
 import axios from 'axios';
 
 const fetchBusinessInfos = async () => {
@@ -18,11 +16,8 @@ const fetchBusinessInfos = async () => {
   return data;
 };
 
-const TestHome = () => {
-  const { isLoading, isError, data } = useQuery('class', getClass);
-  const { data: businessInfos } = useQuery('businessInfos', fetchBusinessInfos);
-
-  console.log('businessInfos', businessInfos);
+const Home = () => {
+  const { data: businessInfos, isLoading, isError } = useQuery('businessInfos', fetchBusinessInfos);
 
   if (isLoading) {
     return <p>...로딩중</p>;
@@ -150,7 +145,7 @@ const TestHome = () => {
   );
 };
 
-export default TestHome;
+export default Home;
 
 const HomeContentsWrap = styled.div`
   display: flex;

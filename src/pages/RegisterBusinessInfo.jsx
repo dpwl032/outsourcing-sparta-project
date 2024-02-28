@@ -6,10 +6,6 @@ import { Form } from 'react-router-dom';
 import { getProfile, getInfo } from '../api/queryFns';
 import { Navigate } from 'react-router-dom';
 function AddBusinessInfo() {
-  /** Queries */
-  const { data: userData, isLoading: isUserLoading, isError: isUserError } = useQuery('user', getInfo);
-  const { data: dbData, isLoading: isDbDataLoading, isError: isDbDataError } = useQuery('userRoles', getProfile);
-
   const onSuccess = () => {
     queryClient.invalidateQueries('businessInfos');
     alert('등록이 완료되었습니다!');
@@ -17,7 +13,9 @@ function AddBusinessInfo() {
     setTitle('');
     setTime('');
     setPrice('');
-    setAddress('');
+    setAddressLat('');
+    setAddressLng('');
+    return <Navigate to="/home" replace />;
   };
 
   const onError = (error) => {
@@ -25,15 +23,28 @@ function AddBusinessInfo() {
     alert('등록 중 오류가 발생했습니다.');
   };
 
+  const { data: userData, isLoading: isUserLoading, isError: isUserError } = useQuery('user', getInfo);
+  const { data: dbData, isLoading: isDbDataLoading, isError: isDbDataError } = useQuery('userRoles', getProfile);
+
   const mutation = useMutation(addBusinessInfo, {
     onSuccess,
     onError
   });
+
   const [title, setTitle] = useState('');
   const [time, setTime] = useState('');
   const [price, setPrice] = useState('');
-  const [address, setAddress] = useState('');
+  const [addressLat, setAddressLat] = useState('');
+  const [addressLng, setAddressLng] = useState('');
   const queryClient = useQueryClient();
+
+  if (isUserLoading || isDbDataLoading) {
+    return <p>...로딩중</p>;
+  }
+
+  if (isUserError || isDbDataError) {
+    return <p>오류가 발생했습니다. 다시 새로고침 해주세요!</p>;
+  }
 
   const userRole = dbData?.data.find((role) => role.userId === userData?.data?.id);
 
@@ -55,7 +66,8 @@ function AddBusinessInfo() {
       title,
       time,
       price,
-      address
+      addressLat,
+      addressLng
     });
   };
 
@@ -90,12 +102,21 @@ function AddBusinessInfo() {
         onChange={(e) => setPrice(e.target.value)}
         placeholder="가격 정보를 입력해주세요."
       />
+
       <Input
         type="text"
         name="address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        placeholder="업체 주소지를 입력해주세요."
+        value={addressLat}
+        onChange={(e) => setAddressLat(e.target.value)}
+        placeholder="업체 주소지 입력해주세요.(lat)"
+      />
+
+      <Input
+        type="text"
+        name="address"
+        value={addressLng}
+        onChange={(e) => setAddressLng(e.target.value)}
+        placeholder="업체 주소지를 입력해주세요.(lng)"
       />
       <button type="submit">등록</button>
     </Form>
