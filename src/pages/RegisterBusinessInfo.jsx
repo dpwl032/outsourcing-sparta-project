@@ -36,6 +36,7 @@ function AddBusinessInfo() {
   const [price, setPrice] = useState('');
   const [addressLat, setAddressLat] = useState('');
   const [addressLng, setAddressLng] = useState('');
+  const [youtube, setYoutube] = useState('');
   const queryClient = useQueryClient();
 
   if (isUserLoading || isDbDataLoading) {
@@ -67,7 +68,8 @@ function AddBusinessInfo() {
       time,
       price,
       addressLat,
-      addressLng
+      addressLng,
+      youtube
     });
   };
 
@@ -103,12 +105,14 @@ function AddBusinessInfo() {
         placeholder="가격 정보를 입력해주세요."
       />
 
+      {/* test-예지추가 */}
+
       <Input
         type="text"
         name="address"
         value={addressLat}
         onChange={(e) => setAddressLat(e.target.value)}
-        placeholder="업체 주소지 입력해주세요.(lat)"
+        placeholder="업체 주소지 입력해주세요.(lat) 30)"
       />
 
       <Input
@@ -116,7 +120,14 @@ function AddBusinessInfo() {
         name="address"
         value={addressLng}
         onChange={(e) => setAddressLng(e.target.value)}
-        placeholder="업체 주소지를 입력해주세요.(lng)"
+        placeholder="업체 주소지를 입력해주세요.(lng ) 127)"
+      />
+      <Input
+        type="text"
+        name="address"
+        value={youtube}
+        onChange={(e) => setYoutube(e.target.value)}
+        placeholder="유튜브 주소를 입력해주세요."
       />
       <button type="submit">등록</button>
     </Form>
