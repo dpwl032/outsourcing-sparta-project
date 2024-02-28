@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
 import { postReview } from '../api/crudServiece';
@@ -12,13 +12,13 @@ function WriteReview({ onReviewSubmitted }) {
     onSuccess: () => {
       queryClient.invalidateQueries(['reviews', pageId]);
       alert('리뷰가 성공적으로 작성되었습니다.');
-      setContent(''); 
+      setContent('');
       if (onReviewSubmitted) onReviewSubmitted();
     },
     onError: (error) => {
       console.error('리뷰 작성 중 오류가 발생했습니다.', error);
       alert('리뷰 작성 중 오류가 발생했습니다.');
-    },
+    }
   });
 
   const handleSubmit = (e) => {
@@ -37,7 +37,7 @@ function WriteReview({ onReviewSubmitted }) {
     reviewMutation.mutate({
       content,
       createdOn: pageId,
-      createdBy: userId,
+      createdBy: userId
     });
   };
 

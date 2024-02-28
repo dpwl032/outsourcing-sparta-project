@@ -59,6 +59,7 @@ export const SignInPage = () => {
 
           alert('로그인 성공');
           navigate('/');
+          window.location.reload();
         }
       } catch (err) {
         alert(err.response.data.message);
@@ -86,6 +87,7 @@ export const SignInPage = () => {
           localStorage.setItem('host', result.role);
           alert('업체 로그인 성공');
           navigate('/');
+          window.location.reload();
         }
       } catch (err) {
         alert(err.response.data.message);

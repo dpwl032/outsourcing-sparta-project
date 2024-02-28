@@ -21,9 +21,9 @@ const Main = () => {
                 어떻게 시작해야 할지 모르겠다면 모든 길을 [로고]로 통합니다. 베이킹, 커리어, 등산 어떤 취미든 [로고]와
                 함께잖아요.
               </span>
-              <Link to="/home">
+              <LinkStyle to="/home">
                 <MainUnderLineP>클래스 신청</MainUnderLineP>
-              </Link>
+              </LinkStyle>
             </MainContentsDetail>
           </MainContentsItem>
         </MainContentsWrap>
@@ -41,9 +41,9 @@ const Main = () => {
                 작가님의 재능을 나누고 함께하는 것, 이 두가지에만 집중하세요. 수강생 모집, 스케쥴 관리, 홍보는
                 걱정마세요. [로고]와 함께잖아요.
               </span>
-              <Link to="/class">
+              <LinkStyle to="/class">
                 <MainUnderLineP> 클래스 오픈</MainUnderLineP>
-              </Link>
+              </LinkStyle>
             </MainContentsDetail>
           </MainContentsItem>
         </AnotherMainContentsWrap>
@@ -118,4 +118,10 @@ const MainFigcaptionP = styled.p`
 
 const MainUnderLineP = styled.p`
   text-decoration: underline;
+`;
+
+const LinkStyle = styled(Link)`
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 `;

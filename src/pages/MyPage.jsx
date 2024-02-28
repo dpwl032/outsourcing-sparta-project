@@ -10,7 +10,7 @@ import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { editProfile } from '../api/mutationFns';
 import { getProfile, getInfo } from '../api/queryFns';
 
-const TestMyPage = () => {
+const MyPage = () => {
   const queryClient = useQueryClient();
 
   /** Queries */
@@ -20,7 +20,6 @@ const TestMyPage = () => {
     isError: isUserError
   } = useQuery('user', getInfo, {
     onSuccess: (data) => {
-      console.log('data1', data);
       setSelectedImg(data?.data?.avatar);
     }
   });
@@ -80,6 +79,8 @@ const TestMyPage = () => {
 
     mutation.mutate(formData);
     setClick(false);
+
+    alert('변경완료!');
   };
 
   return (
@@ -195,7 +196,7 @@ const TestMyPage = () => {
   );
 };
 
-export default TestMyPage;
+export default MyPage;
 
 const MyPageWrap = styled.div`
   display: flex;

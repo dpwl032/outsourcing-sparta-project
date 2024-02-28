@@ -1,17 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
-import ProtectedRoute from './ProtectedRoute.js';
 import AddBusinessInfo from '../pages/RegisterBusinessInfo.jsx';
 import WriteReview from '../components/WriteReview.jsx';
-import DetailInfoPage from '../pages/DetailInfoPage.jsx';
+import DetailInfoPage from '../pages/auth/DetailInfoPage.jsx';
 import BusinessList from '../pages/BusinessList.jsx';
 import Home from '../pages/auth/Home';
 import Main from '../pages/Main';
-import Detail from '../pages/auth/Detail';
-import MyPage from '../pages/auth/MyPage';
+import MyPage from '../pages/MyPage.jsx';
 import Layout from '../components/layout/Layout';
 import NonAuthLayout from '../components/layout/NonAuthLayout';
 import AuthLayout from '../components/layout/AuthLayout';
-import TestMyPage from '../pages/TestMyPage';
 import { SignInPage } from '../pages/non-auth/SignInPage';
 import { SignUpMode } from '../pages/non-auth/SignUpMode';
 import { PersonalSignUpPage } from '../pages/non-auth/PersonalSignUpPage';
@@ -39,8 +36,6 @@ const Router = () => {
         <Route path="/class" element={<AddBusinessInfo />} />
         <Route path="/my" element={<MyPage />} />
         <Route path="/WritingReview" element={<WriteReview />} />
-        {/*테스트 페이지 */}
-        <Route path="/testmy" element={<TestMyPage />} />
       </Route>
     </Routes>
   );
