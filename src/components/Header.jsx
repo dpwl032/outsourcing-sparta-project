@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogoutButton } from './LogoutButton';
+import { CustomButton } from './CustomButton';
+import myUser from '../assets/img/user.png';
 
 const Header = () => {
   const isAuthenticated = localStorage.getItem('accessToken') ? true : false;
@@ -21,15 +23,17 @@ const Header = () => {
             <HeaderCategoryItem>Career</HeaderCategoryItem>
           </HeaderCategory>
           {!isAuthenticated ? (
-            <LinkStyle to="/signIn">
-              <SignUp>로그인/회원가입</SignUp>
-            </LinkStyle>
+            <Link to="/signIn">
+              <CustomButton text={'로그인'} />
+            </Link>
           ) : (
             <>
-              <LinkStyle to="/my">
-                <SignUp>마이페이지</SignUp>
-              </LinkStyle>
-              <LogoutButton></LogoutButton>
+              <SignUp>
+                <Link to="/my">
+                  <MyUserIng src={myUser} alt="마이페이지" />
+                </Link>
+                <LogoutButton></LogoutButton>
+              </SignUp>
             </>
           )}
         </HeaderItem>
@@ -98,6 +102,13 @@ const SignUp = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  margin-left: -3.8rem;
+  gap: 15px;
+`;
+
+const MyUserIng = styled.img`
+  width: 2rem;
+  height: 2rem;
 `;
 const LinkStyle = styled(Link)`
   cursor: pointer;
