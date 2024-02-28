@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/modules/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { CustomButton } from './CustomButton';
 
 export const LogoutButton = () => {
   const dispatch = useDispatch();
@@ -10,5 +11,5 @@ export const LogoutButton = () => {
     navigate('/');
     window.location.reload();
   };
-  return <button onClick={handleLogout}>로그아웃</button>;
+  return <CustomButton onClick={handleLogout} text={'로그아웃'} />;
 };

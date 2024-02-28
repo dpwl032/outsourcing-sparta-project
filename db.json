@@ -137,13 +137,24 @@
       "addressLng": "126.570667"
     },
     {
-      "id": "7aa857ac-6766-4e5c-9e74-8a78227c0b32",
+      "id": "c5b2f703-95ec-45bb-a04a-da233c7ec66d",
       "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "지도테스트333",
-      "time": "2024-02-08",
-      "price": "50,000원",
-      "addressLat": " 37.50910779362899",
-      "addressLng": "127.04071296745333 "
+      "title": "유튜브/지도 테스트",
+      "time": "2024-02-28",
+      "price": "20,000원",
+      "addressLat": "37.5642135",
+      "addressLng": "127.0016985",
+      "youtube": "Ud1DlGiOCqc"
+    },
+    {
+      "id": "19725bb1-4ae5-48ca-8540-0d9366cd39e3",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "다른동영상 test",
+      "time": "2024-02-19",
+      "price": "30,000원",
+      "addressLat": "35.1795543",
+      "addressLng": "129.0756416",
+      "youtube": "WQaswRC0m3Y"
     }
   ],
   "reviews": [
@@ -187,6 +198,12 @@
       "id": "5034",
       "content": "ㄹㄹㄹㄹ",
       "createdOn": "b7fe65f3-2f52-4033-9cbc-b2062259c6e9",
+      "createdBy": "jsonDb999@jsonDb999"
+    },
+    {
+      "id": "c739",
+      "content": "ggg",
+      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
       "createdBy": "jsonDb999@jsonDb999"
     }
   ]

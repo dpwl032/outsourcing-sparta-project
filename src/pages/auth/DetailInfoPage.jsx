@@ -22,8 +22,10 @@ function DetailInfoPage() {
   const [userRole, setUserRole] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingReview, setIsEditingReview] = useState(null);
+  //test 코드
   const [addressLat, setLat] = useState('');
   const [addressLng, setLng] = useState('');
+  const [showMovie, setShowMovie] = useState('');
 
   const fetchReviews = async () => {
     try {
@@ -41,6 +43,7 @@ function DetailInfoPage() {
         setBusinessInfo(response.data);
         setLat(response.data.addressLat);
         setLng(response.data.addressLng);
+        setShowMovie(response.data.youtube);
       } catch (error) {
         console.error('업체 정보를 가져오는 중 오류 발생:', error);
       }
@@ -103,7 +106,18 @@ function DetailInfoPage() {
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: '768px' }}>
-          <div style={{ border: '1px solid black', width: '768px', height: '500px' }}>유튜브</div>
+          <div style={{ border: '1px solid black', width: '768px', height: '500px' }}>
+            {' '}
+            <iframe
+              id="ytplayer"
+              type="text/html"
+              width="768"
+              height="405"
+              src={`https://www.youtube.com/embed/${showMovie}`}
+              frameborder="0"
+              allowfullscreen="allowfullscreen"
+            ></iframe>
+          </div>
 
           {businessInfo && !isEditing && (
             <>

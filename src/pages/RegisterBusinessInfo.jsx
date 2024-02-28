@@ -36,6 +36,7 @@ function AddBusinessInfo() {
   const [price, setPrice] = useState('');
   const [addressLat, setAddressLat] = useState('');
   const [addressLng, setAddressLng] = useState('');
+  const [youtube, setYoutube] = useState('');
   const queryClient = useQueryClient();
 
   if (isUserLoading || isDbDataLoading) {
@@ -67,23 +68,36 @@ function AddBusinessInfo() {
       time,
       price,
       addressLat,
-      addressLng
+      addressLng,
+      youtube
     });
   };
 
   const Form = styled.form`
-    display: block;
-    align-items: center;
-    justify-content: center;
-  `;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 5rem 0 5rem;
+    `
 
-  const Input = styled.input`
-    border: 1px solid gray;
-    width: 100%;
-    margin-bottom: 16px;
-    padding: 12px 0;
-    outline: none;
-  `;
+    const Input = styled.input`
+        border: 1px solid gray;
+        width: 30%;
+        margin-bottom: 16px;
+        padding: 12px 0;
+        outline: none;
+    `
+
+    const Button = styled.button`
+        background-color: black;
+        width: 30%;
+        color: white;
+        font-size: 16px;
+        padding: 12px 18px;
+        border-radius: 5px;
+        cursor: pointer;
+    `
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -103,12 +117,14 @@ function AddBusinessInfo() {
         placeholder="가격 정보를 입력해주세요."
       />
 
+      {/* test-예지추가 */}
+
       <Input
         type="text"
         name="address"
         value={addressLat}
         onChange={(e) => setAddressLat(e.target.value)}
-        placeholder="업체 주소지 입력해주세요.(lat)"
+        placeholder="업체 주소지 입력해주세요.(lat) 30)"
       />
 
       <Input
@@ -116,9 +132,16 @@ function AddBusinessInfo() {
         name="address"
         value={addressLng}
         onChange={(e) => setAddressLng(e.target.value)}
-        placeholder="업체 주소지를 입력해주세요.(lng)"
+        placeholder="업체 주소지를 입력해주세요.(lng ) 127)"
       />
-      <button type="submit">등록</button>
+      <Input
+        type="text"
+        name="address"
+        value={youtube}
+        onChange={(e) => setYoutube(e.target.value)}
+        placeholder="유튜브 주소를 입력해주세요."
+      />
+      <Button type="submit">등록</Button>
     </Form>
   );
 }

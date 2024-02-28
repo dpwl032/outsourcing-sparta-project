@@ -94,7 +94,7 @@ export const BusinessSignUpPage = () => {
           value={businessnumber}
           placeholder="업체 전화번호를 입력해 주세요"
         />
-        <Button disabled={isDisabled}>회원가입</Button>
+        <Button>회원가입</Button>
       </Form>
     </Container>
   );
