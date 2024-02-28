@@ -4,7 +4,7 @@ import auth from '../modules/authSlice';
 const rootReducer = combineReducers({ auth });
 
 const store = configureStore({
-  reducer: rootReducer
+  reducer: rootReducer,
 });
 
 export default store;

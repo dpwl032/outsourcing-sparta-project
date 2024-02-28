@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-import WriteReview from '../../components/WriteReview';
-import EditBusinessInfo from '../../components/EditBusinessInfo';
-import ReviewList from '../../components/ReviewList';
+import WriteReview from "../components/WriteReview";
+import EditBusinessInfo from "../components/EditBusinessInfo";
+import ReviewList from '../components/ReviewList';
 
 function DetailInfoPage() {
   const { id } = useParams();
@@ -20,7 +19,7 @@ function DetailInfoPage() {
       const response = await axios.get(`http://localhost:5000/reviews?createdOn=${id}`);
       setReviews(response.data);
     } catch (error) {
-      console.error('리뷰 정보를 가져오는 중 오류 발생:', error);
+      console.error("리뷰 정보를 가져오는 중 오류 발생:", error);
     }
   };
 
@@ -30,7 +29,7 @@ function DetailInfoPage() {
         const response = await axios.get(`http://localhost:5000/businessInfo/${id}`);
         setBusinessInfo(response.data);
       } catch (error) {
-        console.error('업체 정보를 가져오는 중 오류 발생:', error);
+        console.error("업체 정보를 가져오는 중 오류 발생:", error);
       }
     };
 
@@ -54,12 +53,12 @@ function DetailInfoPage() {
   };
 
   const handleDelete = async () => {
-    if (window.confirm('정말로 삭제하시겠습니까?')) {
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
       try {
         await axios.delete(`http://localhost:5000/businessInfo/${id}`);
         navigate('/');
       } catch (error) {
-        console.error('업체 정보 삭제 중 오류 발생:', error);
+        console.error("업체 정보 삭제 중 오류 발생:", error);
         alert('삭제 실패. 다시 시도해주세요.');
       }
     }
@@ -76,12 +75,12 @@ function DetailInfoPage() {
   };
 
   const handleReviewDelete = async (reviewId) => {
-    if (window.confirm('정말로 삭제하시겠습니까?')) {
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
       try {
         await axios.delete(`http://localhost:5000/reviews/${reviewId}`);
         fetchReviews();
       } catch (error) {
-        console.error('리뷰 삭제 중 오류 발생:', error);
+        console.error("리뷰 삭제 중 오류 발생:", error);
         alert('리뷰 삭제 실패. 다시 시도해주세요.');
       }
     }
@@ -97,12 +96,8 @@ function DetailInfoPage() {
           <p>주소지: {businessInfo.address}</p>
           {userRole === 'host' && (
             <>
-              <button type="button" onClick={handleEdit}>
-                수정
-              </button>
-              <button type="button" onClick={handleDelete}>
-                삭제
-              </button>
+              <button type="button" onClick={handleEdit}>수정</button>
+              <button type="button" onClick={handleDelete}>삭제</button>
             </>
           )}
           {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
@@ -117,7 +112,9 @@ function DetailInfoPage() {
       )}
 
       {!businessInfo && <p>Loading...</p>}
-      {businessInfo && isEditing && <EditBusinessInfo businessInfo={businessInfo} onSaved={handleSaved} />}
+      {businessInfo && isEditing && (
+        <EditBusinessInfo businessInfo={businessInfo} onSaved={handleSaved} />
+      )}
     </div>
   );
 }

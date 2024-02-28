@@ -7,34 +7,10 @@
       "name": "test-Name"
     },
     {
-      "id": "3bc8",
-      "userId": "jsonDb999",
-      "role": "guest",
-      "name": "홍길동"
-    },
-    {
-      "id": "4a7e",
-      "userId": "signUpMode0808",
-      "role": "host",
-      "name": "스파르타"
-    },
-    {
-      "id": "e175",
-      "userId": "supapa05",
-      "role": "guest",
-      "name": "홍길순"
-    },
-    {
       "id": "cbdb",
       "userId": "jsonDb999@jsonDb999",
       "role": "guest",
       "name": "홍길동"
-    },
-    {
-      "id": "89b1",
-      "userId": "signUpMode0808@signUpMode0808",
-      "role": "host",
-      "name": "스파르타"
     },
     {
       "id": "1dc8",
@@ -67,71 +43,6 @@
       "classMap": "주소없음"
     },
     {
-      "id": "cd88",
-      "classTitle": "1",
-      "classContent": "1",
-      "classImg": "1",
-      "classPrice": "1",
-      "classDate": "2024-02-09",
-      "classYoutube": "1",
-      "classMap": "1"
-    },
-    {
-      "id": "aebb",
-      "classTitle": "d",
-      "classContent": "d",
-      "classImg": "d",
-      "classPrice": "d",
-      "classDate": "2024-02-14",
-      "classMap": "d"
-    },
-    {
-      "id": "5399",
-      "classTitle": "zz",
-      "classContent": "zz",
-      "classImg": "zz",
-      "classPrice": "zz",
-      "classDate": "2024-02-28",
-      "classMap": "zz"
-    },
-    {
-      "id": "9ad6",
-      "classTitle": "s",
-      "classContent": "s",
-      "classImg": "s",
-      "classPrice": "s",
-      "classDate": "2024-02-01",
-      "classYoutube": "cqf0Ni3Jo_I",
-      "classMap": "s"
-    },
-    {
-      "id": "9362",
-      "classTitle": "s",
-      "classContent": "s",
-      "classImg": "s",
-      "classPrice": "s",
-      "classDate": "2024-01-31",
-      "classMap": "s"
-    },
-    {
-      "id": "6b8e",
-      "classTitle": "d",
-      "classContent": "d",
-      "classImg": "d",
-      "classPrice": "d",
-      "classDate": "2024-02-08",
-      "classMap": "dd"
-    },
-    {
-      "id": "ce76",
-      "classTitle": "d",
-      "classContent": "d",
-      "classImg": "d",
-      "classPrice": "d",
-      "classDate": "2024-02-07",
-      "classMap": "d"
-    },
-    {
       "id": "d47b",
       "classTitle": "d",
       "classContent": "d",
@@ -153,44 +64,12 @@
       "id": "9032"
     },
     {
-      "id": "2492",
-      "reviewTitle": "상세페이지1",
-      "reviewContents": "상세페이지1",
-      "grade": "5",
-      "classId": "f2f3",
-      "userId": "signUpMode0808"
-    },
-    {
       "id": "d097",
       "reviewTitle": "상세페이지2",
       "reviewContents": "상세페이지2",
       "grade": "3",
       "classId": "193b",
       "userId": "signUpMode0808"
-    },
-    {
-      "id": "f4a1",
-      "reviewTitle": "",
-      "reviewContents": "1",
-      "grade": "5",
-      "classId": "193b",
-      "userId": "jsonDb999"
-    },
-    {
-      "id": "1ead",
-      "reviewTitle": "2222",
-      "reviewContents": "2222",
-      "grade": "3",
-      "classId": "f2f3",
-      "userId": "jsonDb999"
-    },
-    {
-      "id": "e61a",
-      "reviewTitle": "ㅋㅋㅋㅋㅋ",
-      "reviewContents": "ㅋㅋㅋ",
-      "grade": "5",
-      "classId": "8123",
-      "userId": "jsonDb999"
     },
     {
       "id": "75c9",
@@ -213,6 +92,72 @@
     {
       "url": "url",
       "id": "2279"
+    }
+  ],
+  "businessInfo": [
+    {
+      "id": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
+      "createdBy": "signUpMode0808",
+      "title": "더미 클래스1",
+      "time": "2024-12-31",
+      "price": "1223",
+      "address": "123456"
+    },
+    {
+      "id": "9ba747a5-8441-43f2-ac1c-615bf51de256",
+      "createdBy": "jsonDb999@jsonDb999",
+      "title": "d",
+      "time": "2024-02-14",
+      "price": "d",
+      "address": "d"
+    },
+    {
+      "createdBy": "jsonDb999@jsonDb999",
+      "title": "z",
+      "time": "2024-02-17",
+      "price": "z",
+      "address": "z",
+      "id": "b7fe65f3-2f52-4033-9cbc-b2062259c6e9"
+    },
+    {
+      "id": "fc3af6cf-a104-4d81-8915-9e9585914516",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "테스트",
+      "time": "2024-02-17",
+      "price": "테스트",
+      "address": "테스트"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1347",
+      "content": "가나다라마바사",
+      "createdOn": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
+      "createdBy": "jsonDb999"
+    },
+    {
+      "id": "d714",
+      "content": "ddd",
+      "createdOn": "fc3af6cf-a104-4d81-8915-9e9585914516",
+      "createdBy": "jsonDb999@jsonDb999"
+    },
+    {
+      "id": "78e6",
+      "content": "ffff",
+      "createdOn": "fc3af6cf-a104-4d81-8915-9e9585914516",
+      "createdBy": "jsonDb999@jsonDb999"
+    },
+    {
+      "id": "46e1",
+      "content": "aaa",
+      "createdOn": "fc3af6cf-a104-4d81-8915-9e9585914516",
+      "createdBy": "jsonDb999@jsonDb999"
+    },
+    {
+      "id": "944e",
+      "content": "dddd",
+      "createdOn": "fc3af6cf-a104-4d81-8915-9e9585914516",
+      "createdBy": "jsonDb999@jsonDb999"
     }
   ]
 }

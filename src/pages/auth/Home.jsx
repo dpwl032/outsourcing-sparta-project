@@ -10,9 +10,19 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getClass } from '../../api/queryFns';
+import BusinessList from '../BusinessList';
+import axios from 'axios';
+
+const fetchBusinessInfos = async () => {
+  const { data } = await axios.get('http://localhost:5000/businessInfo');
+  return data;
+};
 
 const TestHome = () => {
   const { isLoading, isError, data } = useQuery('class', getClass);
+  const { data: businessInfos } = useQuery('businessInfos', fetchBusinessInfos);
+
+  console.log('businessInfos', businessInfos);
 
   if (isLoading) {
     return <p>...로딩중</p>;
@@ -110,18 +120,18 @@ const TestHome = () => {
           <div>
             <ClassUltag>
               {/*1*/}
-              {data?.data?.map((item) => (
-                <LinkStyle to={`/detail/${item.id}`}>
+              {businessInfos?.reverse().map((item) => (
+                <LinkStyle to={`/Details/${item.id}`}>
                   <ClassListsItem key={item.id}>
                     <ClassOneItems>{item.classImg}</ClassOneItems>
                     <ClassOneItems>
                       <ItemClassPlace>
-                        <span>{item.classMap}</span>
+                        <span>{item.address}</span>
                       </ItemClassPlace>
-                      <ItemClassTitle>{item.classTitle}</ItemClassTitle>
+                      <ItemClassTitle>{item.title}</ItemClassTitle>
                       <ItemClassReview>별점</ItemClassReview>
                       <hr />
-                      <ItemClassPrice>{item.classPrice}</ItemClassPrice>
+                      <ItemClassPrice>{item.price}</ItemClassPrice>
                     </ClassOneItems>
                   </ClassListsItem>
                 </LinkStyle>
@@ -134,6 +144,8 @@ const TestHome = () => {
           </div>
         </HomeContentItems>
       </HomeContentsWrap>
+
+      {/* <BusinessList /> */}
     </>
   );
 };
