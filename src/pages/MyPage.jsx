@@ -10,6 +10,7 @@ import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { editProfile } from '../api/mutationFns';
 import { getProfile, getInfo } from '../api/queryFns';
 import basicAvatar from '../assets/img/user.png';
+import { CustomButton } from '../components/CustomButton';
 
 const MyPage = () => {
   const queryClient = useQueryClient();
@@ -53,7 +54,7 @@ const MyPage = () => {
   const userRole = dbData?.data.find((role) => role.userId === userData?.data?.id);
 
   if (userRole.role === 'host') {
-    alert('개인 회원 계정만 이용할 수 있습니다!');
+    alert('호스트 계정은 접근 권한이 없습니다.');
     return <Navigate to="/home" replace />;
   }
 
@@ -67,11 +68,18 @@ const MyPage = () => {
     setFile(imgFile);
     const imgUrl = URL.createObjectURL(imgFile);
     setSelectedImg(imgUrl);
+    localStorage.setItem('avatar', imgUrl);
   };
 
   const onEditDone = () => {
-    // TODO: 프로필 변경 요청
+    //  프로필 변경 요청
     const formData = new FormData();
+
+    // if (editingText === userData.data.nickname || !setSelectedImg) {
+    //   alert('마저 수정해주세요!');
+    //   return;
+    // }
+
     if (editingText) {
       formData.append('nickname', editingText);
     }
@@ -94,7 +102,7 @@ const MyPage = () => {
             <MyPageUserInfo>
               <p style={{ fontSize: '25px', display: 'flex', justifyContent: 'center' }}>
                 MY
-                <FcLock />
+                <FcLock /> <p></p>
               </p>
               <MyPageUserInfoWrap>
                 {/*구분선*/}
@@ -114,48 +122,136 @@ const MyPage = () => {
                 <div
                   style={{
                     display: 'flex',
-                    border: '1px solid black',
+
                     flexDirection: 'column',
                     width: '60%',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '20px'
+                    justifyContent: 'center'
                   }}
                 >
-                  <span> ID {userRole.userId} </span>
-                  <span> {userRole.name}</span>
-                  <p>
-                    닉네임
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '20%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <span style={{ color: 'gray' }}> [{userRole.role} 계정입니다]</span>
+                  </div>
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '20%',
+                      display: 'flex',
+
+                      alignItems: 'center'
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: '60px',
+                        border: '1px solid #6b16ee',
+                        backgroundColor: ' #6b16ee',
+                        height: '24px',
+                        textAlign: 'center',
+                        borderRadius: '20px',
+                        marginLeft: '30px',
+                        marginRight: '30px',
+                        color: 'white'
+                      }}
+                    >
+                      ID
+                    </div>
+                    <span> {userRole.userId} </span>
+                  </div>
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '20%',
+                      display: 'flex',
+
+                      alignItems: 'center'
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: '60px',
+                        border: '1px solid #6b16ee',
+                        backgroundColor: ' #6b16ee',
+                        height: '24px',
+                        textAlign: 'center',
+                        borderRadius: '20px',
+                        marginLeft: '30px',
+                        marginRight: '30px',
+
+                        color: 'white'
+                      }}
+                    >
+                      이름
+                    </div>
+                    <span> {userRole.name}</span>
+                  </div>
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '20%',
+                      display: 'flex',
+                      display: 'flex',
+
+                      alignItems: 'center'
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: '60px',
+                        border: '1px solid #6b16ee',
+                        backgroundColor: ' #6b16ee',
+                        height: '24px',
+                        textAlign: 'center',
+                        borderRadius: '20px',
+                        marginLeft: '30px',
+                        marginRight: '30px',
+
+                        color: 'white'
+                      }}
+                    >
+                      닉네임
+                    </div>
+
                     {!click ? (
                       <p>{userData.data.nickname}</p>
                     ) : (
                       <input
+                        style={{ height: '27px' }}
                         defaultValue={userData.data.nickname}
                         onChange={(event) => setEditingText(event.target.value)}
                       />
                     )}
-                  </p>
-
-                  {!click ? (
-                    <button
-                      onClick={() => {
-                        setClick(true);
-                      }}
-                    >
-                      수정하기
-                    </button>
-                  ) : (
-                    <>
-                      <button
+                  </div>
+                  <div style={{ gap: '10px', display: 'flex', marginLeft: '80px' }}>
+                    {' '}
+                    {!click ? (
+                      <CustomButton
+                        text="수정하기"
                         onClick={() => {
-                          setClick(false);
+                          setClick(true);
                         }}
-                      >
-                        취소
-                      </button>{' '}
-                      <button onClick={onEditDone}>수정완료</button>
-                    </>
-                  )}
+                      />
+                    ) : (
+                      <>
+                        <CustomButton
+                          text="취소"
+                          onClick={() => {
+                            setClick(false);
+                          }}
+                        />
+
+                        <CustomButton text="수정완료" onClick={onEditDone} />
+                      </>
+                    )}
+                  </div>
                 </div>
               </MyPageUserInfoWrap>
             </MyPageUserInfo>
@@ -186,9 +282,9 @@ const MyPage = () => {
                 <li style={{ border: '1px solid black', height: '150px' }}>1</li>
                 <li style={{ border: '1px solid black' }}>2</li>
                 <li style={{ border: '1px solid black' }}>3</li>
-                <li style={{ border: '1px solid black', height: '150px' }}>3</li>
-                <li style={{ border: '1px solid black' }}>3</li>
-                <li style={{ border: '1px solid black' }}>3</li>
+                <li style={{ border: '1px solid black', height: '150px' }}>4</li>
+                <li style={{ border: '1px solid black' }}>5</li>
+                <li style={{ border: '1px solid black' }}>6</li>
               </ul>
             </MyPageLikedClass>
           </MyPageContents>
@@ -263,7 +359,7 @@ const MyPageReservationNav = styled.div`
 `;
 
 const MyPageReservationInfo = styled.div`
-  border: 1px solid black;
+  border: 2px solid #424242;
   border-radius: 20px;
   width: 80%;
   height: 50px;

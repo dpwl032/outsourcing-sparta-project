@@ -115,53 +115,97 @@ function DetailInfoPage() {
   return (
     <>
       {/**전체랩 */}
-      <DetailContentsAllWrap>
-        <DetailItemWrap>
-          컨첸트 랩
-          <PreViewInfoWrap>
-            <PreViewImg>1</PreViewImg>
-            <PreViewDescription>
-              <DescriptionTitle>
-                <p style={{ margin: '10px 0 10px 10px ' }}>윤주당 프라이빗 시음회, 막걸리 클럽 [SQNC 013]</p>
-                <p style={{ margin: '10px 0 10px 10px' }}>39,000원</p>
-              </DescriptionTitle>
-              <DescriptionCompany>업체명</DescriptionCompany>
-            </PreViewDescription>
-          </PreViewInfoWrap>
-          <DetailContentsInfo>
-            <div>상세정보</div>
+      {businessInfo && !isEditing && (
+        <DetailContentsAllWrap>
+          <DetailItemWrap>
+            <PreViewInfoWrap>
+              <PreViewImg>이미지</PreViewImg>
+              <PreViewDescription>
+                <DescriptionTitle>
+                  <p style={{ margin: '10px 0 10px 10px ' }}>{businessInfo.title}</p>
+                  <p style={{ margin: '10px 0 10px 10px' }}>{businessInfo.price}</p>
+                  {userRole === 'host' && (
+                    <div style={{ display: 'flex' }}>
+                      <p>
+                        <button type="button" onClick={handleEdit}>
+                          클래스 수정
+                        </button>
+                      </p>
+                      <p>
+                        <button type="button" onClick={handleDelete}>
+                          클래스 삭제
+                        </button>
+                      </p>
+                    </div>
+                  )}
+                </DescriptionTitle>
+                <DescriptionCompany>
+                  <div>{businessInfo.time}</div>
+                  <div>
+                    <button>찜하기</button>
+                  </div>
+                </DescriptionCompany>
+              </PreViewDescription>
+            </PreViewInfoWrap>
+            <DetailContentsInfo>
+              <div>상세정보 </div>
+              <div>
+                <button>상세보기</button>
+              </div>
+            </DetailContentsInfo>
+            <MapInfoWrap>
+              <MapItemNavi>
+                <p>진행하는 장소</p>
+              </MapItemNavi>
+              <div>
+                {' '}
+                {/*맵*/}
+                <KakaoMapWrap>
+                  <MapItemSection>
+                    <Map
+                      center={{ lat: addressLat, lng: addressLng }}
+                      style={{ width: '768px', height: '250px', borderRadius: '5px' }}
+                    >
+                      <CustomOverlayMap position={{ lat: addressLat, lng: addressLng }}>
+                        <MapPointer>{localStorage.getItem('name')}</MapPointer>
+                      </CustomOverlayMap>
+                    </Map>
+                  </MapItemSection>
+                  <MapInfo>
+                    <div style={{ width: '50%', margin: '1rem' }}>위치</div>
+                    <div style={{ margin: '1rem' }}>{businessInfo.address}</div>
+                  </MapInfo>
+                </KakaoMapWrap>
+                {/*맵*/}
+              </div>
+            </MapInfoWrap>
             <div>
-              <button>상세보기</button>
+              <div>
+                {userRole !== 'host' ? (
+                  <>
+                    <p style={{ marginBottom: '20px', fontSize: '18px' }}> 리뷰 목록</p>{' '}
+                    {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
+                    <ReviewList
+                      reviews={reviews}
+                      isEditingReview={isEditingReview}
+                      onReviewEdit={handleReviewEdit}
+                      onReviewDelete={handleReviewDelete}
+                      onReviewUpdated={handleReviewUpdated}
+                    />
+                  </>
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
-          </DetailContentsInfo>
-          <MapInfoWrap>
-            <MapItemNavi>
-              <p>진행하는 장소</p>
-            </MapItemNavi>
-            <div>
-              {' '}
-              {/*맵*/}
-              <KakaoMapWrap>
-                <MapItemSection>
-                  <Map
-                    center={{ lat: addressLat, lng: addressLng }}
-                    style={{ width: '768px', height: '250px', borderRadius: '5px' }}
-                  >
-                    <CustomOverlayMap position={{ lat: addressLat, lng: addressLng }}>
-                      <MapPointer>업체명</MapPointer>
-                    </CustomOverlayMap>
-                  </Map>
-                </MapItemSection>
-                <MapInfo>
-                  <div style={{ width: '50%', margin: '1rem' }}>위치</div>
-                  <div style={{ margin: '1rem' }}>주소</div>
-                </MapInfo>
-              </KakaoMapWrap>
-              {/*맵*/}
-            </div>
-          </MapInfoWrap>
-        </DetailItemWrap>
-      </DetailContentsAllWrap>
+          </DetailItemWrap>
+        </DetailContentsAllWrap>
+      )}
+
+      <div>
+        {!businessInfo && <p>Loading...</p>}
+        {businessInfo && isEditing && <EditBusinessInfo businessInfo={businessInfo} onSaved={handleSaved} />}
+      </div>
     </>
   );
 }
@@ -195,29 +239,33 @@ const PreViewDescription = styled.div`
 `;
 
 const DescriptionTitle = styled.div`
-  border: 1px solid black;
   height: 70%;
   font-size: 20px;
 `;
 
 const DescriptionCompany = styled.div`
   border: 1px solid black;
+  border-top: 1px solid gray;
   height: 30%;
+
+  & > div {
+    margin: 20px 0;
+    margin-left: 10px;
+  }
 `;
 
 const DetailContentsInfo = styled.div`
-  border: 1px solid black;
+  border-top: 2px solid gray;
   height: 800px;
   display: flex;
   flex-direction: column;
 `;
 
 const MapInfoWrap = styled.div`
-  border: 1px solid black;
+  border-top: 2px solid gray;
 `;
 
 const MapItemNavi = styled.div`
-  border: 1px solid black;
   margin: 20px 0;
   font-size: 18px;
 `;
@@ -228,6 +276,7 @@ const KakaoMapWrap = styled.div`
   width: 768px;
   height: 350px;
   border-radius: 5px;
+  margin-bottom: 20px;
 `;
 const MapItemSection = styled.div`
   border-radius: '10px';

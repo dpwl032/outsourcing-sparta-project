@@ -29,6 +29,12 @@
       "userId": "zzzzzzz@zzzzzzzz",
       "role": "guest",
       "name": "zzzzzzz@zzzzzzzz"
+    },
+    {
+      "id": "5427",
+      "userId": "imgtest@imgtest",
+      "role": "guest",
+      "name": "강나다"
     }
   ],
   "youtube": [
@@ -38,15 +44,6 @@
     }
   ],
   "businessInfo": [
-    {
-      "id": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
-      "createdBy": "signUpMode0808",
-      "title": "더미 클래스1",
-      "time": "2024-12-31",
-      "price": "1223",
-      "address": "123456",
-      "likes": []
-    },
     {
       "id": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
       "createdBy": "signUpMode0808@signUpMode0809",
@@ -67,7 +64,6 @@
       "youtube": "Ud1DlGiOCqc"
     },
     {
-      "id": "19725bb1-4ae5-48ca-8540-0d9366cd39e3",
       "createdBy": "signUpMode0808@signUpMode0809",
       "title": "다른동영상 test",
       "time": "2024-02-19",
@@ -77,7 +73,34 @@
       "youtube": "WQaswRC0m3Y",
       "$push": {
         "likes": "signUpMode0808@signUpMode0809"
-      }
+      },
+      "address": "스파르타",
+      "id": "19725bb1-4ae5-48ca-8540-0d9366cd39e3"
+    },
+    {
+      "id": "c7ddbe42-824b-4606-8b21-67adbe5754dc",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "z",
+      "time": "",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null
+    },
+    {
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "제목인가요",
+      "time": "",
+      "contents": "z",
+      "price": "z",
+      "addressLat": "z",
+      "addressLng": "z",
+      "youtube": "z",
+      "selectedImg": null,
+      "address": "주소",
+      "id": "e3e76d51-f06e-4e32-a4c8-c1095c565690"
     }
   ],
   "reviews": [
@@ -87,6 +110,45 @@
       "createdOn": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
       "createdBy": "eeeee@eeee",
       "nickname": "닉넴변경아싸뵤"
+    },
+    {
+      "id": "e681",
+      "content": "더미 리뷰입니당~",
+      "createdOn": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "zdddddd",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-28/3d4f4c59-f264-4e23-9ec6-5b740f3d3dbe.jpg"
+    },
+    {
+      "id": "3739",
+      "content": "ㅇㅇㅇ",
+      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "zdddddd",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-28/3d4f4c59-f264-4e23-9ec6-5b740f3d3dbe.jpg"
+    },
+    {
+      "id": "cebe",
+      "content": "zzz",
+      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
+      "createdBy": "eeeee@eeee",
+      "nickname": "닉넴변경아싸뵤"
+    },
+    {
+      "id": "0a2e",
+      "content": "ddddd",
+      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
+      "createdBy": "zzzzzzz@zzzzzzzz",
+      "nickname": "1234567",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-28/7e4b8185-6353-4893-9904-1402bdd58e05.jpg"
+    },
+    {
+      "id": "78df",
+      "content": "vvvvv",
+      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
+      "createdBy": "zzzzzzz@zzzzzzzz",
+      "nickname": "1234567",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-28/7e4b8185-6353-4893-9904-1402bdd58e05.jpg"
     }
   ]
 }

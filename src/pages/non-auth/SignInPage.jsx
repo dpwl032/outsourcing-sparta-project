@@ -44,7 +44,7 @@ export const SignInPage = () => {
         const result = dbData.data.find((item) => item.userId === userId);
 
         if (result.role === 'host') {
-          alert('게스트 계정으로만 로그인이 가능합니다.');
+          alert('현재 게스트 계정입니다. 호스트 계정으로 로그인해주세요!');
           return;
         }
 
@@ -57,7 +57,7 @@ export const SignInPage = () => {
           localStorage.setItem('name', result.name);
           localStorage.setItem('guest', result.role);
 
-          alert('로그인 성공');
+          alert('로그인 완료. 메인화면으로 이동합니다');
           navigate('/');
           window.location.reload();
         }
@@ -75,7 +75,7 @@ export const SignInPage = () => {
         const result = dbData.data.find((item) => item.userId === userId);
 
         if (result.role === 'guest') {
-          alert('호스트 계정으로만 로그인이 가능합니다.');
+          alert('현재 호스트 계정입니다. 게스트 계정으로 로그인해주세요!');
           return;
         }
 
@@ -85,7 +85,7 @@ export const SignInPage = () => {
           localStorage.setItem('userId', userId);
           localStorage.setItem('name', result.name);
           localStorage.setItem('host', result.role);
-          alert('업체 로그인 성공');
+          alert('로그인 완료. 메인화면으로 이동합니다');
           navigate('/');
           window.location.reload();
         }

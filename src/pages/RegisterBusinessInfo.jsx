@@ -59,7 +59,7 @@ function AddBusinessInfo() {
   const userRole = dbData?.data.find((role) => role.userId === userData?.data?.id);
 
   if (userRole?.role === 'guest') {
-    alert('업체 계정만 이용할 수 있습니다!');
+    alert('게스트 계정은 접근 권한이 없습니다.');
     return <Navigate to="/home" replace />;
   }
 
