@@ -3,12 +3,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { editBusinessInfo } from '../api/crudServiece';
 
 const InputField = ({ name, value, onChange, type }) => (
-  <input
-    type={type}
-    name={name}
-    value={value}
-    onChange={onChange}
-  />
+  <input type={type} name={name} value={value} onChange={onChange} />
 );
 
 function EditBusinessInfo({ businessInfo, onSaved }) {
@@ -24,7 +19,7 @@ function EditBusinessInfo({ businessInfo, onSaved }) {
     onError: (error) => {
       console.error('업체 정보 수정 중 오류 발생:', error);
       alert('수정 중 오류가 발생했습니다.');
-    },
+    }
   });
 
   const handleInputChange = (e) => {
@@ -39,35 +34,17 @@ function EditBusinessInfo({ businessInfo, onSaved }) {
     } else {
       console.error('ID가 없어 정보를 수정할 수 없습니다.');
     }
-  }
+  };
 
   return (
     <div>
-      <InputField
-        type="text"
-        name="title"
-        value={editedInfo.title}
-        onChange={handleInputChange}
-      />
-      <InputField
-        type="date"
-        name="time"
-        value={editedInfo.time}
-        onChange={handleInputChange}
-      />
-      <InputField
-        type="text"
-        name="price"
-        value={editedInfo.price}
-        onChange={handleInputChange}
-      />
-      <InputField
-        type="text"
-        name="address"
-        value={editedInfo.address}
-        onChange={handleInputChange}
-      />
-      <button type="button" onClick={handleSave}>저장</button>
+      <InputField type="text" name="title" value={editedInfo.title} onChange={handleInputChange} />
+      <InputField type="date" name="time" value={editedInfo.time} onChange={handleInputChange} />
+      <InputField type="text" name="price" value={editedInfo.price} onChange={handleInputChange} />
+      <InputField type="text" name="address" value={editedInfo.address} onChange={handleInputChange} />
+      <button type="button" onClick={handleSave}>
+        저장
+      </button>
     </div>
   );
 }

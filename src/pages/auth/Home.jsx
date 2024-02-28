@@ -116,8 +116,8 @@ const Home = () => {
             <ClassUltag>
               {/*1*/}
               {businessInfos?.reverse().map((item) => (
-                <LinkStyle to={`/Details/${item.id}`}>
-                  <ClassListsItem key={item.id}>
+                <LinkStyle to={`/Details/${item.id}`} key={item.id}>
+                  <ClassListsItem>
                     <ClassOneItems>{item.classImg}</ClassOneItems>
                     <ClassOneItems>
                       <ItemClassPlace>

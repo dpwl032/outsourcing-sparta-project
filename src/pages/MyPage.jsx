@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { editProfile } from '../api/mutationFns';
 import { getProfile, getInfo } from '../api/queryFns';
+import basicAvatar from '../assets/img/user.png';
 
 const MyPage = () => {
   const queryClient = useQueryClient();
@@ -20,7 +21,7 @@ const MyPage = () => {
     isError: isUserError
   } = useQuery('user', getInfo, {
     onSuccess: (data) => {
-      setSelectedImg(data?.data?.avatar);
+      setSelectedImg(data?.data?.avatar ?? basicAvatar);
     }
   });
   const { data: dbData, isLoading: isDbDataLoading, isError: isDbDataError } = useQuery('userRoles', getProfile);
