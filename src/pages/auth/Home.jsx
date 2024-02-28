@@ -27,6 +27,7 @@ const Home = () => {
     return <p>오류가 발생했습니다. 다시 새로고침 해주세요!</p>;
   }
 
+  const contentsImg = localStorage.getItem('contentsImg');
   return (
     <>
       <HomeContentsWrap>

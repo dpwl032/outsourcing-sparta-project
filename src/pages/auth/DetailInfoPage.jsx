@@ -8,7 +8,9 @@ import { Map, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
 import { useMutation, queryClient, useQueryClient, useQuery } from 'react-query';
 import { addLikes } from '../../api/mutationFns';
-
+import { CustomButton } from '../../components/CustomButton';
+import { FaRegCalendarCheck } from 'react-icons/fa';
+import { FaShareAlt } from 'react-icons/fa';
 function DetailInfoPage() {
   const likesMutation = useMutation(addLikes, {
     onSuccess: () => {
@@ -28,6 +30,7 @@ function DetailInfoPage() {
   const [addressLng, setLng] = useState('');
   const [showMovie, setShowMovie] = useState('');
   const [likeUser, setLikeUser] = useState('');
+  const [click, setClick] = useState(false);
 
   const fetchReviews = async () => {
     try {
@@ -46,8 +49,11 @@ function DetailInfoPage() {
         //추가-예지
         setLat(response.data.addressLat);
         setLng(response.data.addressLng);
-        setShowMovie(response.data.youtube);
+        setShowMovie(response.data.youtubeId);
         setLikeUser(response.data.createdBy);
+
+        console.log(addressLat);
+        console.log(addressLng);
       } catch (error) {
         console.error('업체 정보를 가져오는 중 오류 발생:', error);
       }
@@ -122,39 +128,95 @@ function DetailInfoPage() {
           <DetailItemWrap>
             <PreViewInfoWrap>
               <PreViewImg>
-                <img src={detailImg} style={{ width: '375px', height: '375px', borderRadius: '10px' }} />
+                <img src={detailImg} style={{ width: '100%', height: '375px', borderRadius: '10px' }} />
               </PreViewImg>
               <PreViewDescription>
                 <DescriptionTitle>
                   <p style={{ margin: '10px 0 10px 10px ' }}>{businessInfo.title}</p>
                   <p style={{ margin: '10px 0 10px 10px' }}>{businessInfo.price}</p>
                   {userRole === 'host' && (
-                    <div style={{ display: 'flex' }}>
+                    <div style={{ display: 'flex', margin: '50px 0px 10px 10px', gap: '10px' }}>
                       <p>
-                        <button type="button" onClick={handleEdit}>
-                          클래스 수정
-                        </button>
+                        <CustomButton type="button" text="클래스 수정" onClick={handleEdit} />
                       </p>
                       <p>
-                        <button type="button" onClick={handleDelete}>
-                          클래스 삭제
-                        </button>
+                        <CustomButton type="button" text="클래스 삭제" onClick={handleDelete} />
                       </p>
                     </div>
                   )}
                 </DescriptionTitle>
                 <DescriptionCompany>
-                  <div>{businessInfo.time}</div>
                   <div>
-                    <button>찜하기</button>
+                    <FaRegCalendarCheck /> {businessInfo.time}
+                  </div>{' '}
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div>
+                      {' '}
+                      <FaShareAlt /> 공유하기
+                    </div>
+                    <div>
+                      <button>찜하기</button>
+                    </div>
                   </div>
                 </DescriptionCompany>
               </PreViewDescription>
             </PreViewInfoWrap>
             <DetailContentsInfo>
-              <div>{businessInfo.contents}</div>
-              <div>
-                <button>상세보기</button>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: '768px', marginTop: '50px' }}>
+                  <div style={{ border: '1px solid black', width: '768px', height: '405px' }}>
+                    {' '}
+                    <iframe
+                      id="ytplayer"
+                      type="text/html"
+                      width="768"
+                      height="405"
+                      src={`https://www.youtube.com/embed/${showMovie}`}
+                      frameBorder="0"
+                      allowFullScreen="allowFullScreen"
+                    ></iframe>
+                  </div>{' '}
+                </div>{' '}
+              </div>
+
+              <div style={{ marginTop: '20px', fontSize: '18px', fontWeight: 'bolder', borderTop: '2px solid black' }}>
+                <p style={{ marginTop: '20px' }}>상세 정보 </p>
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  marginTop: '20px',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <div>{businessInfo.contents}</div>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                {!click ? (
+                  <DetailButton onClick={() => setClick(!click)}>상세정보 더 보기</DetailButton>
+                ) : (
+                  <ResetButton onClick={() => setClick(!click)}>
+                    <div> 커리큘럼</div>
+                    <ol className="numbered">
+                      <li>
+                        <span>10분</span> <span>작가 및 회원소개</span>
+                      </li>
+                      <li>
+                        {' '}
+                        <span>120분</span> <span>클래스 수업</span>
+                      </li>
+                      <li>
+                        {' '}
+                        <span>10분</span> <span>개별 및 단체 촬영 후 종료</span>
+                      </li>
+                      <li>
+                        <span>100분</span> <span> 뒤풀이(선택사항)</span>
+                      </li>
+                    </ol>
+                  </ResetButton>
+                )}
               </div>
             </DetailContentsInfo>
             <MapInfoWrap>
@@ -247,9 +309,9 @@ const DescriptionTitle = styled.div`
 `;
 
 const DescriptionCompany = styled.div`
-  border: 1px solid black;
   border-top: 1px solid gray;
   height: 30%;
+  margin-left: 10px;
 
   & > div {
     margin: 20px 0;
@@ -271,6 +333,7 @@ const MapInfoWrap = styled.div`
 const MapItemNavi = styled.div`
   margin: 20px 0;
   font-size: 18px;
+  font-weight: bolder;
 `;
 
 //맵
@@ -301,3 +364,16 @@ const MapInfo = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
+
+const DetailButton = styled.button`
+  width: 327px;
+  height: 56px;
+  background-color: white;
+  cursor: pointer;
+`;
+
+const ResetButton = styled.button`
+  all: unset;
+`;
+
+//css

@@ -57,7 +57,6 @@ const RegisterBusinessInfo = () => {
     setFile(imgFile);
     const imgUrl = URL.createObjectURL(imgFile);
     setContentsImg(imgUrl);
-    localStorage.setItem('contentsImg', imgUrl);
   };
   const onClassSubmitHandler = (e) => {
     e.preventDefault();
@@ -70,13 +69,14 @@ const RegisterBusinessInfo = () => {
     }
 
     formData.append('title', title);
+    formData.append('contents', contents);
     formData.append('contentsImg', contentsImg);
     formData.append(' price', price);
     formData.append(' time', time);
     formData.append('  addressLng', addressLng);
     formData.append('addressLat', addressLat);
+    formData.append('addressName', addressName);
     formData.append('youtubeId', youtubeId);
-
     mutation.mutate(formData);
     // mutation.mutate({
     //   title,
