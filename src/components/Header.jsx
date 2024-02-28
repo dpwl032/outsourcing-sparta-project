@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogoutButton } from './LogoutButton';
 import { CustomButton } from './CustomButton';
+import myUser from '../assets/img/user.png';
 
 const Header = () => {
   const isAuthenticated = localStorage.getItem('accessToken') ? true : false;
@@ -27,10 +28,12 @@ const Header = () => {
             </Link>
           ) : (
             <>
-              <Link to="/testmy">
-                <SignUp>마이페이지</SignUp>
-              </Link>
-              <LogoutButton></LogoutButton>
+              <SignUp>
+                <Link to="/testmy">
+                  <MyUserIng src={myUser} alt="마이페이지" />
+                </Link>
+                <LogoutButton></LogoutButton>
+              </SignUp>
             </>
           )}
         </HeaderItem>
@@ -97,4 +100,11 @@ const SignUp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: -3.8rem;
+  gap: 15px;
+`;
+
+const MyUserIng = styled.img`
+  width: 2rem;
+  height: 2rem;
 `;
