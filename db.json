@@ -45,62 +45,34 @@
   ],
   "businessInfo": [
     {
-      "id": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "지도테스트2",
-      "time": "2024-02-09",
-      "price": "지도테스트2",
-      "addressLat": "33.450701",
-      "addressLng": "126.570667"
+      "id": "79ed",
+      "title": "[사진여행] 강화+석모도 1박2일의 쉼의기록 (스냅 +프로필 사진)",
+      "contentsImg": "blob:http://localhost:3000/897e4d9a-ef1b-4585-95c0-f15b49a9ed59",
+      "price": "230,000원",
+      "time": "2024-03-01",
+      "addressLng": "126.4897",
+      "addressLat": "37.74116",
+      "youtubeId": "ItgFVQW4vPo"
     },
     {
-      "id": "c5b2f703-95ec-45bb-a04a-da233c7ec66d",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "유튜브/지도 테스트",
-      "time": "2024-02-28",
-      "price": "20,000원",
-      "addressLat": "37.5642135",
-      "addressLng": "127.0016985",
-      "youtube": "Ud1DlGiOCqc"
+      "id": "3ca0",
+      "title": "전주 한옥마을 나만의 가드닝 ‘힙팟 원데이 클래스’",
+      "contentsImg": "blob:http://localhost:3000/ead82e3c-6f5b-40a0-9bf3-45a6f2b20f04",
+      "price": "60,000원",
+      "time": "2024-03-02",
+      "addressLng": "127.1533415",
+      "addressLat": "35.8117266",
+      "youtubeId": "Vw5qXCVKTJ4"
     },
     {
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "다른동영상 test",
-      "time": "2024-02-19",
-      "price": "30,000원",
-      "addressLat": "35.1795543",
-      "addressLng": "129.0756416",
-      "youtube": "WQaswRC0m3Y",
-      "$push": {
-        "likes": "signUpMode0808@signUpMode0809"
-      },
-      "address": "스파르타",
-      "id": "19725bb1-4ae5-48ca-8540-0d9366cd39e3"
-    },
-    {
-      "id": "c7ddbe42-824b-4606-8b21-67adbe5754dc",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "z",
-      "time": "",
-      "contents": "z",
-      "price": "z",
-      "addressLat": "z",
-      "addressLng": "z",
-      "youtube": "z",
-      "selectedImg": null
-    },
-    {
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "제목인가요",
-      "time": "",
-      "contents": "z",
-      "price": "z",
-      "addressLat": "z",
-      "addressLng": "z",
-      "youtube": "z",
-      "selectedImg": null,
-      "address": "주소",
-      "id": "e3e76d51-f06e-4e32-a4c8-c1095c565690"
+      "id": "0be1",
+      "title": "[사당,동작] 주말 아침을 여는 요가 원데이/정기권/회차권 (예약 가능)",
+      "contentsImg": "blob:http://localhost:3000/b8e023c2-e945-4e2c-909f-1eda569655d4",
+      "price": "18,000원",
+      "time": "2024-02-29",
+      "addressLng": "126.9808379",
+      "addressLat": " 37.4788275",
+      "youtubeId": "ktOmAYwABxY"
     }
   ],
   "reviews": [
@@ -110,45 +82,6 @@
       "createdOn": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
       "createdBy": "eeeee@eeee",
       "nickname": "닉넴변경아싸뵤"
-    },
-    {
-      "id": "e681",
-      "content": "더미 리뷰입니당~",
-      "createdOn": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
-      "createdBy": "jsonDb999@jsonDb999",
-      "nickname": "zdddddd",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-28/3d4f4c59-f264-4e23-9ec6-5b740f3d3dbe.jpg"
-    },
-    {
-      "id": "3739",
-      "content": "ㅇㅇㅇ",
-      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
-      "createdBy": "jsonDb999@jsonDb999",
-      "nickname": "zdddddd",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-28/3d4f4c59-f264-4e23-9ec6-5b740f3d3dbe.jpg"
-    },
-    {
-      "id": "cebe",
-      "content": "zzz",
-      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
-      "createdBy": "eeeee@eeee",
-      "nickname": "닉넴변경아싸뵤"
-    },
-    {
-      "id": "0a2e",
-      "content": "ddddd",
-      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
-      "createdBy": "zzzzzzz@zzzzzzzz",
-      "nickname": "1234567",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-28/7e4b8185-6353-4893-9904-1402bdd58e05.jpg"
-    },
-    {
-      "id": "78df",
-      "content": "vvvvv",
-      "createdOn": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
-      "createdBy": "zzzzzzz@zzzzzzzz",
-      "nickname": "1234567",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-28/7e4b8185-6353-4893-9904-1402bdd58e05.jpg"
     }
   ]
 }

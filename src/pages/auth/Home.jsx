@@ -118,7 +118,9 @@ const Home = () => {
               {businessInfos?.reverse().map((item) => (
                 <LinkStyle to={`/Details/${item.id}`} key={item.id}>
                   <ClassListsItem>
-                    <ClassOneItems>{item.classImg}</ClassOneItems>
+                    <ClassOneItems>
+                      <img src={item.contentsImg} style={{ height: '180px', width: '180px', borderRadius: '5px' }} />
+                    </ClassOneItems>
                     <ClassOneItems>
                       <ItemClassPlace>
                         <span>{item.address}</span>

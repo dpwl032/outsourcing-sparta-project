@@ -46,4 +46,29 @@ const addLikes = async ({ likeUser, reviewId }) => {
   return response;
 };
 
-export { addProfile, editProfile, addLikes };
+//예지 추가
+//클래스 오픈
+const addBusinessInfo = async (formData) => {
+  try {
+    const response = await jsonApi.post('/businessInfo', formData);
+    console.log('test', response.data);
+    return response;
+  } catch (error) {
+    console.log('error', error);
+  }
+};
+
+//클래스 삭제
+const deleteBusinessInfo = async (id) => {
+  const response = await jsonApi.delete(`/businessInfo/${id}`);
+  return response;
+};
+
+//
+
+const editBusinessInfo = async (id) => {
+  const response = await jsonApi.patch(`/businessInfo/${id}`);
+  return response;
+};
+
+export { addProfile, editProfile, addLikes, addBusinessInfo };

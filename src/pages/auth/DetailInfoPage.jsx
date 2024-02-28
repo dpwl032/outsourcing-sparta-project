@@ -112,6 +112,8 @@ function DetailInfoPage() {
     console.log('test', likesMutation);
   };
 
+  const detailImg = businessInfo?.contentsImg;
+
   return (
     <>
       {/**전체랩 */}
@@ -119,7 +121,9 @@ function DetailInfoPage() {
         <DetailContentsAllWrap>
           <DetailItemWrap>
             <PreViewInfoWrap>
-              <PreViewImg>이미지</PreViewImg>
+              <PreViewImg>
+                <img src={detailImg} style={{ width: '375px', height: '375px', borderRadius: '10px' }} />
+              </PreViewImg>
               <PreViewDescription>
                 <DescriptionTitle>
                   <p style={{ margin: '10px 0 10px 10px ' }}>{businessInfo.title}</p>
@@ -148,7 +152,7 @@ function DetailInfoPage() {
               </PreViewDescription>
             </PreViewInfoWrap>
             <DetailContentsInfo>
-              <div>상세정보 </div>
+              <div>{businessInfo.contents}</div>
               <div>
                 <button>상세보기</button>
               </div>
@@ -167,13 +171,13 @@ function DetailInfoPage() {
                       style={{ width: '768px', height: '250px', borderRadius: '5px' }}
                     >
                       <CustomOverlayMap position={{ lat: addressLat, lng: addressLng }}>
-                        <MapPointer>{localStorage.getItem('name')}</MapPointer>
+                        <MapPointer>{businessInfo.addressName}</MapPointer>
                       </CustomOverlayMap>
                     </Map>
                   </MapItemSection>
                   <MapInfo>
                     <div style={{ width: '50%', margin: '1rem' }}>위치</div>
-                    <div style={{ margin: '1rem' }}>{businessInfo.address}</div>
+                    <div style={{ margin: '1rem' }}>{businessInfo.addressName}</div>
                   </MapInfo>
                 </KakaoMapWrap>
                 {/*맵*/}
@@ -229,7 +233,6 @@ const PreViewInfoWrap = styled.div`
 `;
 
 const PreViewImg = styled.div`
-  border: 1px solid black;
   width: 50%;
   border-radius: 10px;
 `;
