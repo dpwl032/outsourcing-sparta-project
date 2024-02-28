@@ -16,12 +16,12 @@ export const SignUpMode = () => {
 };
 
 const Container = styled.div`
-  background-color: lightgray;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  gap: 5rem;
+  height: 70vh;
+  gap: 12rem;
   & a {
     color: black;
     text-decoration: none;
@@ -33,19 +33,21 @@ const Personal = styled.div`
   justify-content: center;
   align-items: center;
   background-color: white;
+  border: 1px solid #c4c4c4;
   width: 13rem;
   height: 13rem;
   border-radius: 50%;
   user-select: none;
   cursor: pointer;
   &:hover {
-    background-color: gray;
+    background-color: #c4c4c4;
     color: white;
   }
 `;
 const Business = styled.div`
   display: flex;
   justify-content: center;
+  border: 1px solid #c4c4c4;
   align-items: center;
   background-color: white;
   width: 13rem;
@@ -54,7 +56,7 @@ const Business = styled.div`
   user-select: none;
   cursor: pointer;
   &:hover {
-    background-color: gray;
+    background-color: #c4c4c4;
     color: white;
   }
 `;

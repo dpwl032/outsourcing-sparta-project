@@ -7,12 +7,12 @@ import { getProfile } from '../../api/queryFns';
 
 export const SignInPage = () => {
   const navigate = useNavigate();
-  const [isDisabled, setIsDisabled] = useState(true);
   const [personalSignInMode, setPersonalSignInMode] = useState(true);
   const [formState, setFormState] = useState({
     id: '',
     password: ''
   });
+  const isDisabled = formState.id === '' || formState.password === '';
 
   const { data: dbData, isLoading, isError } = useQuery('userRoles', getProfile);
 
@@ -28,7 +28,6 @@ export const SignInPage = () => {
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
-    setIsDisabled(value === '' || password === '');
   };
 
   const onSubmitHandler = async (e) => {
@@ -98,8 +97,23 @@ export const SignInPage = () => {
     <Container>
       <Form onSubmit={onSubmitHandler}>
         <Title>{personalSignInMode ? '로그인' : '업체 로그인'}</Title>
-        <Input onChange={onChangeHandler} name="id" value={id} placeholder="아이디(이메일)를 입력해 주세요" />
-        <Input onChange={onChangeHandler} name="password" value={password} placeholder="비밀번호를 입력해 주세요" />
+        <Input
+          onChange={onChangeHandler}
+          type="email"
+          name="id"
+          value={id}
+          maxLength={30}
+          placeholder="아이디(이메일)를 입력해 주세요"
+        />
+        <Input
+          onChange={onChangeHandler}
+          type="password"
+          name="password"
+          value={password}
+          min={4}
+          maxLength={15}
+          placeholder="비밀번호를 입력해 주세요(4~15글자)"
+        />
         <Button disabled={isDisabled}>로그인</Button>
         <Toggle>
           <ToggleText>
@@ -117,40 +131,45 @@ export const SignInPage = () => {
 };
 
 const Container = styled.div`
-  background-color: lightgray;
-  height: 100vh;
+  background-color: white;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
-  width: 500px;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 16px;
+  width: 30rem;
+  height: 27rem;
+  border: 1px solid #c4c4c4;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
 `;
 const Title = styled.h1`
-  font-size: 36px;
-  margin-bottom: 24px;
+  font-size: 2rem;
+  margin-bottom: 4rem;
 `;
 const Input = styled.input`
   border: none;
-  border-bottom: 1px solid gray;
-  width: 100%;
+  border-bottom: 2px solid #c4c4c4;
+  width: 80%;
   display: block;
-  margin-bottom: 16px;
-  padding: 12px 0;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
   outline: none;
 `;
 const Toggle = styled.div`
   display: flex;
+  gap: 10rem;
 `;
 
 const ToggleText = styled.div`
   text-align: center;
-  width: 100%;
-  margin-top: 24px;
+  width: 6rem;
+  margin-top: 4rem;
   & span {
     color: lightgray;
     user-select: none;
@@ -170,14 +189,16 @@ const ToggleText = styled.div`
 
 const Button = styled.button`
   background-color: black;
-  width: 100%;
+  width: 80%;
   color: white;
-  font-size: 16px;
+  font-size: 1rem;
+  margin-top: 4rem;
   padding: 12px 18px;
-  border-radius: 5px;
+  border: 0px;
+  border-radius: 3px;
   cursor: pointer;
   &[disabled] {
-    background-color: gray;
+    background-color: #c4c4c4;
     cursor: default;
   }
 `;

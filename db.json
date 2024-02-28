@@ -23,6 +23,24 @@
       "userId": "supapa05",
       "role": "guest",
       "name": "홍길순"
+    },
+    {
+      "id": "cbdb",
+      "userId": "jsonDb999@jsonDb999",
+      "role": "guest",
+      "name": "홍길동"
+    },
+    {
+      "id": "89b1",
+      "userId": "signUpMode0808@signUpMode0808",
+      "role": "host",
+      "name": "스파르타"
+    },
+    {
+      "id": "1dc8",
+      "userId": "signUpMode0808@signUpMode0809",
+      "role": "host",
+      "name": "스파르타"
     }
   ],
   "class": [
@@ -193,7 +211,8 @@
   ],
   "youtube": [
     {
-      "url": "url"
+      "url": "url",
+      "id": "2279"
     }
   ]
 }
