@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { LogoutButton } from './LogoutButton';
 
 const Header = () => {
   const isAuthenticated = localStorage.getItem('accessToken') ? true : false;
@@ -24,9 +25,12 @@ const Header = () => {
               <SignUp>로그인/회원가입</SignUp>
             </Link>
           ) : (
-            <Link to="/testmy">
-              <SignUp>마이페이지</SignUp>
-            </Link>
+            <>
+              <Link to="/testmy">
+                <SignUp>마이페이지</SignUp>
+              </Link>
+              <LogoutButton></LogoutButton>
+            </>
           )}
         </HeaderItem>
       </HeaderWrap>

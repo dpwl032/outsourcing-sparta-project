@@ -7,13 +7,14 @@ import { addProfile } from '../../api/mutationFns';
 
 export const PersonalSignUpPage = () => {
   const navigate = useNavigate();
-  const [isDisabled, setIsDisabled] = useState(true);
   const [formState, setFormState] = useState({
     id: '',
     password: '',
     nickname: '',
     name: ''
   });
+  const isDisabled =
+    formState.id === '' || formState.password === '' || formState.nickname === '' || formState.name === '';
 
   const [profile, setProfile] = useState({
     name: '',
@@ -34,7 +35,6 @@ export const PersonalSignUpPage = () => {
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
-    setIsDisabled(value === '' || password === '');
     setProfile((prev) => ({ ...prev, [name]: value }));
   };
   const onSubmitHandler = async (e) => {
@@ -63,10 +63,33 @@ export const PersonalSignUpPage = () => {
     <Container>
       <Form onSubmit={onSubmitHandler}>
         <Title>회원가입</Title>
-        <Input name="id" onChange={onChangeHandler} value={id} placeholder="아이디(이메일)를 입력해 주세요" />
-        <Input name="password" onChange={onChangeHandler} value={password} placeholder="비밀번호를 입력해 주세요" />
-        <Input name="name" onChange={onChangeHandler} value={name} placeholder="이름을 입력해 주세요" />
-        <Input name="nickname" onChange={onChangeHandler} value={nickname} placeholder="닉네임을 입력해 주세요" />
+        <Input
+          type="email"
+          name="id"
+          onChange={onChangeHandler}
+          value={id}
+          maxLength={30}
+          placeholder="아이디(이메일)를 입력해 주세요"
+        />
+        <Input
+          type="password"
+          name="password"
+          onChange={onChangeHandler}
+          value={password}
+          min={4}
+          maxLength={15}
+          placeholder="비밀번호를 입력해 주세요(4~15글자)"
+        />
+        <Input type="text" name="name" onChange={onChangeHandler} value={name} placeholder="이름을 입력해 주세요" />
+        <Input
+          type="text"
+          name="nickname"
+          onChange={onChangeHandler}
+          value={nickname}
+          min={1}
+          maxLength={10}
+          placeholder="닉네임을 입력해 주세요(1~10글자)"
+        />
         <Button disabled={isDisabled}>회원가입</Button>
       </Form>
     </Container>
@@ -74,42 +97,49 @@ export const PersonalSignUpPage = () => {
 };
 
 const Container = styled.div`
-  background-color: lightgray;
-  height: 100vh;
+  background-color: white;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
-  width: 500px;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 16px;
+  width: 30rem;
+  height: 27rem;
+  border: 1px solid #c4c4c4;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
 `;
 const Title = styled.h1`
-  font-size: 36px;
-  margin-bottom: 24px;
+  font-size: 2rem;
+  margin-bottom: 3rem;
 `;
 const Input = styled.input`
   border: none;
-  border-bottom: 1px solid gray;
-  width: 100%;
+  border-bottom: 2px solid #c4c4c4;
+  width: 80%;
   display: block;
-  margin-bottom: 16px;
-  padding: 12px 0;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
   outline: none;
 `;
+
 const Button = styled.button`
   background-color: black;
-  width: 100%;
+  width: 80%;
   color: white;
-  font-size: 16px;
+  font-size: 1rem;
+  margin-top: 1rem;
   padding: 12px 18px;
-  border-radius: 5px;
+  border: 0px;
+  border-radius: 3px;
   cursor: pointer;
   &[disabled] {
-    background-color: gray;
+    background-color: #c4c4c4;
     cursor: default;
   }
 `;
