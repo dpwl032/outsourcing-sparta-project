@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import WriteReview from '../components/WriteReview';
-import EditBusinessInfo from '../components/EditBusinessInfo';
-import ReviewList from '../components/ReviewList';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import WriteReview from '../../components/WriteReview';
+import EditBusinessInfo from '../../components/EditBusinessInfo';
+import ReviewList from '../../components/ReviewList';
+import { Map, CustomOverlayMap } from 'react-kakao-maps-sdk';
+import styled from 'styled-components';
+import { queryClient, useQueryClient, useQuery } from 'react-query';
+import { searchVideos } from '../../api/youtube';
 
 function DetailInfoPage() {
+  const queryClient = useQueryClient();
+  const { data: YoutubeData } = useQuery('search', searchVideos);
+
+  console.log(YoutubeData);
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [businessInfo, setBusinessInfo] = useState(null);
@@ -14,6 +22,8 @@ function DetailInfoPage() {
   const [userRole, setUserRole] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingReview, setIsEditingReview] = useState(null);
+  const [addressLat, setLat] = useState('');
+  const [addressLng, setLng] = useState('');
 
   const fetchReviews = async () => {
     try {
@@ -29,6 +39,8 @@ function DetailInfoPage() {
       try {
         const response = await axios.get(`http://localhost:5000/businessInfo/${id}`);
         setBusinessInfo(response.data);
+        setLat(response.data.addressLat);
+        setLng(response.data.addressLng);
       } catch (error) {
         console.error('업체 정보를 가져오는 중 오류 발생:', error);
       }
@@ -100,41 +112,22 @@ function DetailInfoPage() {
               <p>가격: {businessInfo.price}</p>
               <p>주소지: {businessInfo.address}</p>
               {/*맵*/}
-              <div style={{ border: '1px solid gray', width: '768px', height: '350px', borderRadius: '5px' }}>
-                <div style={{ borderRadius: '10px' }}>
+              <KakaoMapWrap>
+                <MapItemSection>
                   <Map
-                    center={{ lat: 37.50910779362899, lng: 127.04071296745333 }}
+                    center={{ lat: addressLat, lng: addressLng }}
                     style={{ width: '768px', height: '250px', borderRadius: '5px' }}
                   >
-                    <MapMarker position={{ lat: 37.50910779362899, lng: 127.04071296745333 }}>
-                      <div
-                        style={{
-                          color: '#9971ff',
-                          fontSize: '19px',
-                          fontWeight: '700',
-                          border: '4px solid #9971ff',
-                          borderRadius: '10px',
-                          padding: '2.5px'
-                        }}
-                      >
-                        티하우스 절기
-                      </div>
-                    </MapMarker>
+                    <CustomOverlayMap position={{ lat: addressLat, lng: addressLng }}>
+                      <MapPointer>업체명</MapPointer>
+                    </CustomOverlayMap>
                   </Map>
-                </div>
-                <div
-                  style={{
-                    height: '100px',
-                    borderRadius: '5px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    flexDirection: 'column'
-                  }}
-                >
+                </MapItemSection>
+                <MapInfo>
                   <div style={{ width: '50%', margin: '1rem' }}>위치</div>
                   <div style={{ margin: '1rem' }}>주소</div>
-                </div>
-              </div>
+                </MapInfo>
+              </KakaoMapWrap>
               {/*맵*/}
               {userRole === 'host' && (
                 <>
@@ -167,3 +160,29 @@ function DetailInfoPage() {
 }
 
 export default DetailInfoPage;
+const KakaoMapWrap = styled.div`
+  border: 1px solid gray;
+  width: 768px;
+  height: 350px;
+  border-radius: 5px;
+`;
+const MapItemSection = styled.div`
+  border-radius: '10px';
+`;
+const MapPointer = styled.div`
+  color: #9971ff;
+  font-size: 19px;
+  font-weight: 700;
+  border: 4px solid #9971ff;
+  border-radius: 10px;
+  padding: 2.5px;
+  background-color: white;
+`;
+
+const MapInfo = styled.div`
+  height: 100px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;

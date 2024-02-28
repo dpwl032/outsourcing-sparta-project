@@ -126,6 +126,24 @@
       "time": "2024-02-17",
       "price": "테스트",
       "address": "테스트"
+    },
+    {
+      "id": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "지도테스트2",
+      "time": "2024-02-09",
+      "price": "지도테스트2",
+      "addressLat": "33.450701",
+      "addressLng": "126.570667"
+    },
+    {
+      "id": "7aa857ac-6766-4e5c-9e74-8a78227c0b32",
+      "createdBy": "signUpMode0808@signUpMode0809",
+      "title": "지도테스트333",
+      "time": "2024-02-08",
+      "price": "50,000원",
+      "addressLat": " 37.50910779362899",
+      "addressLng": "127.04071296745333 "
     }
   ],
   "reviews": [

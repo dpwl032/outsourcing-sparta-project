@@ -9,7 +9,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      console.log('로그인', action.payload);
       const accessToken = action.payload.accessToken;
       localStorage.setItem('accessToken', accessToken);
       state.isLogin = true;

@@ -1,5 +1,4 @@
 import { authApi, jsonApi } from './user';
-import { YoutubeApi } from './youtube';
 
 //query(C)
 // 모든 user의 하위정보를 가져오는 api
@@ -15,9 +14,15 @@ const getInfo = async () => {
 
 //youtube
 
-const getYoutube = async () => {
-  const response = await YoutubeApi.get('/class');
+// const getYoutube = async () => {
+//   const response = await YoutubeApi.get('/class');
+//   return response;
+// };
+
+//map
+const getMap = async () => {
+  const response = await jsonApi.get('/businessInfo');
   return response;
 };
 
-export { getProfile, getInfo };
+export { getProfile, getInfo, getMap };

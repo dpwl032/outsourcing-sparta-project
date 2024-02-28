@@ -16,10 +16,8 @@ const fetchBusinessInfos = async () => {
   return data;
 };
 
-const TestHome = () => {
+const Home = () => {
   const { data: businessInfos, isLoading, isError } = useQuery('businessInfos', fetchBusinessInfos);
-
-  console.log('businessInfos', businessInfos);
 
   if (isLoading) {
     return <p>...로딩중</p>;
@@ -147,7 +145,7 @@ const TestHome = () => {
   );
 };
 
-export default TestHome;
+export default Home;
 
 const HomeContentsWrap = styled.div`
   display: flex;

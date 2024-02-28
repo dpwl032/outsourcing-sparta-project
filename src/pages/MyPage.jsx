@@ -20,7 +20,6 @@ const MyPage = () => {
     isError: isUserError
   } = useQuery('user', getInfo, {
     onSuccess: (data) => {
-      console.log('data1', data);
       setSelectedImg(data?.data?.avatar);
     }
   });
@@ -80,6 +79,8 @@ const MyPage = () => {
 
     mutation.mutate(formData);
     setClick(false);
+
+    alert('변경완료!');
   };
 
   return (

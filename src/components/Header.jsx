@@ -10,9 +10,9 @@ const Header = () => {
     <>
       <HeaderWrap>
         <HeaderItem>
-          <Link to="/">
+          <LinkStyle to="/">
             <HeaderLogo>로고</HeaderLogo>
-          </Link>
+          </LinkStyle>
           <HeaderCategory>
             <HeaderCategoryItem>climbing</HeaderCategoryItem>
             <HeaderCategoryItem>Traveling</HeaderCategoryItem>
@@ -21,14 +21,14 @@ const Header = () => {
             <HeaderCategoryItem>Career</HeaderCategoryItem>
           </HeaderCategory>
           {!isAuthenticated ? (
-            <Link to="/signIn">
+            <LinkStyle to="/signIn">
               <SignUp>로그인/회원가입</SignUp>
-            </Link>
+            </LinkStyle>
           ) : (
             <>
-              <Link to="/my">
+              <LinkStyle to="/my">
                 <SignUp>마이페이지</SignUp>
-              </Link>
+              </LinkStyle>
               <LogoutButton></LogoutButton>
             </>
           )}
@@ -61,6 +61,7 @@ const HeaderLogo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 `;
 
 const HeaderCategory = styled.ul`
@@ -96,4 +97,10 @@ const SignUp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
+`;
+const LinkStyle = styled(Link)`
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 `;
