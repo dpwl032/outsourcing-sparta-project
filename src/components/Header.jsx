@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogoutButton } from './LogoutButton';
+import { CustomButton } from './CustomButton';
 
 const Header = () => {
   const isAuthenticated = localStorage.getItem('accessToken') ? true : false;
@@ -22,7 +23,7 @@ const Header = () => {
           </HeaderCategory>
           {!isAuthenticated ? (
             <Link to="/signIn">
-              <SignUp>로그인/회원가입</SignUp>
+              <CustomButton text={'로그인'} />
             </Link>
           ) : (
             <>
