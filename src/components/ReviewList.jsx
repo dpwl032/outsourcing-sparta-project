@@ -24,10 +24,7 @@ const ReviewList = ({ reviews, isEditingReview, onReviewEdit, onReviewDelete, on
               )}
               <p>
                 {review.content} - {review.createdBy}
-              </p>{' '}
-              <br />
-              <br />
-              <br />
+              </p>
             </>
           )}
         </div>

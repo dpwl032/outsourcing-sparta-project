@@ -29,11 +29,7 @@ function DetailInfoPage() {
 
   const fetchReviews = async () => {
     try {
-      // const response = await axios.get(`http://localhost:5000/reviews?createdOn=${id}`);
-
-      // 전체 리뷰 리스트
-      const response = await axios.get(`http://localhost:5000/reviews`);
-
+      const response = await axios.get(`http://localhost:5000/reviews?createdOn=${id}`);
       setReviews(response.data);
     } catch (error) {
       console.error('리뷰 정보를 가져오는 중 오류 발생:', error);
@@ -58,9 +54,9 @@ function DetailInfoPage() {
       setUserRole(loggedUserRole);
     };
 
-    fetchBusinessInfo(); // 사업자정보 get
-    fetchReviews(); // 리뷰정보 get
-    fetchUserRole(); // 유저정보 get
+    fetchBusinessInfo();
+    fetchReviews();
+    fetchUserRole();
   }, [id]);
 
   const handleEdit = () => {
@@ -92,6 +88,7 @@ function DetailInfoPage() {
     await axios.put(`http://localhost:5000/reviews/${updatedReview.id}`, updatedReview);
     setIsEditingReview(null);
     fetchReviews();
+    alert('리뷰가 수정됐습니다.');
   };
 
   const handleReviewDelete = async (reviewId) => {
@@ -104,6 +101,11 @@ function DetailInfoPage() {
         alert('리뷰 삭제 실패. 다시 시도해주세요.');
       }
     }
+  };
+
+  const handleLike = (e) => {
+    alert(e);
+    console.log(businessInfo);
   };
 
   return (
@@ -146,20 +148,24 @@ function DetailInfoPage() {
                   <div style={{ margin: '1rem' }}>주소</div>
                 </MapInfo>
               </KakaoMapWrap>
+              {userRole !== 'host' && (
+                <div>
+                  <button onClick={() => handleLike(businessInfo?.id)}>찜하기</button> <br />
+                </div>
+              )}
+
               {/*맵*/}
               {userRole === 'host' && (
                 <>
                   <button type="button" onClick={handleEdit}>
-                    수정
+                    클래스 수정
                   </button>
                   <button type="button" onClick={handleDelete}>
-                    삭제
+                    클래스 삭제
                   </button>
                 </>
               )}
-
               {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
-
               <ReviewList
                 reviews={reviews}
                 isEditingReview={isEditingReview}
