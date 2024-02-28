@@ -30,8 +30,6 @@ export const PersonalSignUpPage = () => {
     }
   });
 
-  console.log('guest', mutation);
-
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));

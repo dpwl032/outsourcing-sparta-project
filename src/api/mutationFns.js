@@ -23,16 +23,13 @@ const editProfile = async (formData) => {
 
     // JSON 서버에 내 리뷰들의 닉네임과 아바타 변경
     const userId = localStorage.getItem('userId');
-    console.log('1', userId);
+
     const { data: myReviews } = await jsonApi.get(`/reviews?createdBy=${userId}`);
 
-    console.log('2', myReviews);
     for (const myReview of myReviews) {
       await jsonApi.patch(`/reviews/${myReview.id}`, editingObj);
-      console.log('3', myReview.id);
-      console.log('test', editingObj);
     }
-    console.log('4', response);
+
     return response;
   } catch (err) {
     console.error('An error occurred while editing profile:', err);
@@ -40,10 +37,13 @@ const editProfile = async (formData) => {
   }
 };
 
-// const addYoutube = async (newUrl) => {
-//   const response = await YoutubeApi.post('/youtube', newUrl);
-//   console.log('you', response);
-//   return response;
-// };
+//예지 추가-찜
 
-export { addProfile, editProfile };
+const addLikes = async ({ likeUser, reviewId }) => {
+  const response = await jsonApi.patch(`/businessInfo/${reviewId}`, {
+    $push: { likes: likeUser }
+  });
+  return response;
+};
+
+export { addProfile, editProfile, addLikes };

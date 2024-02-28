@@ -6,12 +6,15 @@ import EditBusinessInfo from '../../components/EditBusinessInfo';
 import ReviewList from '../../components/ReviewList';
 import { Map, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
-import { queryClient, useQueryClient, useQuery } from 'react-query';
-import { searchVideos } from '../../api/youtube';
+import { useMutation, queryClient, useQueryClient, useQuery } from 'react-query';
+import { addLikes } from '../../api/mutationFns';
 
 function DetailInfoPage() {
-  const queryClient = useQueryClient();
-  // const { data: YoutubeData } = useQuery('search', searchVideos);
+  const likesMutation = useMutation(addLikes, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('businessInfo');
+    }
+  });
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,6 +27,7 @@ function DetailInfoPage() {
   const [addressLat, setLat] = useState('');
   const [addressLng, setLng] = useState('');
   const [showMovie, setShowMovie] = useState('');
+  const [likeUser, setLikeUser] = useState('');
 
   const fetchReviews = async () => {
     try {
@@ -39,9 +43,11 @@ function DetailInfoPage() {
       try {
         const response = await axios.get(`http://localhost:5000/businessInfo/${id}`);
         setBusinessInfo(response.data);
+        //추가-예지
         setLat(response.data.addressLat);
         setLng(response.data.addressLng);
         setShowMovie(response.data.youtube);
+        setLikeUser(response.data.createdBy);
       } catch (error) {
         console.error('업체 정보를 가져오는 중 오류 발생:', error);
       }
@@ -101,34 +107,39 @@ function DetailInfoPage() {
     }
   };
 
-  const handleLike = (e) => {
-    alert(e);
-    console.log(businessInfo);
+  const handleLike = async (reviewId) => {
+    likesMutation.mutate({ likeUser, reviewId });
+    console.log('test', likesMutation);
   };
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ width: '768px' }}>
-          <div style={{ border: '1px solid black', width: '768px', height: '500px' }}>
-            {' '}
-            <iframe
-              id="ytplayer"
-              type="text/html"
-              width="768"
-              height="405"
-              src={`https://www.youtube.com/embed/${showMovie}`}
-              frameborder="0"
-              allowfullscreen="allowfullscreen"
-            ></iframe>
-          </div>
-
-          {businessInfo && !isEditing && (
-            <>
-              <h1>{businessInfo.title}</h1>
-              <p>진행시간: {businessInfo.time}</p>
-              <p>가격: {businessInfo.price}</p>
-              <p>주소지: {businessInfo.address}</p>
+    <>
+      {/**전체랩 */}
+      <DetailContentsAllWrap>
+        <DetailItemWrap>
+          컨첸트 랩
+          <PreViewInfoWrap>
+            <PreViewImg>1</PreViewImg>
+            <PreViewDescription>
+              <DescriptionTitle>
+                <p style={{ margin: '10px 0 10px 10px ' }}>윤주당 프라이빗 시음회, 막걸리 클럽 [SQNC 013]</p>
+                <p style={{ margin: '10px 0 10px 10px' }}>39,000원</p>
+              </DescriptionTitle>
+              <DescriptionCompany>업체명</DescriptionCompany>
+            </PreViewDescription>
+          </PreViewInfoWrap>
+          <DetailContentsInfo>
+            <div>상세정보</div>
+            <div>
+              <button>상세보기</button>
+            </div>
+          </DetailContentsInfo>
+          <MapInfoWrap>
+            <MapItemNavi>
+              <p>진행하는 장소</p>
+            </MapItemNavi>
+            <div>
+              {' '}
               {/*맵*/}
               <KakaoMapWrap>
                 <MapItemSection>
@@ -146,42 +157,72 @@ function DetailInfoPage() {
                   <div style={{ margin: '1rem' }}>주소</div>
                 </MapInfo>
               </KakaoMapWrap>
-              {userRole !== 'host' && (
-                <div>
-                  <button onClick={() => handleLike(businessInfo?.id)}>찜하기</button> <br />
-                </div>
-              )}
-
               {/*맵*/}
-              {userRole === 'host' && (
-                <>
-                  <button type="button" onClick={handleEdit}>
-                    클래스 수정
-                  </button>
-                  <button type="button" onClick={handleDelete}>
-                    클래스 삭제
-                  </button>
-                </>
-              )}
-              {userRole !== 'host' && <WriteReview onReviewSubmitted={fetchReviews} />}
-              <ReviewList
-                reviews={reviews}
-                isEditingReview={isEditingReview}
-                onReviewEdit={handleReviewEdit}
-                onReviewDelete={handleReviewDelete}
-                onReviewUpdated={handleReviewUpdated}
-              />
-            </>
-          )}
-          {!businessInfo && <p>Loading...</p>}
-          {businessInfo && isEditing && <EditBusinessInfo businessInfo={businessInfo} onSaved={handleSaved} />}
-        </div>
-      </div>
-    </div>
+            </div>
+          </MapInfoWrap>
+        </DetailItemWrap>
+      </DetailContentsAllWrap>
+    </>
   );
 }
 
 export default DetailInfoPage;
+
+const DetailContentsAllWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const DetailItemWrap = styled.div`
+  width: 768px;
+  margin: 1rem;
+`;
+
+const PreViewInfoWrap = styled.div`
+  height: 375px;
+  display: flex;
+`;
+
+const PreViewImg = styled.div`
+  border: 1px solid black;
+  width: 50%;
+  border-radius: 10px;
+`;
+
+const PreViewDescription = styled.div`
+  width: 50%;
+`;
+
+const DescriptionTitle = styled.div`
+  border: 1px solid black;
+  height: 70%;
+  font-size: 20px;
+`;
+
+const DescriptionCompany = styled.div`
+  border: 1px solid black;
+  height: 30%;
+`;
+
+const DetailContentsInfo = styled.div`
+  border: 1px solid black;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const MapInfoWrap = styled.div`
+  border: 1px solid black;
+`;
+
+const MapItemNavi = styled.div`
+  border: 1px solid black;
+  margin: 20px 0;
+  font-size: 18px;
+`;
+
+//맵
 const KakaoMapWrap = styled.div`
   border: 1px solid gray;
   width: 768px;

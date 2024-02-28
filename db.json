@@ -31,14 +31,6 @@
       "name": "zzzzzzz@zzzzzzzz"
     }
   ],
-  "likes": [
-    {
-      "likesId": "찜_NO",
-      "userId": [],
-      "classId": [],
-      "id": "2b0d"
-    }
-  ],
   "youtube": [
     {
       "url": "url",
@@ -52,7 +44,8 @@
       "title": "더미 클래스1",
       "time": "2024-12-31",
       "price": "1223",
-      "address": "123456"
+      "address": "123456",
+      "likes": []
     },
     {
       "id": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
@@ -81,43 +74,10 @@
       "price": "30,000원",
       "addressLat": "35.1795543",
       "addressLng": "129.0756416",
-      "youtube": "WQaswRC0m3Y"
-    },
-    {
-      "id": "3a607868-7c87-40f9-916b-ef264e561c37",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "z",
-      "time": "2024-02-17",
-      "contents": "z",
-      "price": "z",
-      "addressLat": "z",
-      "addressLng": "z",
-      "youtube": "z",
-      "selectedImg": null
-    },
-    {
-      "id": "7ed75670-c6f8-4217-ac4e-9efa8e51c199",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "z",
-      "time": "2024-02-17",
-      "contents": "z",
-      "price": "z",
-      "addressLat": "z",
-      "addressLng": "z",
-      "youtube": "z",
-      "selectedImg": null
-    },
-    {
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "z",
-      "time": "2024-02-17",
-      "contents": "z",
-      "price": "z",
-      "addressLat": "z",
-      "addressLng": "z",
-      "youtube": "z",
-      "selectedImg": null,
-      "id": "531d01d0-2891-4a72-b2b2-78d5c1524bdf"
+      "youtube": "WQaswRC0m3Y",
+      "$push": {
+        "likes": "signUpMode0808@signUpMode0809"
+      }
     }
   ],
   "reviews": [

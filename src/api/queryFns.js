@@ -20,9 +20,9 @@ const getInfo = async () => {
 // };
 
 //map
-const getMap = async () => {
-  const response = await jsonApi.get('/businessInfo');
+const getClass = async (pageId) => {
+  const response = await jsonApi.get(`/businessInfo`);
   return response;
 };
 
-export { getProfile, getInfo, getMap };
+export { getProfile, getInfo, getClass };
