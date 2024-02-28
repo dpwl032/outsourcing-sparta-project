@@ -74,18 +74,30 @@ function AddBusinessInfo() {
   };
 
   const Form = styled.form`
-    display: block;
-    align-items: center;
-    justify-content: center;
-  `;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 5rem 0 5rem;
+    `
 
-  const Input = styled.input`
-    border: 1px solid gray;
-    width: 100%;
-    margin-bottom: 16px;
-    padding: 12px 0;
-    outline: none;
-  `;
+    const Input = styled.input`
+        border: 1px solid gray;
+        width: 30%;
+        margin-bottom: 16px;
+        padding: 12px 0;
+        outline: none;
+    `
+
+    const Button = styled.button`
+        background-color: black;
+        width: 30%;
+        color: white;
+        font-size: 16px;
+        padding: 12px 18px;
+        border-radius: 5px;
+        cursor: pointer;
+    `
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -129,7 +141,7 @@ function AddBusinessInfo() {
         onChange={(e) => setYoutube(e.target.value)}
         placeholder="유튜브 주소를 입력해주세요."
       />
-      <button type="submit">등록</button>
+      <Button type="submit">등록</Button>
     </Form>
   );
 }
