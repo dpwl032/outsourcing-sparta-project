@@ -1,5 +1,6 @@
 import { jsonApi } from './user';
 import { authApi } from './user';
+import { YoutubeApi } from './youtube';
 
 //mutation (RUD)
 // json db에 user의 하위정보를 가져오는 api
@@ -25,6 +26,14 @@ const addClass = async (newClass) => {
   return response;
 };
 
+const addYoutube = async (newUrl) => {
+  const response = await YoutubeApi.post('/youtube', newUrl);
+  console.log('you', response);
+  return response;
+};
+
+//
+
 //클래스 삭제
 const deleteClass = async (id) => {
   const response = await jsonApi.delete(`/class/${id}`);
@@ -44,4 +53,4 @@ const addReview = async (newReview) => {
   return response;
 };
 
-export { addProfile, editProfile, addClass, deleteClass, addReview, editClass };
+export { addProfile, editProfile, addClass, deleteClass, addReview, editClass, addYoutube };

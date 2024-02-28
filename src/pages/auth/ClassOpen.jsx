@@ -4,6 +4,7 @@ import { addClass } from '../../api/mutationFns';
 import { getProfile, getInfo } from '../../api/queryFns';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { addYoutube } from '../../api/mutationFns';
 
 const ClassOpen = () => {
   /** Queries */
@@ -18,6 +19,13 @@ const ClassOpen = () => {
       queryClient.invalidateQueries('class');
     }
   });
+
+  const youtubeMutation = useMutation(addYoutube, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('youtube');
+    }
+  });
+
   /** states */
   const [classTitle, onChangeClassTitleHandler] = useInput();
   const [classContent, onChangeClassContentHandler] = useInput();
@@ -55,9 +63,11 @@ const ClassOpen = () => {
       classImg,
       classPrice,
       classDate,
-      classYoutube,
       classMap
     });
+
+    youtubeMutation.mutate(classYoutube);
+    console.log(youtubeMutation);
 
     alert('클래스 등록이 완료됐습니다');
     navigate('/home');
@@ -80,6 +90,8 @@ const ClassOpen = () => {
         <br />
         주소 :<input type="text" name="title" value={classMap} onChange={onChangeClassMapHandler} />
         <button>등록</button>
+        <br />
+        에디터
       </form>
     </div>
   );
