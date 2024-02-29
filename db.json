@@ -35,6 +35,12 @@
       "userId": "imgtest@imgtest",
       "role": "guest",
       "name": "강나다"
+    },
+    {
+      "id": "e1c6",
+      "userId": "tast6@naver.com",
+      "role": "host",
+      "name": "wewe"
     }
   ],
   "youtube": [
