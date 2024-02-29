@@ -45,82 +45,28 @@
   ],
   "businessInfo": [
     {
-      "id": "79ed",
-      "title": "[사진여행] 강화+석모도 1박2일의 쉼의기록 (스냅 +프로필 사진)",
-      "contentsImg": "blob:http://localhost:3000/897e4d9a-ef1b-4585-95c0-f15b49a9ed59",
-      "price": "230,000원",
-      "time": "2024-03-01",
-      "addressLng": "126.4897",
-      "addressLat": "37.74116",
-      "youtubeId": "ItgFVQW4vPo"
+      "id": "6a5b",
+      "title": "z",
+      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-29%20054643.png?alt=media&token=e9f2ab51-fc41-4592-8678-e904dc3c5c3b",
+      "contents": "z",
+      "price": "z",
+      "time": "2024-02-08",
+      "addressLng": "z",
+      "addressLat": "z",
+      "addressName": "z",
+      "youtubeId": "z"
     },
     {
-      "id": "3ca0",
-      "title": "전주 한옥마을 나만의 가드닝 ‘힙팟 원데이 클래스’",
-      "contentsImg": "blob:http://localhost:3000/ead82e3c-6f5b-40a0-9bf3-45a6f2b20f04",
-      "price": "60,000원",
-      "time": "2024-03-02",
-      "addressLng": "127.1533415",
-      "addressLat": "35.8117266",
-      "youtubeId": "Vw5qXCVKTJ4"
-    },
-    {
-      "id": "0be1",
-      "title": "[사당,동작] 주말 아침을 여는 요가 원데이/정기권/회차권 (예약 가능)",
-      "contentsImg": "blob:http://localhost:3000/b8e023c2-e945-4e2c-909f-1eda569655d4",
-      "price": "18,000원",
-      "time": "2024-02-29",
-      "addressLng": "126.9808379",
-      "addressLat": " 37.4788275",
-      "youtubeId": "ktOmAYwABxY"
-    },
-    {
-      "id": "f953",
-      "title": "[사진여행] 강화+석모도 1박2일의 쉼의기록 (스냅 +프로필 사진)",
-      "contentsImg": "blob:http://localhost:3000/708f116b-c338-4505-9319-e036a56c0719",
-      "price": "20,000원",
-      "time": "2024-02-23",
-      "addressLng": "120",
-      "addressLat": "35",
-      "youtubeId": "GUp3U1t8jg0"
-    },
-    {
-      "id": "185d",
-      "title": "[제주] 제주 서프앤조이 서핑 강습권! (예약 가능)",
-      "contents": "📍기본상품옵션    옵션 1  서프앤조이 슈트 + 보드 렌탈 + 무료 강습   60000원    옵션 2  서프앤조이 보드 + 수트렌탈 + 무료 강습 + 무료 숙박 (1박)  70,000원    옵션 3  서프앤조이 서핑 정액권 (10회)  보드 + 수트 포함 + 무료 1회 강습  300,000원",
-      "contentsImg": "blob:http://localhost:3000/ee111c1a-88a2-440d-8b9f-129f1e114a1d",
-      "price": "60,000원",
-      "time": "2024-07-17",
-      "addressLng": "126.5871269",
-      "addressLat": "33.5254053",
-      "addressName": "서프앤조이",
-      "youtubeId": "3mqcMHkersg"
-    },
-    {
-      "title": "제목변경",
-      "contents": "품절!!",
-      "contentsImg": "blob:http://localhost:3000/50229cb0-e55c-4421-80fc-33453531ac78",
-      "price": "50,000원",
-      "time": "2024-02-16",
-      "addressLng": "https://www.youtube.com/watch?v=MuXG3Rw6h2s",
-      "addressLat": "https://www.youtube.com/watch?v=MuXG3Rw6h2s",
-      "addressName": "https://www.youtube.com/watch?v=MuXG3Rw6h2s",
-      "youtubeId": "https://www.youtube.com/watch?v=MuXG3Rw6h2s",
-      "address": "이건뭐더라",
-      "id": "422a"
-    },
-    {
-      "id": "13d2",
-      "title": "ㅊㅊㅊ",
-      "contents": "ㅊㅊㅊ",
-      "contentsImg": "blob:http://localhost:3000/d654bde1-4960-4ddc-bca9-dae641cb42ef",
-      "price": "ㅊㅊㅊ",
-      "time": "2024-02-10",
-      "addressLng": "ㅊㅊㅊ",
-      "addressLat": "ㅊㅊㅊ",
-      "addressName": "ㅊㅊㅊ",
-      "youtubeId": "ㅊㅊㅊ",
-      "mapItem": "천안"
+      "id": "2311",
+      "title": "d",
+      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-29%20062814.png?alt=media&token=4a08d03f-a791-4341-b8fa-81f217f2bea7",
+      "contents": "d",
+      "price": "d",
+      "time": "2024-02-08",
+      "addressLng": "d",
+      "addressLat": "d",
+      "addressName": "d",
+      "youtubeId": "d"
     }
   ],
   "reviews": [
