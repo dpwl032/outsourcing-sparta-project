@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { FcLock } from 'react-icons/fc';
 import { FcPlanner } from 'react-icons/fc';
 import { FcNext } from 'react-icons/fc';
-import { FcLike } from 'react-icons/fc';
+
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { editProfile } from '../api/mutationFns';
-import { getProfile, getInfo } from '../api/queryFns';
+import { getProfile, getInfo, getReviews } from '../api/queryFns';
 import basicAvatar from '../assets/img/user.png';
 import { CustomButton } from '../components/CustomButton';
 
@@ -26,6 +26,10 @@ const MyPage = () => {
     }
   });
   const { data: dbData, isLoading: isDbDataLoading, isError: isDbDataError } = useQuery('userRoles', getProfile);
+
+  const nowUser = localStorage.getItem('userId');
+  const { data: rvData } = useQuery('reviews', getReviews);
+  const findData = rvData?.data.filter((item) => item.createdBy === nowUser);
 
   /** Mutations */
   const mutation = useMutation(editProfile, {
@@ -261,16 +265,16 @@ const MyPage = () => {
             </MyPageReservationNav>
             {/*구분선*/}
             <MyPageReservationInfo>
-              <div style={{ width: '50%' }}>03/13 ~ 03/14</div>
+              <div style={{ width: '50%' }}>
+                <p style={{ marginLeft: '20px', fontWeight: 'bolder' }}>현재 신청한 목록이 없습니다!</p>
+              </div>
               <ScheduledClassName>
                 클래스 이름 <FcNext />
               </ScheduledClassName>
             </MyPageReservationInfo>
             {/*구분선*/}
             <MyPageLikedClass>
-              <p>
-                찜목록 <FcLike />
-              </p>
+              <p>리뷰 목록</p>
               <ul
                 style={{
                   display: 'grid',
@@ -279,12 +283,13 @@ const MyPage = () => {
                   margin: '1rem'
                 }}
               >
-                <li style={{ border: '1px solid black', height: '150px' }}>1</li>
-                <li style={{ border: '1px solid black' }}>2</li>
-                <li style={{ border: '1px solid black' }}>3</li>
-                <li style={{ border: '1px solid black', height: '150px' }}>4</li>
-                <li style={{ border: '1px solid black' }}>5</li>
-                <li style={{ border: '1px solid black' }}>6</li>
+                {findData.map((item) => (
+                  <>
+                    <li style={{ border: '1px solid black', height: '150px', borderRadius: '10px' }}>
+                      <p>리뷰내용 : {item.content}</p>
+                    </li>
+                  </>
+                ))}
               </ul>
             </MyPageLikedClass>
           </MyPageContents>
@@ -373,6 +378,7 @@ const ScheduledClassName = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  color: #cec9c9;
 `;
 
 const MyPageLikedClass = styled.div`

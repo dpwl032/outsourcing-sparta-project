@@ -51,30 +51,6 @@
   ],
   "businessInfo": [
     {
-      "id": "6a5b",
-      "title": "z",
-      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-29%20054643.png?alt=media&token=e9f2ab51-fc41-4592-8678-e904dc3c5c3b",
-      "contents": "z",
-      "price": "z",
-      "time": "2024-02-08",
-      "addressLng": "z",
-      "addressLat": "z",
-      "addressName": "z",
-      "youtubeId": "z"
-    },
-    {
-      "id": "2311",
-      "title": "d",
-      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-29%20062814.png?alt=media&token=4a08d03f-a791-4341-b8fa-81f217f2bea7",
-      "contents": "d",
-      "price": "d",
-      "time": "2024-02-08",
-      "addressLng": "d",
-      "addressLat": "d",
-      "addressName": "d",
-      "youtubeId": "d"
-    },
-    {
       "title": "퍼스널컬러로 나만의 매력 UP, 자신감 UP (20타입)",
       "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-28%20001152.png?alt=media&token=abccfeb7-5257-4c0e-9921-5931c81835fb",
       "contents": " *  9월 예약 중입니다.  빠른 예약가능일 안내를 위해  꼭! 원하시는 클래스와 인원을 같이 말씀해주세요.   추석기간 (9/30-10/3) 예약 가능합니다.  (주말 옵션 추가 필수)",
@@ -85,6 +61,30 @@
       "addressName": "아름별컬러 스튜디",
       "youtubeId": "https://www.youtube.com/watch?v=YGX-Y4XngXc",
       "id": "7925"
+    },
+    {
+      "id": "ca28",
+      "title": "d",
+      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-29%20054649.png?alt=media&token=cd4d1cc6-9192-42e9-b24a-67ac382e907f",
+      "contents": "d",
+      "price": "d",
+      "time": "2024-02-23",
+      "addressLng": "d",
+      "addressLat": "d",
+      "addressName": "d",
+      "youtubeId": "d"
+    },
+    {
+      "id": "c6d1",
+      "title": "d",
+      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-29%20054649.png?alt=media&token=e4c5b84d-6b95-4ee5-b8ed-306d90fbb8c2",
+      "contents": "d",
+      "price": "d",
+      "time": "2024-02-23",
+      "addressLng": "d",
+      "addressLat": "d",
+      "addressName": "d",
+      "youtubeId": "d"
     }
   ],
   "reviews": [
@@ -94,6 +94,48 @@
       "createdOn": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
       "createdBy": "eeeee@eeee",
       "nickname": "닉넴변경아싸뵤"
+    },
+    {
+      "id": "b9be",
+      "content": "리뷰달기1",
+      "createdOn": "ca28",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "ce76",
+      "content": "리뷰 : 리뷰달기2",
+      "createdOn": "7925",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "a50c",
+      "content": "ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ",
+      "createdOn": "c6d1",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "ef0c",
+      "content": "dddddddd",
+      "createdOn": "ca28",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "3574",
+      "content": "dddddddddddddd",
+      "createdOn": "ca28",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "1fd9",
+      "content": "fdfdfdfd",
+      "createdOn": "7925",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
     }
   ]
 }
