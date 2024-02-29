@@ -29,14 +29,12 @@
       "userId": "zzzzzzz@zzzzzzzz",
       "role": "guest",
       "name": "zzzzzzz@zzzzzzzz"
-    }
-  ],
-  "likes": [
+    },
     {
-      "likesId": "찜_NO",
-      "userId": [],
-      "classId": [],
-      "id": "2b0d"
+      "id": "5427",
+      "userId": "imgtest@imgtest",
+      "role": "guest",
+      "name": "강나다"
     }
   ],
   "youtube": [
@@ -47,109 +45,91 @@
   ],
   "businessInfo": [
     {
-      "id": "dbfb987e-8cca-47d8-bedc-60821f34b74f",
-      "createdBy": "signUpMode0808",
-      "title": "더미 클래스1",
-      "time": "2024-12-31",
-      "price": "1223",
-      "address": "123456"
+      "id": "79ed",
+      "title": "[사진여행] 강화+석모도 1박2일의 쉼의기록 (스냅 +프로필 사진)",
+      "contentsImg": "blob:http://localhost:3000/897e4d9a-ef1b-4585-95c0-f15b49a9ed59",
+      "price": "230,000원",
+      "time": "2024-03-01",
+      "addressLng": "126.4897",
+      "addressLat": "37.74116",
+      "youtubeId": "ItgFVQW4vPo"
     },
     {
-      "id": "0fce604a-53e7-4cc4-bb60-e458e3e9c7e8",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "지도테스트2",
-      "time": "2024-02-09",
-      "price": "지도테스트2",
-      "addressLat": "33.450701",
-      "addressLng": "126.570667"
+      "id": "3ca0",
+      "title": "전주 한옥마을 나만의 가드닝 ‘힙팟 원데이 클래스’",
+      "contentsImg": "blob:http://localhost:3000/ead82e3c-6f5b-40a0-9bf3-45a6f2b20f04",
+      "price": "60,000원",
+      "time": "2024-03-02",
+      "addressLng": "127.1533415",
+      "addressLat": "35.8117266",
+      "youtubeId": "Vw5qXCVKTJ4"
     },
     {
-      "id": "c5b2f703-95ec-45bb-a04a-da233c7ec66d",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "유튜브/지도 테스트",
-      "time": "2024-02-28",
+      "id": "0be1",
+      "title": "[사당,동작] 주말 아침을 여는 요가 원데이/정기권/회차권 (예약 가능)",
+      "contentsImg": "blob:http://localhost:3000/b8e023c2-e945-4e2c-909f-1eda569655d4",
+      "price": "18,000원",
+      "time": "2024-02-29",
+      "addressLng": "126.9808379",
+      "addressLat": " 37.4788275",
+      "youtubeId": "ktOmAYwABxY"
+    },
+    {
+      "id": "f953",
+      "title": "[사진여행] 강화+석모도 1박2일의 쉼의기록 (스냅 +프로필 사진)",
+      "contentsImg": "blob:http://localhost:3000/708f116b-c338-4505-9319-e036a56c0719",
       "price": "20,000원",
-      "addressLat": "37.5642135",
-      "addressLng": "127.0016985",
-      "youtube": "Ud1DlGiOCqc"
+      "time": "2024-02-23",
+      "addressLng": "120",
+      "addressLat": "35",
+      "youtubeId": "GUp3U1t8jg0"
     },
     {
-      "id": "19725bb1-4ae5-48ca-8540-0d9366cd39e3",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "다른동영상 test",
-      "time": "2024-02-19",
-      "price": "30,000원",
-      "addressLat": "35.1795543",
-      "addressLng": "129.0756416",
-      "youtube": "WQaswRC0m3Y"
+      "id": "185d",
+      "title": "[제주] 제주 서프앤조이 서핑 강습권! (예약 가능)",
+      "contents": "📍기본상품옵션    옵션 1  서프앤조이 슈트 + 보드 렌탈 + 무료 강습   60000원    옵션 2  서프앤조이 보드 + 수트렌탈 + 무료 강습 + 무료 숙박 (1박)  70,000원    옵션 3  서프앤조이 서핑 정액권 (10회)  보드 + 수트 포함 + 무료 1회 강습  300,000원",
+      "contentsImg": "blob:http://localhost:3000/ee111c1a-88a2-440d-8b9f-129f1e114a1d",
+      "price": "60,000원",
+      "time": "2024-07-17",
+      "addressLng": "126.5871269",
+      "addressLat": "33.5254053",
+      "addressName": "서프앤조이",
+      "youtubeId": "3mqcMHkersg"
     },
     {
-      "id": "3a607868-7c87-40f9-916b-ef264e561c37",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "z",
-      "time": "2024-02-17",
-      "contents": "z",
-      "price": "z",
-      "addressLat": "z",
-      "addressLng": "z",
-      "youtube": "z",
-      "selectedImg": null
+      "title": "제목변경",
+      "contents": "품절!!",
+      "contentsImg": "blob:http://localhost:3000/50229cb0-e55c-4421-80fc-33453531ac78",
+      "price": "50,000원",
+      "time": "2024-02-16",
+      "addressLng": "https://www.youtube.com/watch?v=MuXG3Rw6h2s",
+      "addressLat": "https://www.youtube.com/watch?v=MuXG3Rw6h2s",
+      "addressName": "https://www.youtube.com/watch?v=MuXG3Rw6h2s",
+      "youtubeId": "https://www.youtube.com/watch?v=MuXG3Rw6h2s",
+      "address": "이건뭐더라",
+      "id": "422a"
     },
     {
-      "id": "7ed75670-c6f8-4217-ac4e-9efa8e51c199",
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "z",
-      "time": "2024-02-17",
-      "contents": "z",
-      "price": "z",
-      "addressLat": "z",
-      "addressLng": "z",
-      "youtube": "z",
-      "selectedImg": null
-    },
-    {
-      "createdBy": "signUpMode0808@signUpMode0809",
-      "title": "z",
-      "time": "2024-02-17",
-      "contents": "z",
-      "price": "z",
-      "addressLat": "z",
-      "addressLng": "z",
-      "youtube": "z",
-      "selectedImg": null,
-      "id": "531d01d0-2891-4a72-b2b2-78d5c1524bdf"
+      "id": "13d2",
+      "title": "ㅊㅊㅊ",
+      "contents": "ㅊㅊㅊ",
+      "contentsImg": "blob:http://localhost:3000/d654bde1-4960-4ddc-bca9-dae641cb42ef",
+      "price": "ㅊㅊㅊ",
+      "time": "2024-02-10",
+      "addressLng": "ㅊㅊㅊ",
+      "addressLat": "ㅊㅊㅊ",
+      "addressName": "ㅊㅊㅊ",
+      "youtubeId": "ㅊㅊㅊ",
+      "mapItem": "천안"
     }
   ],
   "reviews": [
     {
-      "id": "2126",
-      "content": "sss",
-      "createdOn": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
-      "createdBy": "jsonDb999@jsonDb999"
-    },
-    {
-      "id": "fbd7",
-      "content": "gggggggggg",
-      "createdOn": "e689e1ff-710c-4029-b16d-b0e90b487bc8",
-      "createdBy": "eeeee@eeee"
-    },
-    {
-      "id": "ddae",
-      "content": "eeeeeeeee",
-      "createdOn": "3a607868-7c87-40f9-916b-ef264e561c37",
-      "createdBy": "eeeee@eeee"
-    },
-    {
-      "id": "faca",
-      "content": "fff",
+      "id": "6f65",
+      "content": "ㅋㅋㅋㅋ",
       "createdOn": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
-      "createdBy": "zzzzzzz@zzzzzzzz"
-    },
-    {
-      "id": "5889",
-      "content": "테스트",
-      "createdOn": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
-      "createdBy": "zzzzzzz@zzzzzzzz"
+      "createdBy": "eeeee@eeee",
+      "nickname": "닉넴변경아싸뵤"
     }
   ]
 }

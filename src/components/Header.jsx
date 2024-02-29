@@ -7,6 +7,7 @@ import myUser from '../assets/img/user.png';
 
 const Header = () => {
   const isAuthenticated = localStorage.getItem('accessToken') ? true : false;
+  const avatar = localStorage.getItem('avatar') ? true : false;
 
   return (
     <>

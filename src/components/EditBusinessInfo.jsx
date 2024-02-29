@@ -37,14 +37,28 @@ function EditBusinessInfo({ businessInfo, onSaved }) {
   };
 
   return (
-    <div>
-      <InputField type="text" name="title" value={editedInfo.title} onChange={handleInputChange} />
-      <InputField type="date" name="time" value={editedInfo.time} onChange={handleInputChange} />
-      <InputField type="text" name="price" value={editedInfo.price} onChange={handleInputChange} />
-      <InputField type="text" name="address" value={editedInfo.address} onChange={handleInputChange} />
-      <button type="button" onClick={handleSave}>
-        저장
-      </button>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ width: '768px' }}>
+        <div>
+          제목: <InputField type="text" name="title" value={editedInfo.title} onChange={handleInputChange} />
+        </div>
+        <div>
+          {' '}
+          날짜 : <InputField type="date" name="time" value={editedInfo.time} onChange={handleInputChange} />
+        </div>
+        <div>
+          {' '}
+          가격 : <InputField type="text" name="price" value={editedInfo.price} onChange={handleInputChange} />
+        </div>
+        <div>
+          {' '}
+          내용: <InputField type="text" name="contents" value={editedInfo.contents} onChange={handleInputChange} />
+        </div>
+
+        <button type="button" onClick={handleSave}>
+          저장
+        </button>
+      </div>
     </div>
   );
 }

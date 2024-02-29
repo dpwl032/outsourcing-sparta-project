@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
 import { postReview } from '../api/crudServiece';
+import styled from 'styled-components';
+import { CustomButton } from './CustomButton';
 
 function WriteReview({ onReviewSubmitted }) {
   const { id: pageId } = useParams();
@@ -37,21 +39,40 @@ function WriteReview({ onReviewSubmitted }) {
     reviewMutation.mutate({
       content,
       createdOn: pageId,
-      createdBy: userId
+      createdBy: userId,
+      nickname: localStorage.getItem('nickname')
     });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <ReviewForm onSubmit={handleSubmit}>
+      <textarea
         type="text"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder="리뷰를 입력해주세요!"
+        placeholder="당신의 솔찍한 리뷰를 입력해주세요!!"
       />
-      <button type="submit">작성 완료</button>
-    </form>
+      <CustomButton text={'작성 완료'} type="submit" />
+    </ReviewForm>
   );
 }
 
 export default WriteReview;
+
+const ReviewForm = styled.form`
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+  gap: 1rem;
+  & textarea {
+    width: 100%;
+    height: 5rem;
+    resize: none;
+    border-radius: 0.3rem;
+  }
+  & button {
+    margin-top: 1rem;
+    width: 6rem;
+    height: 3rem;
+  }
+`;

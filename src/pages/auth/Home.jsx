@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { FaStar } from 'react-icons/fa6';
+import { FaRegStar } from 'react-icons/fa6';
 
 const fetchBusinessInfos = async () => {
   const { data } = await axios.get('http://localhost:5000/businessInfo');
@@ -27,6 +29,7 @@ const Home = () => {
     return <p>오류가 발생했습니다. 다시 새로고침 해주세요!</p>;
   }
 
+  const contentsImg = localStorage.getItem('contentsImg');
   return (
     <>
       <HomeContentsWrap>
@@ -48,7 +51,13 @@ const Home = () => {
                     <span>강원 전체</span>
                   </ItemClassPlace>
                   <ItemClassTitle>[출발확정] 3월1일 금강산, 딱 1자리! 고민할 시간이 없어요!</ItemClassTitle>
-                  <ItemClassReview>별점</ItemClassReview>
+                  <ItemClassReview>
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </ItemClassReview>
                   <hr />
                   <ItemClassPrice>53,000원</ItemClassPrice>
                 </ClassOneItems>
@@ -65,7 +74,13 @@ const Home = () => {
                     <span>강남/서초</span>
                   </ItemClassPlace>
                   <ItemClassTitle>재즈 바이닐의 낭만, 마이리틀케이브 재즈 오마카세[SQNC015]</ItemClassTitle>
-                  <ItemClassReview>별점</ItemClassReview>
+                  <ItemClassReview>
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </ItemClassReview>
                   <hr />
                   <ItemClassPrice>35,000원</ItemClassPrice>
                 </ClassOneItems>
@@ -82,7 +97,13 @@ const Home = () => {
                     <span>성동/광진</span>
                   </ItemClassPlace>
                   <ItemClassTitle>[인생 프사] 나에게 가장 이상적인 인생샷 만들기 프로젝트(일정협의)</ItemClassTitle>
-                  <ItemClassReview>별점</ItemClassReview>
+                  <ItemClassReview>
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaRegStar />
+                    <FaRegStar />
+                  </ItemClassReview>
                   <hr />
                   <ItemClassPrice>69,000원</ItemClassPrice>
                 </ClassOneItems>
@@ -99,7 +120,13 @@ const Home = () => {
                     <span>송파/강동</span>
                   </ItemClassPlace>
                   <ItemClassTitle>[드로잉살롱] 와인&미술과 만나는 시간</ItemClassTitle>
-                  <ItemClassReview>별점</ItemClassReview>
+                  <ItemClassReview>
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaRegStar />
+                  </ItemClassReview>
                   <hr />
                   <ItemClassPrice>39,000원</ItemClassPrice>
                 </ClassOneItems>
@@ -118,13 +145,21 @@ const Home = () => {
               {businessInfos?.reverse().map((item) => (
                 <LinkStyle to={`/Details/${item.id}`} key={item.id}>
                   <ClassListsItem>
-                    <ClassOneItems>{item.classImg}</ClassOneItems>
+                    <ClassOneItems>
+                      <img src={item.contentsImg} style={{ height: '180px', width: '180px', borderRadius: '5px' }} />
+                    </ClassOneItems>
                     <ClassOneItems>
                       <ItemClassPlace>
-                        <span>{item.address}</span>
+                        <span>{item.mapItem}</span>
                       </ItemClassPlace>
                       <ItemClassTitle>{item.title}</ItemClassTitle>
-                      <ItemClassReview>별점</ItemClassReview>
+                      <ItemClassReview>
+                        <FaStar />
+                        <FaStar />
+                        <FaStar />
+                        <FaRegStar />
+                        <FaRegStar />
+                      </ItemClassReview>
                       <hr />
                       <ItemClassPrice>{item.price}</ItemClassPrice>
                     </ClassOneItems>
