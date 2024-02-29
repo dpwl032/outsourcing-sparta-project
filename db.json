@@ -35,6 +35,12 @@
       "userId": "imgtest@imgtest",
       "role": "guest",
       "name": "강나다"
+    },
+    {
+      "id": "e1c6",
+      "userId": "tast6@naver.com",
+      "role": "host",
+      "name": "wewe"
     }
   ],
   "youtube": [
@@ -67,6 +73,18 @@
       "addressLat": "d",
       "addressName": "d",
       "youtubeId": "d"
+    },
+    {
+      "title": "퍼스널컬러로 나만의 매력 UP, 자신감 UP (20타입)",
+      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-28%20001152.png?alt=media&token=abccfeb7-5257-4c0e-9921-5931c81835fb",
+      "contents": " *  9월 예약 중입니다.  빠른 예약가능일 안내를 위해  꼭! 원하시는 클래스와 인원을 같이 말씀해주세요.   추석기간 (9/30-10/3) 예약 가능합니다.  (주말 옵션 추가 필수)",
+      "price": "52,000원",
+      "time": "2024-03-12",
+      "addressLng": "127.13672321551853",
+      "addressLat": "37.610350468297035",
+      "addressName": "아름별컬러 스튜디",
+      "youtubeId": "https://www.youtube.com/watch?v=YGX-Y4XngXc",
+      "id": "7925"
     }
   ],
   "reviews": [
