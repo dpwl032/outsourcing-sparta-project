@@ -6,6 +6,10 @@ import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import KaKao from '../components/GetInfo';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { storage } from '../firebase';
+
+const { kakao } = window;
 
 const RegisterBusinessInfo = () => {
   /** Queries */
@@ -24,7 +28,7 @@ const RegisterBusinessInfo = () => {
   /** states */
   const [title, onChangeClassTitleHandler] = useInput();
   const [contents, onChangeClassContentHandler] = useInput();
-  const [contentsImg, setContentsImg] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [price, onChangeClassPriceHandler] = useInput();
   const [time, onChangeClassDateHandler] = useInput();
   const [addressLat, onLatMapHandler] = useInput();
@@ -50,48 +54,32 @@ const RegisterBusinessInfo = () => {
   }
 
   const onChangeClassImgHandler = (e) => {
-    const imgFile = e.target.files[0];
-    console.log(imgFile);
-    if (imgFile.size > 1024 * 1024) {
-      alert('최대 1MB까지 업로드 가능합니다.');
-      return;
-    }
-    setFile(imgFile);
-    const imgUrl = URL.createObjectURL(imgFile);
-    setContentsImg(imgUrl);
+    setSelectedFile(e.target.files[0]);
   };
-  const onClassSubmitHandler = (e) => {
+  const onClassSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-
-    if (!title || !contents || !contentsImg || !price || !time || !addressLng || !addressLat || !addressName) {
+    if (!title || !contents || !selectedFile || !price || !time || !addressLng || !addressLat || !addressName) {
       alert('빈 곳없이 작성해주세요!');
       return;
     }
 
-    formData.append('title', title);
-    formData.append('contents', contents);
-    formData.append('contentsImg', contentsImg);
-    formData.append(' price', price);
-    formData.append(' time', time);
-    formData.append('  addressLng', addressLng);
-    formData.append('addressLat', addressLat);
-    formData.append('addressName', addressName);
-    formData.append('youtubeId', youtubeId);
-    formData.append('mapItem', mapItem);
-    mutation.mutate(formData);
-    // mutation.mutate({
-    //   title,
-    //   contentsImg,
-    //   contents,
-    //   price,
-    //   time,
-    //   addressLng,
-    //   addressLat,
-    //   addressName,
-    //   youtubeId
-    // });
+    const imageRef = ref(storage, `upload/${selectedFile.name}`);
+    await uploadBytes(imageRef, selectedFile);
+
+    const downloadURL = await getDownloadURL(imageRef);
+
+    mutation.mutate({
+      title,
+      contentsImg: downloadURL,
+      contents,
+      price,
+      time,
+      addressLng,
+      addressLat,
+      addressName,
+      youtubeId
+    });
 
     alert('클래스 등록이 완료됐습니다');
     navigate('/home');
