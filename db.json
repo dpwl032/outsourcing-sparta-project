@@ -1,0 +1,141 @@
+{
+  "userRoles": [
+    {
+      "id": "test",
+      "userId": "test-userId",
+      "role": "guest or host",
+      "name": "test-Name"
+    },
+    {
+      "id": "cbdb",
+      "userId": "jsonDb999@jsonDb999",
+      "role": "guest",
+      "name": "홍길동"
+    },
+    {
+      "id": "1dc8",
+      "userId": "signUpMode0808@signUpMode0809",
+      "role": "host",
+      "name": "스파르타"
+    },
+    {
+      "id": "51fa",
+      "userId": "eeeee@eeee",
+      "role": "guest",
+      "name": "테스터"
+    },
+    {
+      "id": "3d99",
+      "userId": "zzzzzzz@zzzzzzzz",
+      "role": "guest",
+      "name": "zzzzzzz@zzzzzzzz"
+    },
+    {
+      "id": "5427",
+      "userId": "imgtest@imgtest",
+      "role": "guest",
+      "name": "강나다"
+    },
+    {
+      "id": "e1c6",
+      "userId": "tast6@naver.com",
+      "role": "host",
+      "name": "wewe"
+    }
+  ],
+  "youtube": [
+    {
+      "url": "url",
+      "id": "2279"
+    }
+  ],
+  "businessInfo": [
+    {
+      "title": "퍼스널컬러로 나만의 매력 UP, 자신감 UP (20타입)",
+      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-28%20001152.png?alt=media&token=abccfeb7-5257-4c0e-9921-5931c81835fb",
+      "contents": " *  9월 예약 중입니다.  빠른 예약가능일 안내를 위해  꼭! 원하시는 클래스와 인원을 같이 말씀해주세요.   추석기간 (9/30-10/3) 예약 가능합니다.  (주말 옵션 추가 필수)",
+      "price": "52,000원",
+      "time": "2024-03-12",
+      "addressLng": "127.13672321551853",
+      "addressLat": "37.610350468297035",
+      "addressName": "아름별컬러 스튜디",
+      "youtubeId": "https://www.youtube.com/watch?v=YGX-Y4XngXc",
+      "id": "7925"
+    },
+    {
+      "id": "ca28",
+      "title": "d",
+      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-29%20054649.png?alt=media&token=cd4d1cc6-9192-42e9-b24a-67ac382e907f",
+      "contents": "d",
+      "price": "d",
+      "time": "2024-02-23",
+      "addressLng": "d",
+      "addressLat": "d",
+      "addressName": "d",
+      "youtubeId": "d"
+    },
+    {
+      "id": "c6d1",
+      "title": "d",
+      "contentsImg": "https://firebasestorage.googleapis.com/v0/b/outsourcing-team-project.appspot.com/o/upload%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-02-29%20054649.png?alt=media&token=e4c5b84d-6b95-4ee5-b8ed-306d90fbb8c2",
+      "contents": "d",
+      "price": "d",
+      "time": "2024-02-23",
+      "addressLng": "d",
+      "addressLat": "d",
+      "addressName": "d",
+      "youtubeId": "d"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "6f65",
+      "content": "ㅋㅋㅋㅋ",
+      "createdOn": "531d01d0-2891-4a72-b2b2-78d5c1524bdf",
+      "createdBy": "eeeee@eeee",
+      "nickname": "닉넴변경아싸뵤"
+    },
+    {
+      "id": "b9be",
+      "content": "리뷰달기1",
+      "createdOn": "ca28",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "ce76",
+      "content": "리뷰 : 리뷰달기2",
+      "createdOn": "7925",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "a50c",
+      "content": "ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ",
+      "createdOn": "c6d1",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "ef0c",
+      "content": "dddddddd",
+      "createdOn": "ca28",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "3574",
+      "content": "dddddddddddddd",
+      "createdOn": "ca28",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    },
+    {
+      "id": "1fd9",
+      "content": "fdfdfdfd",
+      "createdOn": "7925",
+      "createdBy": "jsonDb999@jsonDb999",
+      "nickname": "sdsds"
+    }
+  ]
+}
