@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { editBusinessInfo } from '../api/crudServiece';
+import styled from 'styled-components';
+import { CustomButton } from './CustomButton';
 
 const InputField = ({ name, value, onChange, type }) => (
   <input type={type} name={name} value={value} onChange={onChange} />
@@ -37,30 +39,69 @@ function EditBusinessInfo({ businessInfo, onSaved }) {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div style={{ width: '768px' }}>
+    <Container>
+      <p style={{ fontSize: '2rem' }}>클래스 수정</p>
+      <Contents>
+        <p>제목</p>
         <div>
-          제목: <InputField type="text" name="title" value={editedInfo.title} onChange={handleInputChange} />
+          <InputField type="text" name="title" value={editedInfo.title} onChange={handleInputChange} />
         </div>
+        <p>날짜</p>
         <div>
-          {' '}
-          날짜 : <InputField type="date" name="time" value={editedInfo.time} onChange={handleInputChange} />
+          <InputField type="date" name="time" value={editedInfo.time} onChange={handleInputChange} />
         </div>
+        <p>가격</p>
         <div>
-          {' '}
-          가격 : <InputField type="text" name="price" value={editedInfo.price} onChange={handleInputChange} />
+          <InputField type="text" name="price" value={editedInfo.price} onChange={handleInputChange} />
         </div>
+        <p>내용</p>
         <div>
-          {' '}
-          내용: <InputField type="text" name="contents" value={editedInfo.contents} onChange={handleInputChange} />
+          <InputField type="text" name="contents" value={editedInfo.contents} onChange={handleInputChange} />
         </div>
-
-        <button type="button" onClick={handleSave}>
-          저장
-        </button>
-      </div>
-    </div>
+      </Contents>
+      <CustomButton text={'수정'} type="button" onClick={handleSave} />
+    </Container>
   );
 }
 
 export default EditBusinessInfo;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 0;
+  font-size: 1.2rem;
+  gap: 1rem;
+  & p {
+    font-weight: bolder;
+  }
+`;
+
+const Contents = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  width: 22rem;
+  height: 22rem;
+  padding-top: 2rem;
+  gap: 1rem;
+  & div {
+    width: 60%;
+    padding: 2px;
+  }
+  & input {
+    width: 100%;
+    height: 1.5rem;
+    border: 1px solid gray;
+    border-radius: 3px;
+  }
+  & p {
+    display: flex;
+    justify-content: flex-start;
+    width: 60%;
+  }
+`;
