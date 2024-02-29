@@ -11,6 +11,8 @@ import { addLikes } from '../../api/mutationFns';
 import { CustomButton } from '../../components/CustomButton';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 import { FaShareAlt } from 'react-icons/fa';
+import { FcLike } from 'react-icons/fc';
+
 function DetailInfoPage() {
   const likesMutation = useMutation(addLikes, {
     onSuccess: () => {
@@ -169,7 +171,9 @@ function DetailInfoPage() {
                       <FaShareAlt /> 공유하기
                     </div>
                     <div>
-                      <button>찜하기</button>
+                      <button>
+                        <FcLike />
+                      </button>
                     </div>
                   </div>
                 </DescriptionCompany>

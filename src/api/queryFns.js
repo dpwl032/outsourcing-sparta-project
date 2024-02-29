@@ -18,4 +18,10 @@ const getClass = async (pageId) => {
   return response;
 };
 
-export { getProfile, getInfo, getClass };
+const getReviews = async () => {
+  const response = await jsonApi.get(`/reviews`);
+
+  return response;
+};
+
+export { getProfile, getInfo, getClass, getReviews };
