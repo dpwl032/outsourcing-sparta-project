@@ -12,13 +12,6 @@ const getInfo = async () => {
   return response;
 };
 
-//youtube
-
-// const getYoutube = async () => {
-//   const response = await YoutubeApi.get('/class');
-//   return response;
-// };
-
 //map
 const getClass = async (pageId) => {
   const response = await jsonApi.get(`/businessInfo`);
