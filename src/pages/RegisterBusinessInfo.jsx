@@ -119,7 +119,13 @@ const RegisterBusinessInfo = () => {
             <br />
             장소 이름 : <ClassInput type="text" value={addressName} onChange={onAddressName} />
             <br />
-            유튜브 주소를 넣어주세요 : <ClassInput type="text" value={youtubeId} onChange={onYoutubeIdHandler} />
+            유튜브 주소를 넣어주세요 :{' '}
+            <ClassInput
+              type="text"
+              value={youtubeId}
+              onChange={onYoutubeIdHandler}
+              placeholder="url 전체 주소 입력해주세요!"
+            />
             <br />
             <ClassSelect value={mapItem} onChange={onMapItemHandler}>
               <option value="부천/인천" selected>
