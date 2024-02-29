@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 const { kakao } = window;
 
 const KaKao = () => {
-  const [address, setAddress] = useState('');
-
+  const [lat, setLat] = useState('');
+  const [lon, setLon] = useState('');
   useEffect(() => {
     const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
     const options = {
@@ -18,6 +18,10 @@ const KaKao = () => {
       const latlng = mouseEvent.latLng;
       const latitude = latlng.getLat();
       const longitude = latlng.getLng();
+
+      setLat(latitude);
+      setLon(longitude);
+
       console.log('latitude:', latitude);
       console.log('longitude:', longitude);
     });
@@ -25,8 +29,9 @@ const KaKao = () => {
 
   return (
     <div>
-      <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
       <div id="map" style={{ width: '500px', height: '400px' }}></div>
+      <p>위도: {lat}</p>
+      <p>경도: {lon}</p>
     </div>
   );
 };

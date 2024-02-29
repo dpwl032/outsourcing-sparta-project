@@ -5,25 +5,9 @@ import { getProfile, getInfo } from '../api/queryFns';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-const { kakao } = window;
-const RegisterBusinessInfo = () => {
-  useEffect(() => {
-    const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
-    const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심 좌표
-      level: 3 // 지도의 확대 레벨
-    };
+import KaKao from '../components/GetInfo';
 
-    const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-      // 클릭한 위도, 경도 정보
-      const latlng = mouseEvent.latLng;
-      const latitude = latlng.getLat();
-      const longitude = latlng.getLng();
-      console.log('latitude:', latitude);
-      console.log('longitude:', longitude);
-    });
-  }, []); // useEffect 디펜던시 배열은 비워두어 한 번만 실행되도록 설정
+const RegisterBusinessInfo = () => {
   /** Queries */
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -48,6 +32,7 @@ const RegisterBusinessInfo = () => {
   const [addressName, onAddressName] = useInput();
   const [youtubeId, onYoutubeIdHandler] = useInput();
   const [file, setFile] = useState(null);
+  const [mapItem, onMapItemHandler] = useInput();
 
   if (isUserLoading || isDbDataLoading) {
     return <p>...로딩중</p>;
@@ -94,6 +79,7 @@ const RegisterBusinessInfo = () => {
     formData.append('addressLat', addressLat);
     formData.append('addressName', addressName);
     formData.append('youtubeId', youtubeId);
+    formData.append('mapItem', mapItem);
     mutation.mutate(formData);
     // mutation.mutate({
     //   title,
@@ -113,32 +99,44 @@ const RegisterBusinessInfo = () => {
   return (
     <>
       {' '}
-      <div>
-        <p>클래스 만들기</p>
-        <ClassForm onSubmit={onClassSubmitHandler}>
-          제목 : <ClassInput type="text" value={title} onChange={onChangeClassTitleHandler} />
-          <br />
-          내용 : <ClassInput type="text" value={contents} onChange={onChangeClassContentHandler} />
-          <br />
-          대표사진 :<ClassInput type="file" onChange={onChangeClassImgHandler} />
-          <br />
-          금액 : <ClassInput type="text" value={price} onChange={onChangeClassPriceHandler} />
-          <br />
-          스케줄 :<ClassInput type="date" value={time} onChange={onChangeClassDateHandler} />
-          <br />
-          주소1 :<ClassInput type="text" value={addressLat} onChange={onLatMapHandler} placeholder="35" />
-          <br />
-          주소2 :<ClassInput type="text" value={addressLng} onChange={onLngMapHandler} placeholder="120" />
-          <br />
-          주소이름 : <ClassInput type="text" value={addressName} onChange={onAddressName} />
-          <br />
-          유튜브 주소를 넣어주세요 : <ClassInput type="text" value={youtubeId} onChange={onYoutubeIdHandler} />
-          <ClassButton>등록</ClassButton>
-          <br />
-        </ClassForm>
-      </div>
-      <div>
-        <div id="map" style={{ width: '500px', height: '400px' }}></div>
+      <div style={{ display: 'flex' }}>
+        {' '}
+        <div style={{ width: '50%' }}>
+          <ClassForm onSubmit={onClassSubmitHandler}>
+            제목 : <ClassInput type="text" value={title} onChange={onChangeClassTitleHandler} />
+            <br />
+            내용 : <ClassInput type="text" value={contents} onChange={onChangeClassContentHandler} />
+            <br />
+            대표사진 :<ClassInput type="file" onChange={onChangeClassImgHandler} />
+            <br />
+            금액 : <ClassInput type="text" value={price} onChange={onChangeClassPriceHandler} />
+            <br />
+            스케줄 :<ClassInput type="date" value={time} onChange={onChangeClassDateHandler} />
+            <br />
+            위도 :<ClassInput type="text" value={addressLat} onChange={onLatMapHandler} placeholder="35" />
+            <br />
+            경도 :<ClassInput type="text" value={addressLng} onChange={onLngMapHandler} placeholder="120" />
+            <br />
+            장소 이름 : <ClassInput type="text" value={addressName} onChange={onAddressName} />
+            <br />
+            유튜브 주소를 넣어주세요 : <ClassInput type="text" value={youtubeId} onChange={onYoutubeIdHandler} />
+            <br />
+            <ClassSelect value={mapItem} onChange={onMapItemHandler}>
+              <option value="부천/인천" selected>
+                부천/인천
+              </option>
+              <option value="강남/서초">강남/서초</option>
+              <option value="강서/금천/양천">강서/금천/양천</option>
+              <option value="마포/서대문/은평">마포/서대문/은평</option>
+              <option value="온라인">온라인</option>
+            </ClassSelect>
+            <ClassButton>등록</ClassButton>
+            <br />
+          </ClassForm>
+        </div>
+        <div>
+          <KaKao />
+        </div>
       </div>
     </>
   );
@@ -170,4 +168,12 @@ const ClassButton = styled.button`
   padding: 12px 18px;
   border-radius: 5px;
   cursor: pointer;
+`;
+
+const ClassSelect = styled.select`
+  border: 1px solid gray;
+  width: 40%;
+  margin-bottom: 16px;
+  padding: 12px 0;
+  outline: none;
 `;
