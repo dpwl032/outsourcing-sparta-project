@@ -48,14 +48,9 @@ const addLikes = async ({ likeUser, reviewId }) => {
 
 //예지 추가
 //클래스 오픈
-const addBusinessInfo = async (formData) => {
-  try {
-    const response = await jsonApi.post('/businessInfo', formData);
-    console.log('test', response.data);
-    return response;
-  } catch (error) {
-    console.log('error', error);
-  }
+const addBusinessInfo = async (newClass) => {
+  const response = await jsonApi.post('/businessInfo', newClass);
+  return response;
 };
 
 //클래스 삭제

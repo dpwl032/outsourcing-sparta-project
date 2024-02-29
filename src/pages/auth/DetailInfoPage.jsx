@@ -212,8 +212,11 @@ function DetailInfoPage() {
                   <DetailButton onClick={() => setClick(!click)}>상세정보 더 보기</DetailButton>
                 ) : (
                   <ResetButton onClick={() => setClick(!click)}>
-                    <div> 커리큘럼</div>
-                    <ol className="numbered">
+                    <div style={{ fontSize: '30px' }}>
+                      {' '}
+                      <p>커리큘럼</p>
+                    </div>
+                    <ol>
                       <li>
                         <span>10분</span> <span>작가 및 회원소개</span>
                       </li>
