@@ -1,18 +1,18 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = `${process.env.REACT_APP_CLASS}`;
 
 export const addBusinessInfo = async (businessInfo) => {
   const response = await axios.post(`${API_URL}/businessInfo`, {
     id: uuidv4(),
-    ...businessInfo,
+    ...businessInfo
   });
   return response.data;
 };
 
 export const editBusinessInfo = async ({ id, infoToUpdate }) => {
-  const response = await axios.put(`${API_URL}/businessInfo/${id}`, {...infoToUpdate});
+  const response = await axios.put(`${API_URL}/businessInfo/${id}`, { ...infoToUpdate });
   return response.data;
 };
 
